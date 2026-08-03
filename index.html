@@ -6,7 +6,8 @@
   <title>Happy-bartey</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- FONTS OO DHAMMAAN LA ISKU DARAY -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Amiri:wght@400;700&family=Dancing+Script:wght@600;700&family=Pacifico&family=Reenie+Beanie&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -66,21 +67,19 @@
       position: fixed;
       top: 15px;
       right: 15px;
-      z-index: 100;
+      z-index: 150;
       background: linear-gradient(135deg, #00c853, #b2ff59);
       color: #000;
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      padding: 8px 16px;
+      border: 2px solid #ffffff;
+      padding: 10px 18px;
       border-radius: 20px;
-      font-size: 12px;
-      font-weight: 800;
+      font-size: 13px;
+      font-weight: 900;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0, 200, 83, 0.4);
+      box-shadow: 0 4px 20px rgba(0, 200, 83, 0.7);
       backdrop-filter: blur(8px);
-      transition: transform 0.2s;
     }
 
-    /* CREATED BY BADGE (BUSHIGA HOOSE) */
     .created-by-badge {
       position: fixed;
       bottom: 15px;
@@ -100,16 +99,8 @@
       display: flex;
       align-items: center;
       gap: 5px;
-      transition: all 0.3s;
     }
 
-    .created-by-badge:hover {
-      background: #ff1493;
-      color: #fff;
-      transform: translateX(-50%) scale(1.05);
-    }
-
-    /* MODAL POPUP FOR LINK */
     .link-modal {
       display: none;
       position: fixed;
@@ -170,22 +161,11 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
-      transition: transform 0.2s;
     }
 
-    .btn-share-whatsapp {
-      background: linear-gradient(135deg, #25D366, #128C7E);
-      color: #fff;
-      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
-    }
+    .btn-share-whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; }
+    .btn-copy-modal { background: linear-gradient(135deg, #ff1493, #ff69b4); color: #fff; }
 
-    .btn-copy-modal {
-      background: linear-gradient(135deg, #ff1493, #ff69b4);
-      color: #fff;
-      box-shadow: 0 4px 12px rgba(255, 20, 147, 0.4);
-    }
-
-    /* PAGE LOADING (10S COUNTDOWN) */
     #page-loading {
       background-image: radial-gradient(circle, #7a0016 0%, #2a0008 100%);
       flex-direction: column;
@@ -194,7 +174,6 @@
       text-align: center;
       padding: 20px;
       position: relative;
-      overflow: hidden;
     }
 
     .love-bubble {
@@ -203,7 +182,6 @@
       background: rgba(255, 105, 180, 0.25);
       border-radius: 50%;
       pointer-events: none;
-      box-shadow: 0 0 15px rgba(255, 20, 147, 0.4);
       animation: floatUp 4s infinite linear;
       display: flex;
       justify-content: center;
@@ -217,312 +195,49 @@
       100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
     }
 
-    .loader-title {
-      font-family: 'Great Vibes', cursive;
-      font-size: 44px;
-      color: #ff80bf;
-      text-shadow: 0 0 15px rgba(255, 128, 191, 0.5);
-      z-index: 2;
-    }
-
-    .countdown-number {
-      font-size: 90px;
-      font-weight: 900;
-      color: #ffffff;
-      text-shadow: 0 0 25px rgba(255, 105, 180, 0.6);
-      line-height: 1;
-      margin: 10px 0;
-      z-index: 2;
-    }
-
-    .countdown-number.excited {
-      color: #ff1744;
-      font-size: 115px;
-      text-shadow: 0 0 35px #ff1744, 0 0 60px #ff69b4;
-      animation: heartPulse 0.4s infinite alternate ease-in-out;
-    }
+    .loader-title { font-family: 'Great Vibes', cursive; font-size: 44px; color: #ff80bf; }
+    .countdown-number { font-size: 90px; font-weight: 900; color: #ffffff; line-height: 1; margin: 10px 0; }
+    .countdown-number.excited { color: #ff1744; font-size: 115px; animation: heartPulse 0.4s infinite alternate ease-in-out; }
 
     @keyframes heartPulse {
       0% { transform: scale(1); }
       100% { transform: scale(1.25); }
     }
 
-    .progress-container {
-      width: 80%;
-      max-width: 280px;
-      height: 9px;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 105, 180, 0.3);
-      z-index: 2;
-    }
+    .progress-container { width: 80%; max-width: 280px; height: 9px; background: rgba(255, 255, 255, 0.15); border-radius: 20px; overflow: hidden; }
+    .progress-bar { width: 100%; height: 100%; background: linear-gradient(90deg, #ff1493, #ff69b4, #ffeb3b); border-radius: 20px; transition: width 1s linear; }
+    .loading-text { font-size: 14px; font-weight: 700; color: #ffb3d9; }
 
-    .progress-bar {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, #ff1493, #ff69b4, #ffeb3b);
-      border-radius: 20px;
-      transition: width 1s linear;
-    }
-
-    .loading-text {
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      color: #ffb3d9;
-      z-index: 2;
-    }
-
-    /* PAGE 1: ENVELOPE */
-    #page-1 {
-      background-image: radial-gradient(circle, #a80000 0%, #500000 100%);
-      padding: 20px;
-    }
-
-    .envelope-card {
-      background-color: #fdfbf7;
-      width: 100%;
-      max-width: 360px;
-      border-radius: 18px;
-      padding: 40px 20px 30px 20px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .greeting-title {
-      font-family: 'Great Vibes', cursive;
-      font-size: 44px;
-      color: #9e1b1b;
-      margin-bottom: 25px;
-    }
-
-    .envelope-box {
-      width: 100%;
-      max-width: 260px;
-      height: 180px;
-      background: #ffffff;
-      border-radius: 12px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 25px;
-      border: 1px solid #f0f0f0;
-    }
-
-    .red-envelope {
-      width: 85%;
-      height: 110px;
-      background-color: #9e1b1b;
-      border-radius: 8px;
-      position: relative;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease;
-    }
-
-    .red-envelope:hover { transform: scale(1.05); }
-
-    .red-envelope::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      width: 0;
-      height: 0;
-      border-left: 105px solid transparent;
-      border-right: 105px solid transparent;
-      border-top: 58px solid #7a1212;
-    }
-
-    .ribbon-seal {
-      width: 38px;
-      height: 30px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .ribbon-seal::before, .ribbon-seal::after {
-      content: '';
-      position: absolute;
-      width: 16px;
-      height: 20px;
-      background: #ffffff;
-      border-radius: 50% 50% 0 50%;
-      top: 4px;
-    }
-
+    #page-1 { background-image: radial-gradient(circle, #a80000 0%, #500000 100%); padding: 20px; }
+    .envelope-card { background-color: #fdfbf7; width: 100%; max-width: 360px; border-radius: 18px; padding: 40px 20px 30px 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .greeting-title { font-family: 'Great Vibes', cursive; font-size: 44px; color: #9e1b1b; margin-bottom: 25px; }
+    .envelope-box { width: 100%; max-width: 260px; height: 180px; background: #ffffff; border-radius: 12px; display: flex; justify-content: center; align-items: center; margin-bottom: 25px; border: 1px solid #f0f0f0; }
+    .red-envelope { width: 85%; height: 110px; background-color: #9e1b1b; border-radius: 8px; position: relative; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); }
+    .red-envelope::before { content: ''; position: absolute; top: 0; width: 0; height: 0; border-left: 105px solid transparent; border-right: 105px solid transparent; border-top: 58px solid #7a1212; }
+    .ribbon-seal { width: 38px; height: 30px; position: relative; z-index: 2; }
+    .ribbon-seal::before, .ribbon-seal::after { content: ''; position: absolute; width: 16px; height: 20px; background: #ffffff; border-radius: 50% 50% 0 50%; top: 4px; }
     .ribbon-seal::before { left: 1px; transform: rotate(-25deg); }
     .ribbon-seal::after { right: 1px; transform: rotate(25deg) scaleX(-1); }
-
     .instruction-text { font-size: 12px; color: #777777; font-weight: 600; }
 
-    /* PAGE 2 */
-    #page-2 {
-      background-image: url('https://i.postimg.cc/jqkNPbJ1/da1478c736e944eb8f1ec711d8c60617.webp');
-      background-size: cover;
-      background-position: center;
-    }
-
-    #confettiCanvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .text-overlay-container {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      color: #ffffff;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
-      animation: floatPulse 3s infinite ease-in-out;
-    }
-
-    @keyframes floatPulse {
-      0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-8px) scale(1.03); }
-    }
-
-    .big-title {
-      font-family: 'Great Vibes', cursive;
-      font-size: 62px;
-      font-weight: 700;
-      color: #ffffff;
-    }
-
+    #page-2 { background-image: url('https://i.postimg.cc/jqkNPbJ1/da1478c736e944eb8f1ec711d8c60617.webp'); background-size: cover; background-position: center; }
+    #confettiCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+    .text-overlay-container { position: relative; z-index: 2; text-align: center; color: #ffffff; padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .big-title { font-family: 'Great Vibes', cursive; font-size: 62px; font-weight: 700; color: #ffffff; }
     .popper-icon { font-size: 36px; }
+    .big-subtitle { font-size: 16px; font-weight: 700; color: #ffffff; max-width: 320px; background: rgba(0, 0, 0, 0.25); padding: 8px 16px; border-radius: 20px; }
+    .btn-click-here { background: #ffffff; color: #000000; border: none; padding: 10px 24px; border-radius: 25px; font-size: 13px; font-weight: 800; cursor: pointer; }
 
-    .big-subtitle {
-      font-size: 16px;
-      font-weight: 700;
-      color: #ffffff;
-      max-width: 320px;
-      background: rgba(0, 0, 0, 0.25);
-      padding: 8px 16px;
-      border-radius: 20px;
-      backdrop-filter: blur(4px);
-    }
+    #page-3 { background-image: radial-gradient(circle, #5a0010 0%, #1a0005 100%); flex-direction: column; justify-content: center; padding: 20px; gap: 30px; }
+    .options-title { font-family: 'Great Vibes', cursive; font-size: 48px; color: #ff80bf; text-align: center; }
+    .options-container { display: flex; flex-direction: column; gap: 15px; width: 85%; max-width: 300px; margin: 0 auto; }
+    .btn-option { background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 105, 180, 0.5); color: #ffffff; padding: 15px; border-radius: 25px; font-size: 18px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
 
-    .btn-click-here {
-      background: #ffffff;
-      color: #000000;
-      border: none;
-      padding: 10px 24px;
-      border-radius: 25px;
-      font-size: 13px;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-      transition: all 0.3s ease;
-    }
-
-    .btn-click-here:hover { transform: scale(1.1); background: #ffeb3b; }
-
-    /* PAGE 3: OPTIONS */
-    #page-3 {
-      background-image: radial-gradient(circle, #5a0010 0%, #1a0005 100%);
-      flex-direction: column;
-      justify-content: center;
-      padding: 20px;
-      gap: 30px;
-    }
-
-    .options-title {
-      font-family: 'Great Vibes', cursive;
-      font-size: 48px;
-      color: #ff80bf;
-      text-shadow: 0 0 15px rgba(255, 128, 191, 0.5);
-      text-align: center;
-    }
-
-    .options-container {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      width: 85%;
-      max-width: 300px;
-      margin: 0 auto;
-    }
-
-    .btn-option {
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid rgba(255, 105, 180, 0.5);
-      color: #ffffff;
-      padding: 15px;
-      border-radius: 25px;
-      font-size: 18px;
-      font-weight: 800;
-      cursor: pointer;
-      backdrop-filter: blur(8px);
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-    }
-
-    .btn-option:hover {
-      background: #ff1493;
-      border-color: #ffffff;
-      transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 12px 25px rgba(255, 20, 147, 0.6);
-    }
-
-    /* PAGE MESSAGE (COLLAGE) */
-    #page-message {
-      background-color: #0d0d0d;
-      overflow-y: auto;
-      padding: 50px 10px 30px 10px;
-      display: none;
-      flex-direction: column;
-      align-items: center;
-    }
-
+    #page-message { background-color: #0d0d0d; overflow-y: auto; padding: 50px 10px 30px 10px; display: none; flex-direction: column; align-items: center; }
     #page-message.active { display: flex; }
 
-    .collage-wrapper {
-      position: relative;
-      width: 100%;
-      max-width: 400px;
-      background-image: url('https://i.postimg.cc/yxGZMqF5/Picsart-26-08-03-21-36-06-808.png');
-      background-size: cover;
-      background-position: center;
-      border-radius: 12px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.8);
-      aspect-ratio: 9 / 16;
-      overflow: hidden;
-      margin: 0 auto;
-    }
-
-    .polaroid-slot {
-      position: absolute;
-      background: rgba(17, 17, 17, 0.7);
-      border-radius: 3px;
-      overflow: hidden;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 1px dashed rgba(255,255,255,0.4);
-      transition: transform 0.2s;
-    }
-
+    .collage-wrapper { position: relative; width: 100%; max-width: 400px; background-image: url('https://i.postimg.cc/yxGZMqF5/Picsart-26-08-03-21-36-06-808.png'); background-size: cover; background-position: center; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.8); aspect-ratio: 9 / 16; overflow: hidden; margin: 0 auto; }
+    .polaroid-slot { position: absolute; background: rgba(17, 17, 17, 0.7); border-radius: 3px; overflow: hidden; cursor: pointer; display: flex; justify-content: center; align-items: center; border: 1px dashed rgba(255,255,255,0.4); }
     .polaroid-slot.readonly-mode { cursor: default !important; border: none !important; }
     .polaroid-slot img, .add-photo-btn-slot img { width: 100%; height: 100%; object-fit: cover; }
     .polaroid-slot span { color: #ffffff; font-size: 10px; font-weight: 700; text-align: center; opacity: 0.7; }
@@ -533,86 +248,26 @@
     .slot-4 { top: 25.5%; right: 3.5%; width: 20%; height: 12.5%; transform: rotate(4deg); }
     .slot-5 { top: 33.5%; right: 38%; width: 19%; height: 11.8%; transform: rotate(-8deg); }
 
-    .add-photo-btn-slot {
-      position: absolute;
-      bottom: 12.5%;
-      left: 7.5%;
-      width: 27%;
-      height: 21%;
-      background: rgba(240, 240, 240, 0.95);
-      border: 2px dashed #888;
-      border-radius: 6px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      overflow: hidden;
-    }
-
+    .add-photo-btn-slot { position: absolute; bottom: 12.5%; left: 7.5%; width: 27%; height: 21%; background: rgba(240, 240, 240, 0.95); border: 2px dashed #888; border-radius: 6px; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; overflow: hidden; }
     .add-photo-btn-slot.readonly-mode { cursor: default !important; border: none !important; background: transparent !important; }
     .add-photo-text { font-size: 13px; font-weight: 800; color: #333333; text-align: center; }
 
-    .floating-envelope-corner {
-      position: absolute;
-      bottom: 15px;
-      right: 15px;
-      width: 110px;
-      background: rgba(0, 0, 0, 0.75);
-      border: 2px solid #ff1493;
-      border-radius: 12px;
-      padding: 6px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-      cursor: pointer;
-      box-shadow: 0 8px 25px rgba(255, 20, 147, 0.5);
-      backdrop-filter: blur(5px);
-      z-index: 30;
-      animation: bouncePulse 2s infinite alternate ease-in-out;
-    }
-
-    @keyframes bouncePulse {
-      0% { transform: translateY(0) scale(1); }
-      100% { transform: translateY(-6px) scale(1.05); }
-    }
-
+    .floating-envelope-corner { position: absolute; bottom: 15px; right: 15px; width: 110px; background: rgba(0, 0, 0, 0.75); border: 2px solid #ff1493; border-radius: 12px; padding: 6px; display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; z-index: 30; }
     .floating-envelope-corner img { width: 100%; height: 70px; object-fit: cover; border-radius: 6px; }
     .btn-corner-click { background: #ff1493; color: #fff; border: none; border-radius: 10px; font-size: 10px; font-weight: 800; padding: 4px 8px; width: 100%; text-align: center; }
 
-    /* PAGE LETTER (SAWIRKA CUSUB + QORAALKA GEESKA CAD) */
-    #page-letter {
-      background-color: #000;
-      overflow-y: auto;
-      padding: 50px 10px 30px 10px;
-      display: none;
-      justify-content: center;
-      align-items: flex-start;
-    }
-
+    /* PAGE LETTER (HAL SAWIR + FONT SELECTOR + EDIT) */
+    #page-letter { background-color: #000; overflow-y: auto; padding: 50px 10px 30px 10px; display: none; justify-content: center; align-items: flex-start; }
     #page-letter.active { display: flex; }
 
-    .letter-wrapper-new {
-      position: relative;
-      width: 100%;
-      max-width: 400px;
-      background-image: url('https://i.postimg.cc/bwnyPGXF/29847-edited.jpg');
-      background-size: cover;
-      background-position: center;
-      border-radius: 12px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.8);
-      aspect-ratio: 1 / 1;
-      overflow: hidden;
-      margin: 0 auto;
-    }
+    .letter-wrapper-new { position: relative; width: 100%; max-width: 400px; background-image: url('https://i.postimg.cc/bwnyPGXF/29847-edited.jpg'); background-size: cover; background-position: center; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.8); aspect-ratio: 1 / 1; overflow: hidden; margin: 0 auto; }
 
     .custom-letter-text-new {
       position: absolute;
-      top: 10%;
+      top: 15%;
       right: 5%;
       width: 50%;
-      height: 80%;
+      height: 75%;
       background: transparent;
       border: none;
       outline: none;
@@ -621,112 +276,50 @@
       font-size: 22px;
       color: #111111;
       line-height: 1.4;
-      padding: 10px;
+      padding: 5px;
     }
 
-    .custom-letter-text-new:read-only { cursor: default; }
-
-    .photo-slot-frame-1 {
+    /* KONTAROOLKA FONT-KA IYO EDIT-KA (WAA KALIYA ADIGA) */
+    .letter-controls {
       position: absolute;
-      top: 29.5%;
-      left: 8.5%;
-      width: 32.5%;
-      height: 33%;
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px dashed rgba(255, 255, 255, 0.6);
-      border-radius: 4px;
+      top: 5px;
+      right: 5px;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #ffffff;
-      font-size: 11px;
-      font-weight: 700;
-      cursor: pointer;
-      overflow: hidden;
-      backdrop-filter: blur(2px);
-      transition: transform 0.2s;
+      gap: 5px;
+      z-index: 50;
     }
 
-    .photo-slot-frame-2 {
-      position: absolute;
-      bottom: 8%;
-      left: 8.5%;
-      width: 32.5%;
-      height: 22%;
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px dashed rgba(255, 255, 255, 0.6);
-      border-radius: 4px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #ffffff;
-      font-size: 11px;
-      font-weight: 700;
-      cursor: pointer;
-      overflow: hidden;
-      backdrop-filter: blur(2px);
-      transition: transform 0.2s;
-    }
-
-    .photo-slot-frame-1.readonly-mode, 
-    .photo-slot-frame-2.readonly-mode {
-      cursor: default !important;
-      border: none !important;
-      background: transparent !important;
-    }
-
-    .photo-slot-frame-1 img, 
-    .photo-slot-frame-2 img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* OTHER PAGES */
-    .sub-card-page {
-      background: radial-gradient(circle, #4a000e 0%, #120004 100%);
-      flex-direction: column;
-      padding: 30px 20px;
-      text-align: center;
-      color: #ffffff;
-      gap: 15px;
-    }
-
-    .sub-card-box {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 30px 20px;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      max-width: 340px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .card-icon { font-size: 60px; }
-
-    .btn-finish-link {
-      background: linear-gradient(135deg, #ff1493, #ff4081);
-      color: #ffffff;
-      border: 2px solid #ffffff;
-      padding: 12px 30px;
-      border-radius: 30px;
-      font-size: 15px;
+    .btn-edit-text-toggle, .font-selector-box {
+      background: #ff1493;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 3px 6px;
+      font-size: 10px;
       font-weight: 800;
       cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
     }
+
+    .font-selector-box {
+      background: #111;
+      border: 1px solid #ff1493;
+      color: #fff;
+    }
+
+    .photo-slot-frame-1 { position: absolute; top: 29.5%; left: 8.5%; width: 32.5%; height: 33%; background: rgba(0, 0, 0, 0.4); border: 1px dashed rgba(255, 255, 255, 0.6); border-radius: 4px; display: flex; justify-content: center; align-items: center; color: #ffffff; font-size: 11px; font-weight: 700; cursor: pointer; overflow: hidden; }
+    .photo-slot-frame-1.readonly-mode { cursor: default !important; border: none !important; background: transparent !important; }
+    .photo-slot-frame-1 img { width: 100%; height: 100%; object-fit: cover; }
+
+    .sub-card-page { background: radial-gradient(circle, #4a000e 0%, #120004 100%); flex-direction: column; padding: 30px 20px; text-align: center; color: #ffffff; gap: 15px; }
+    .sub-card-box { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); padding: 30px 20px; border-radius: 20px; max-width: 340px; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+    .card-icon { font-size: 60px; }
+    .btn-finish-link { background: linear-gradient(135deg, #ff1493, #ff4081); color: #ffffff; border: 2px solid #ffffff; padding: 12px 30px; border-radius: 30px; font-size: 15px; font-weight: 800; text-decoration: none; display: inline-block; }
   </style>
 </head>
 <body>
 
   <input type="file" id="imageUploader" accept="image/*" style="display: none;">
 
-  <!-- CREATED BY WEBSITE BADGE -->
   <a href="https://yourwebsite.com" target="_blank" class="created-by-badge">
     🔥 Created by MyWebsite
   </a>
@@ -741,7 +334,7 @@
     <p id="loadingText" class="loading-text">LOADING YOUR SURPRISE...</p>
   </div>
 
-  <!-- PAGE 1: ENVELOPE CARD -->
+  <!-- PAGE 1 -->
   <div id="page-1" class="page">
     <div class="envelope-card">
       <h1 class="greeting-title">Happy Birthday!</h1>
@@ -754,7 +347,7 @@
     </div>
   </div>
 
-  <!-- PAGE 2: CONFETTI IMAGE -->
+  <!-- PAGE 2 -->
   <div id="page-2" class="page">
     <button class="btn-back" onclick="openPage1()">&larr; Back</button>
     <canvas id="confettiCanvas"></canvas>
@@ -767,10 +360,9 @@
     </div>
   </div>
 
-  <!-- PAGE 3: 3 OPTIONS MENU -->
+  <!-- PAGE 3 -->
   <div id="page-3" class="page">
     <button class="btn-back" onclick="openPage2()">&larr; Back</button>
-
     <h1 class="options-title">Choose Your Gift 🎁</h1>
 
     <div class="options-container">
@@ -780,7 +372,7 @@
     </div>
   </div>
 
-  <!-- PAGE MESSAGE (COLLAGE PAGE) -->
+  <!-- PAGE MESSAGE -->
   <div id="page-message" class="page">
     <button class="btn-back" onclick="openPage3()">&larr; Back</button>
     <button class="btn-finish-top creator-only" id="finishBtnMessage" onclick="saveToFirebaseAndGetLink()">✨ Finish</button>
@@ -803,16 +395,28 @@
     </div>
   </div>
 
-  <!-- PAGE LETTER (LETTER PAGE WITH NEW IMAGE) -->
+  <!-- PAGE LETTER -->
   <div id="page-letter" class="page">
     <button class="btn-back" onclick="openMessagePage()">&larr; Back</button>
     <button class="btn-finish-top creator-only" id="finishBtnLetter" onclick="saveToFirebaseAndGetLink()">✨ Finish</button>
 
     <div class="letter-wrapper-new">
-      <textarea id="customLetterNote" class="custom-letter-text-new" placeholder="Halkan ku qor farriintaada... ❤️"></textarea>
+      <!-- KONTAROOLKA FONT-KA IYO EDIT-KA (WAA KALIYA ADIGA) -->
+      <div class="letter-controls creator-only">
+        <select id="fontSelector" class="font-selector-box" onchange="changeLetterFont(this.value)">
+          <option value="'Great Vibes', cursive">Great Vibes</option>
+          <option value="'Dancing Script', cursive">Dancing Script</option>
+          <option value="'Amiri', serif">Amiri (Carabi)</option>
+          <option value="'Pacifico', cursive">Pacifico</option>
+          <option value="'Reenie Beanie', cursive">Handwritten</option>
+          <option value="'Plus Jakarta Sans', sans-serif">Sans Regular</option>
+        </select>
+        <button class="btn-edit-text-toggle" onclick="toggleTextEdit()">✏️ Edit</button>
+      </div>
+
+      <textarea id="customLetterNote" class="custom-letter-text-new" placeholder="Halkan ku qor farriintaada... ❤️" readonly></textarea>
 
       <div class="photo-slot-frame-1" onclick="triggerUpload(this, 'l1')">+ Photo 1</div>
-      <div class="photo-slot-frame-2" onclick="triggerUpload(this, 'l2')">+ Photo 2</div>
     </div>
   </div>
 
@@ -838,7 +442,7 @@
     </div>
   </div>
 
-  <!-- LINK POPUP MODAL -->
+  <!-- LINK MODAL -->
   <div id="linkModal" class="link-modal">
     <div class="link-modal-content">
       <h3 style="font-size: 18px;">🎉 Link-gii waa diyaar!</h3>
@@ -856,7 +460,7 @@
     </div>
   </div>
 
-  <!-- FIREBASE INTEGRATION SCRIPT -->
+  <!-- FIREBASE SCRIPT -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -885,6 +489,23 @@
       activeSlotKey = key;
       currentElement = element;
       document.getElementById('imageUploader').click();
+    };
+
+    window.toggleTextEdit = function() {
+      const textarea = document.getElementById('customLetterNote');
+      if (textarea.hasAttribute('readonly')) {
+        textarea.removeAttribute('readonly');
+        textarea.focus();
+        alert("Hadda waad wax ka bedeli kartaa qoraalka!");
+      } else {
+        textarea.setAttribute('readonly', true);
+        alert("Qoraalkii waa la xiray oo waa la keydiyay!");
+      }
+    };
+
+    window.changeLetterFont = function(fontFamily) {
+      const textarea = document.getElementById('customLetterNote');
+      textarea.style.fontFamily = fontFamily;
     };
 
     document.getElementById('imageUploader').addEventListener('change', function(e) {
@@ -928,7 +549,6 @@
       }
     });
 
-    // KAYDIN FIREBASE IYO MAGACA LINK-GA HAPPY-BARTEY
     window.saveToFirebaseAndGetLink = async function() {
       if (window.isReadOnlyMode) return;
 
@@ -940,9 +560,11 @@
 
       try {
         const noteText = document.getElementById('customLetterNote').value;
+        const selectedFont = document.getElementById('fontSelector').value;
+        
         window.uploadedImages['letterNote'] = noteText;
+        window.uploadedImages['letterFont'] = selectedFont;
 
-        // MAGACA LINK-GA OO AAD CODSASTAY (Happy-bartey)
         const uniqueId = "Happy-bartey-" + Math.random().toString(36).substring(2, 8);
         await setDoc(doc(db, "surprises", uniqueId), window.uploadedImages);
 
@@ -954,7 +576,7 @@
         btnMsg.innerText = "✨ Done!";
         btnLet.innerText = "✨ Done!";
       } catch (error) {
-        alert("Cillad ayaa dhacday marka la kaydinayay: " + error.message);
+        alert("Cillad ayaa dhacday: " + error.message);
         btnMsg.innerText = "✨ Finish";
         btnLet.innerText = "✨ Finish";
       }
@@ -969,11 +591,10 @@
 
     window.shareToWhatsApp = function() {
       const link = document.getElementById("generatedLink").value;
-      const message = encodeURIComponent("Halkan ka eeg yaabka/hadiyada gaarka ah ee aan kuugu diyaariyay! ❤️🎁:\n" + link);
+      const message = encodeURIComponent("Halkan ka eeg hadiydada gaarka ah ee aan kuugu diyaariyay! ❤️🎁:\n" + link);
       window.open(`https://api.whatsapp.com/send?text=${message}`, '_blank');
     };
 
-    // LOGIC-KA MARKA QOFKA LINK-GA LOO DIRO (READ ONLY)
     window.addEventListener('load', async () => {
       const urlParams = new URLSearchParams(window.location.search);
       const cardId = urlParams.get('id');
@@ -983,7 +604,7 @@
 
         document.querySelectorAll('.creator-only').forEach(btn => btn.style.display = 'none');
 
-        document.querySelectorAll('.polaroid-slot, .add-photo-btn-slot, .photo-slot-frame-1, .photo-slot-frame-2').forEach(slot => {
+        document.querySelectorAll('.polaroid-slot, .add-photo-btn-slot, .photo-slot-frame-1').forEach(slot => {
           slot.classList.add('readonly-mode');
           slot.onclick = null;
         });
@@ -999,6 +620,7 @@
             const data = docSnap.data();
 
             if (data.letterNote) letterInput.value = data.letterNote;
+            if (data.letterFont) letterInput.style.fontFamily = data.letterFont;
 
             if (data.s1) document.querySelector('.slot-1').innerHTML = `<img src="${data.s1}">`;
             if (data.s2) document.querySelector('.slot-2').innerHTML = `<img src="${data.s2}">`;
@@ -1008,7 +630,6 @@
             if (data.main) document.querySelector('.add-photo-btn-slot').innerHTML = `<img src="${data.main}">`;
 
             if (data.l1) document.querySelector('.photo-slot-frame-1').innerHTML = `<img src="${data.l1}">`;
-            if (data.l2) document.querySelector('.photo-slot-frame-2').innerHTML = `<img src="${data.l2}">`;
           }
         } catch (err) {
           console.error("Error loading surprise card:", err);
@@ -1017,7 +638,7 @@
     });
   </script>
 
-  <!-- NAVIGATION & ANIMATION SCRIPT -->
+  <!-- NAVIGATION & ANIMATION -->
   <script>
     const loadingPage = document.getElementById('page-loading');
     for (let i = 0; i < 15; i++) {
