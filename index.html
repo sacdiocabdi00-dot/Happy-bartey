@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Gift Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #000;
+    }
+
+    /* CONTROLLING PAGES */
+    .page {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    .page.active {
+      display: flex;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* ================= PAGE 0: LOADING SCREEN (30s) ================= */
+    #page-loading {
+      background-image: radial-gradient(circle, #500000 0%, #1a0000 100%);
+      flex-direction: column;
+      gap: 20px;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .loader-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 48px;
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+
+    .progress-container {
+      width: 80%;
+      max-width: 280px;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #ff4081, #ffeb3b);
+      border-radius: 20px;
+      transition: width 0.1s linear;
+    }
+
+    .loading-text {
+      font-size: 13px;
+      font-weight: 600;
+      opacity: 0.85;
+      letter-spacing: 0.5px;
+    }
+
+    /* ================= PAGE 1: ENVELOPE CARD ================= */
+    #page-1 {
+      background-image: radial-gradient(circle, #a80000 0%, #500000 100%);
+      padding: 20px;
+    }
+
+    .envelope-card {
+      background-color: #fdfbf7;
+      width: 100%;
+      max-width: 360px;
+      border-radius: 18px;
+      padding: 40px 20px 30px 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .greeting-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 44px;
+      color: #9e1b1b;
+      margin-bottom: 25px;
+    }
+
+    .envelope-box {
+      width: 100%;
+      max-width: 260px;
+      height: 180px;
+      background: #ffffff;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 25px;
+      border: 1px solid #f0f0f0;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.03);
+    }
+
+    .red-envelope {
+      width: 85%;
+      height: 110px;
+      background-color: #9e1b1b;
+      border-radius: 8px;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .red-envelope:hover {
+      transform: scale(1.05);
+    }
+
+    .red-envelope::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-left: 105px solid transparent;
+      border-right: 105px solid transparent;
+      border-top: 58px solid #7a1212;
+    }
+
+    .ribbon-seal {
+      width: 38px;
+      height: 30px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .ribbon-seal::before,
+    .ribbon-seal::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 20px;
+      background: #ffffff;
+      border-radius: 50% 50% 0 50%;
+      top: 4px;
+    }
+
+    .ribbon-seal::before {
+      left: 1px;
+      transform: rotate(-25deg);
+    }
+
+    .ribbon-seal::after {
+      right: 1px;
+      transform: rotate(25deg) scaleX(-1);
+    }
+
+    .instruction-text {
+      font-size: 12px;
+      color: #777777;
+      font-weight: 600;
+    }
+
+    /* ================= PAGE 2: FULL IMAGE (NO RED BOX) ================= */
+    #page-2 {
+      background-image: url('https://i.postimg.cc/jqkNPbJ1/da1478c736e944eb8f1ec711d8c60617.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    #confettiCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* BACK BUTTON */
+    .btn-back {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.4);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: background 0.2s;
+    }
+
+    .btn-back:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    /* OVERLAY TEXT CONTAINER (NO RED BOX) */
+    .text-overlay-container {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: #ffffff;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 255, 255, 0.4);
+      animation: floatPulse 3s infinite ease-in-out;
+    }
+
+    @keyframes floatPulse {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+      }
+      50% {
+        transform: translateY(-8px) scale(1.03);
+      }
+    }
+
+    .big-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 62px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.1;
+      letter-spacing: 1px;
+    }
+
+    .popper-icon {
+      font-size: 36px;
+      animation: rotateBounce 2s infinite ease-in-out;
+    }
+
+    @keyframes rotateBounce {
+      0%, 100% { transform: rotate(-10deg) scale(1); }
+      50% { transform: rotate(10deg) scale(1.2); }
+    }
+
+    .big-subtitle {
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+      max-width: 320px;
+      line-height: 1.4;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 8px 16px;
+      border-radius: 20px;
+      backdrop-filter: blur(4px);
+    }
+
+    .btn-click-here {
+      background: #ffffff;
+      color: #000000;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 25px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      transition: all 0.3s ease;
+      margin-top: 5px;
+    }
+
+    .btn-click-here:hover {
+      transform: scale(1.1);
+      background: #ffeb3b;
+    }
+
+    /* LAPTOP / DESKTOP RESPONSIVE ADJUSTMENTS */
+    @media (min-width: 768px) {
+      .big-title {
+        font-size: 80px;
+      }
+      .big-subtitle {
+        font-size: 20px;
+        max-width: 450px;
+      }
+      .btn-click-here {
+        font-size: 15px;
+        padding: 12px 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= BOGGA LOADING (30 SECOND) ================= -->
+  <div id="page-loading" class="page active">
+    <h1 class="loader-title">Preparing Your Surprise... 🎁</h1>
+    <div class="progress-container">
+      <div id="progressBar" class="progress-bar"></div>
+    </div>
+    <p id="loadingPercent" class="loading-text">Loading... 0%</p>
+  </div>
+
+  <!-- ================= BOGGA 1-AAD ================= -->
+  <div id="page-1" class="page">
+    <div class="envelope-card">
+      <h1 class="greeting-title">Happy Birthday!</h1>
+      
+      <div class="envelope-box">
+        <div class="red-envelope" onclick="openPage2()">
+          <div class="ribbon-seal"></div>
+        </div>
+      </div>
+
+      <p class="instruction-text">Click the seal to open</p>
+    </div>
+  </div>
+
+  <!-- ================= BOGGA 2-AAD ================= -->
+  <div id="page-2" class="page">
+    <button class="btn-back" onclick="openPage1()">&larr; Back</button>
+    <canvas id="confettiCanvas"></canvas>
+
+    <div class="text-overlay-container">
+      <h1 class="big-title">Happy Birthday!</h1>
+      <div class="popper-icon">🎉</div>
+      <p class="big-subtitle">I hope this little gift will make you happy ❤️</p>
+      <button class="btn-click-here">Click here ✨</button>
+    </div>
+  </div>
+
+  <script>
+    // 30-SECOND LOADING SYSTEM
+    let progress = 0;
+    const totalDuration = 30000; // 30 Seconds
+    const intervalTime = 100; // updates every 0.1s
+    const step = (intervalTime / totalDuration) * 100;
+
+    const progressBar = document.getElementById('progressBar');
+    const loadingPercent = document.getElementById('loadingPercent');
+
+    const loadingInterval = setInterval(() => {
+      progress += step;
+      if (progress >= 100) {
+        progress = 100;
+        clearInterval(loadingInterval);
+        
+        // SWITCH FROM LOADING TO PAGE 1
+        document.getElementById('page-loading').classList.remove('active');
+        document.getElementById('page-1').classList.add('active');
+      }
+
+      progressBar.style.width = progress + '%';
+      loadingPercent.innerText = `Loading... ${Math.floor(progress)}%`;
+    }, intervalTime);
+
+    // PAGE SWITCHING FUNCTIONS
+    function openPage2() {
+      document.getElementById('page-1').classList.remove('active');
+      document.getElementById('page-2').classList.add('active');
+      startConfetti();
+    }
+
+    function openPage1() {
+      document.getElementById('page-2').classList.remove('active');
+      document.getElementById('page-1').classList.add('active');
+    }
+
+    // CONFETTI ANIMATION SCRIPT
+    function startConfetti() {
+      const canvas = document.getElementById('confettiCanvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+
+      const particles = [];
+      const colors = ['#f44336', '#e91e63', '#9c27b0', '#2196f3', '#ffeb3b', '#4caf50', '#ff9800'];
+
+      for (let i = 0; i < 90; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 3.5 + 1,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          vx: Math.random() * 2 - 1,
+          vy: Math.random() * 1.5 + 0.5
+        });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.fill();
+
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.y > canvas.height) p.y = 0;
+          if (p.x > canvas.width) p.x = 0;
+          if (p.x < 0) p.x = canvas.width;
+        });
+        requestAnimationFrame(draw);
+      }
+      draw();
+    }
+  </script>
+
+</body>
+</html>
+
