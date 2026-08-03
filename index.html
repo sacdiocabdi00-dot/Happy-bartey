@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday Love Surprise</title>
+  <title>Happy-bartey</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -80,10 +80,36 @@
       transition: transform 0.2s;
     }
 
-    .btn-finish-top:hover {
-      transform: scale(1.05);
+    /* CREATED BY BADGE (BUSHIGA HOOSE) */
+    .created-by-badge {
+      position: fixed;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 150;
+      background: rgba(0, 0, 0, 0.85);
+      color: #fff;
+      border: 1px solid #ff1493;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(255, 20, 147, 0.5);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.3s;
     }
 
+    .created-by-badge:hover {
+      background: #ff1493;
+      color: #fff;
+      transform: translateX(-50%) scale(1.05);
+    }
+
+    /* MODAL POPUP FOR LINK */
     .link-modal {
       display: none;
       position: fixed;
@@ -147,10 +173,6 @@
       transition: transform 0.2s;
     }
 
-    .btn-modal:active {
-      transform: scale(0.95);
-    }
-
     .btn-share-whatsapp {
       background: linear-gradient(135deg, #25D366, #128C7E);
       color: #fff;
@@ -163,6 +185,7 @@
       box-shadow: 0 4px 12px rgba(255, 20, 147, 0.4);
     }
 
+    /* PAGE LOADING (10S COUNTDOWN) */
     #page-loading {
       background-image: radial-gradient(circle, #7a0016 0%, #2a0008 100%);
       flex-direction: column;
@@ -251,6 +274,7 @@
       z-index: 2;
     }
 
+    /* PAGE 1: ENVELOPE */
     #page-1 {
       background-image: radial-gradient(circle, #a80000 0%, #500000 100%);
       padding: 20px;
@@ -338,6 +362,7 @@
 
     .instruction-text { font-size: 12px; color: #777777; font-weight: 600; }
 
+    /* PAGE 2 */
     #page-2 {
       background-image: url('https://i.postimg.cc/jqkNPbJ1/da1478c736e944eb8f1ec711d8c60617.webp');
       background-size: cover;
@@ -408,6 +433,7 @@
 
     .btn-click-here:hover { transform: scale(1.1); background: #ffeb3b; }
 
+    /* PAGE 3: OPTIONS */
     #page-3 {
       background-image: radial-gradient(circle, #5a0010 0%, #1a0005 100%);
       flex-direction: column;
@@ -458,6 +484,7 @@
       box-shadow: 0 12px 25px rgba(255, 20, 147, 0.6);
     }
 
+    /* PAGE MESSAGE (COLLAGE) */
     #page-message {
       background-color: #0d0d0d;
       overflow-y: auto;
@@ -467,9 +494,7 @@
       align-items: center;
     }
 
-    #page-message.active {
-      display: flex;
-    }
+    #page-message.active { display: flex; }
 
     .collage-wrapper {
       position: relative;
@@ -485,12 +510,6 @@
       margin: 0 auto;
     }
 
-    @keyframes slotPopIn {
-      0% { transform: scale(0) rotate(0deg); opacity: 0; }
-      70% { transform: scale(1.08); opacity: 1; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
     .polaroid-slot {
       position: absolute;
       background: rgba(17, 17, 17, 0.7);
@@ -502,16 +521,10 @@
       align-items: center;
       border: 1px dashed rgba(255,255,255,0.4);
       transition: transform 0.2s;
-      animation: slotPopIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
     }
 
-    .polaroid-slot.readonly-mode {
-      cursor: default !important;
-      border: none !important;
-    }
-
-    .polaroid-slot:hover:not(.readonly-mode) { transform: scale(1.05) rotate(0deg) !important; border-color: #ff1493; z-index: 10; }
-    .polaroid-slot img, .add-photo-btn-slot img, .btn-side-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .polaroid-slot.readonly-mode { cursor: default !important; border: none !important; }
+    .polaroid-slot img, .add-photo-btn-slot img { width: 100%; height: 100%; object-fit: cover; }
     .polaroid-slot span { color: #ffffff; font-size: 10px; font-weight: 700; text-align: center; opacity: 0.7; }
 
     .slot-1 { top: 1.5%; right: 29.5%; width: 18.5%; height: 11.5%; transform: rotate(-5deg); }
@@ -534,17 +547,10 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      transition: all 0.3s;
       overflow: hidden;
-      animation: slotPopIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
     }
 
-    .add-photo-btn-slot.readonly-mode {
-      cursor: default !important;
-      border: none !important;
-      background: transparent !important;
-    }
-
+    .add-photo-btn-slot.readonly-mode { cursor: default !important; border: none !important; background: transparent !important; }
     .add-photo-text { font-size: 13px; font-weight: 800; color: #333333; text-align: center; }
 
     .floating-envelope-corner {
@@ -563,7 +569,6 @@
       cursor: pointer;
       box-shadow: 0 8px 25px rgba(255, 20, 147, 0.5);
       backdrop-filter: blur(5px);
-      transition: transform 0.3s ease;
       z-index: 30;
       animation: bouncePulse 2s infinite alternate ease-in-out;
     }
@@ -576,6 +581,7 @@
     .floating-envelope-corner img { width: 100%; height: 70px; object-fit: cover; border-radius: 6px; }
     .btn-corner-click { background: #ff1493; color: #fff; border: none; border-radius: 10px; font-size: 10px; font-weight: 800; padding: 4px 8px; width: 100%; text-align: center; }
 
+    /* PAGE LETTER (SAWIRKA CUSUB + QORAALKA GEESKA CAD) */
     #page-letter {
       background-color: #000;
       overflow-y: auto;
@@ -587,53 +593,96 @@
 
     #page-letter.active { display: flex; }
 
-    .letter-wrapper {
+    .letter-wrapper-new {
       position: relative;
       width: 100%;
       max-width: 400px;
-      background-image: url('https://i.postimg.cc/vTGvXdQd/db2d583d27de840c2506b336ffda411d.jpg');
+      background-image: url('https://i.postimg.cc/bwnyPGXF/29847-edited.jpg');
       background-size: cover;
       background-position: center;
       border-radius: 12px;
       box-shadow: 0 15px 35px rgba(0,0,0,0.8);
-      aspect-ratio: 9 / 16;
+      aspect-ratio: 1 / 1;
       overflow: hidden;
       margin: 0 auto;
     }
 
-    .side-photos-container {
+    .custom-letter-text-new {
       position: absolute;
-      top: 5%;
+      top: 10%;
       right: 5%;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      width: 28%;
+      width: 50%;
+      height: 80%;
+      background: transparent;
+      border: none;
+      outline: none;
+      resize: none;
+      font-family: 'Great Vibes', cursive;
+      font-size: 22px;
+      color: #111111;
+      line-height: 1.4;
+      padding: 10px;
     }
 
-    .btn-side-photo {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      background: rgba(0, 0, 0, 0.6);
-      border: 2px dashed rgba(255, 255, 255, 0.7);
-      border-radius: 8px;
+    .custom-letter-text-new:read-only { cursor: default; }
+
+    .photo-slot-frame-1 {
+      position: absolute;
+      top: 29.5%;
+      left: 8.5%;
+      width: 32.5%;
+      height: 33%;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px dashed rgba(255, 255, 255, 0.6);
+      border-radius: 4px;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #fff;
+      color: #ffffff;
       font-size: 11px;
       font-weight: 700;
       cursor: pointer;
       overflow: hidden;
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(2px);
+      transition: transform 0.2s;
     }
 
-    .btn-side-photo.readonly-mode {
+    .photo-slot-frame-2 {
+      position: absolute;
+      bottom: 8%;
+      left: 8.5%;
+      width: 32.5%;
+      height: 22%;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px dashed rgba(255, 255, 255, 0.6);
+      border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      overflow: hidden;
+      backdrop-filter: blur(2px);
+      transition: transform 0.2s;
+    }
+
+    .photo-slot-frame-1.readonly-mode, 
+    .photo-slot-frame-2.readonly-mode {
       cursor: default !important;
       border: none !important;
       background: transparent !important;
     }
 
+    .photo-slot-frame-1 img, 
+    .photo-slot-frame-2 img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* OTHER PAGES */
     .sub-card-page {
       background: radial-gradient(circle, #4a000e 0%, #120004 100%);
       flex-direction: column;
@@ -677,6 +726,11 @@
 
   <input type="file" id="imageUploader" accept="image/*" style="display: none;">
 
+  <!-- CREATED BY WEBSITE BADGE -->
+  <a href="https://yourwebsite.com" target="_blank" class="created-by-badge">
+    🔥 Created by MyWebsite
+  </a>
+
   <!-- PAGE 0: 10s COUNTDOWN -->
   <div id="page-loading" class="page active">
     <h1 id="loaderTitle" class="loader-title">Made with Love For You ❤️</h1>
@@ -700,7 +754,7 @@
     </div>
   </div>
 
-  <!-- PAGE 2: SECOND IMAGE -->
+  <!-- PAGE 2: CONFETTI IMAGE -->
   <div id="page-2" class="page">
     <button class="btn-back" onclick="openPage1()">&larr; Back</button>
     <canvas id="confettiCanvas"></canvas>
@@ -749,19 +803,16 @@
     </div>
   </div>
 
-  <!-- PAGE LETTER -->
+  <!-- PAGE LETTER (LETTER PAGE WITH NEW IMAGE) -->
   <div id="page-letter" class="page">
     <button class="btn-back" onclick="openMessagePage()">&larr; Back</button>
     <button class="btn-finish-top creator-only" id="finishBtnLetter" onclick="saveToFirebaseAndGetLink()">✨ Finish</button>
 
-    <div class="letter-wrapper">
-      <div class="side-photos-container">
-        <div class="btn-side-photo" onclick="triggerUpload(this, 'l1')">+ Photo 1</div>
-        <div class="btn-side-photo" onclick="triggerUpload(this, 'l2')">+ Photo 2</div>
-        <div class="btn-side-photo" onclick="triggerUpload(this, 'l3')">+ Photo 3</div>
-        <div class="btn-side-photo" onclick="triggerUpload(this, 'l4')">+ Photo 4</div>
-        <div class="btn-side-photo" onclick="triggerUpload(this, 'l5')">+ Photo 5</div>
-      </div>
+    <div class="letter-wrapper-new">
+      <textarea id="customLetterNote" class="custom-letter-text-new" placeholder="Halkan ku qor farriintaada... ❤️"></textarea>
+
+      <div class="photo-slot-frame-1" onclick="triggerUpload(this, 'l1')">+ Photo 1</div>
+      <div class="photo-slot-frame-2" onclick="triggerUpload(this, 'l2')">+ Photo 2</div>
     </div>
   </div>
 
@@ -877,6 +928,7 @@
       }
     });
 
+    // KAYDIN FIREBASE IYO MAGACA LINK-GA HAPPY-BARTEY
     window.saveToFirebaseAndGetLink = async function() {
       if (window.isReadOnlyMode) return;
 
@@ -887,7 +939,11 @@
       btnLet.innerText = "Saving... ⏳";
 
       try {
-        const uniqueId = "card_" + Math.random().toString(36).substring(2, 9);
+        const noteText = document.getElementById('customLetterNote').value;
+        window.uploadedImages['letterNote'] = noteText;
+
+        // MAGACA LINK-GA OO AAD CODSASTAY (Happy-bartey)
+        const uniqueId = "Happy-bartey-" + Math.random().toString(36).substring(2, 8);
         await setDoc(doc(db, "surprises", uniqueId), window.uploadedImages);
 
         const shareableURL = window.location.origin + window.location.pathname + "?id=" + uniqueId;
@@ -917,6 +973,7 @@
       window.open(`https://api.whatsapp.com/send?text=${message}`, '_blank');
     };
 
+    // LOGIC-KA MARKA QOFKA LINK-GA LOO DIRO (READ ONLY)
     window.addEventListener('load', async () => {
       const urlParams = new URLSearchParams(window.location.search);
       const cardId = urlParams.get('id');
@@ -926,10 +983,13 @@
 
         document.querySelectorAll('.creator-only').forEach(btn => btn.style.display = 'none');
 
-        document.querySelectorAll('.polaroid-slot, .add-photo-btn-slot, .btn-side-photo').forEach(slot => {
+        document.querySelectorAll('.polaroid-slot, .add-photo-btn-slot, .photo-slot-frame-1, .photo-slot-frame-2').forEach(slot => {
           slot.classList.add('readonly-mode');
           slot.onclick = null;
         });
+
+        const letterInput = document.getElementById('customLetterNote');
+        letterInput.readOnly = true;
 
         try {
           const docRef = doc(db, "surprises", cardId);
@@ -938,6 +998,8 @@
           if (docSnap.exists()) {
             const data = docSnap.data();
 
+            if (data.letterNote) letterInput.value = data.letterNote;
+
             if (data.s1) document.querySelector('.slot-1').innerHTML = `<img src="${data.s1}">`;
             if (data.s2) document.querySelector('.slot-2').innerHTML = `<img src="${data.s2}">`;
             if (data.s3) document.querySelector('.slot-3').innerHTML = `<img src="${data.s3}">`;
@@ -945,12 +1007,8 @@
             if (data.s5) document.querySelector('.slot-5').innerHTML = `<img src="${data.s5}">`;
             if (data.main) document.querySelector('.add-photo-btn-slot').innerHTML = `<img src="${data.main}">`;
 
-            const sideBtns = document.querySelectorAll('.btn-side-photo');
-            if (data.l1 && sideBtns[0]) sideBtns[0].innerHTML = `<img src="${data.l1}">`;
-            if (data.l2 && sideBtns[1]) sideBtns[1].innerHTML = `<img src="${data.l2}">`;
-            if (data.l3 && sideBtns[2]) sideBtns[2].innerHTML = `<img src="${data.l3}">`;
-            if (data.l4 && sideBtns[3]) sideBtns[3].innerHTML = `<img src="${data.l4}">`;
-            if (data.l5 && sideBtns[4]) sideBtns[4].innerHTML = `<img src="${data.l5}">`;
+            if (data.l1) document.querySelector('.photo-slot-frame-1').innerHTML = `<img src="${data.l1}">`;
+            if (data.l2) document.querySelector('.photo-slot-frame-2').innerHTML = `<img src="${data.l2}">`;
           }
         } catch (err) {
           console.error("Error loading surprise card:", err);
@@ -959,7 +1017,7 @@
     });
   </script>
 
-  <!-- NAVIGATION & CONFETTI JS -->
+  <!-- NAVIGATION & ANIMATION SCRIPT -->
   <script>
     const loadingPage = document.getElementById('page-loading');
     for (let i = 0; i < 15; i++) {
