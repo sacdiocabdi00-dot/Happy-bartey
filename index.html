@@ -6,8 +6,8 @@
   <title>Happy-bartey</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- FONTS -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Amiri:wght@400;700&family=Dancing+Script:wght@600;700&family=Pacifico&family=Reenie+Beanie&display=swap" rel="stylesheet">
+  <!-- FONTS - FARTA OO LA BADIYAY -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Amiri:wght@400;700&family=Dancing+Script:wght@600;700&family=Pacifico&family=Reenie+Beanie&family=Cairo:wght@400;700&family=Readex+Pro:wght@400;600&family=Cinzel:wght@600&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -298,7 +298,6 @@
     .slot-4 { top: 25.5%; right: 3.5%; width: 20%; height: 12.5%; }
     .slot-5 { top: 33.5%; right: 38%; width: 19%; height: 11.8%; }
 
-    /* ADD PHOTO OO LA YARYEERE ISNA WAX LA KA DARSADAY */
     .add-photo-btn-slot { 
       position: absolute; 
       bottom: 12%; 
@@ -329,7 +328,6 @@
     #page-letter { background-color: #000; overflow-y: auto; padding: 50px 10px 30px 10px; display: none; justify-content: center; align-items: flex-start; }
     #page-letter.active { display: flex; }
 
-    /* WARQADDA OO BACKGROUND-KA DHAN QAPXARTO */
     .letter-wrapper-new { 
       position: relative; 
       width: 100%; 
@@ -345,22 +343,22 @@
       animation: fadeInScale 0.5s ease; 
     }
 
-    /* QORAALKA OO KU FIIRSAN WARQADDA DHEXTAYEEDA SI SAX AH */
+    /* QORAALKA OO HADA LA SOO HOOS DHIIGAY SI UUSAN WADNADDA U GALIN, LAGUNA DARAY COLOR & SIZE KONTAROL */
     .custom-letter-text-new {
       position: absolute;
-      top: 20%;
-      left: 12%;
-      width: 76%;
-      height: 60%;
+      top: 26%;
+      left: 14%;
+      width: 72%;
+      height: 55%;
       background: transparent;
       border: none;
       outline: none;
       resize: none;
-      font-family: 'Great Vibes', cursive;
-      font-size: 24px;
+      font-family: 'Amiri', serif;
+      font-size: 18px;
       color: #222222;
       line-height: 1.5;
-      padding: 10px;
+      padding: 5px;
     }
 
     .typing-receiver-simulation { animation: typingEffect 1s ease forwards; }
@@ -371,19 +369,20 @@
       right: 10px;
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 5px;
       z-index: 50;
-      max-width: 280px;
+      max-width: 310px;
       justify-content: flex-end;
+      align-items: center;
     }
 
-    .btn-edit-text-toggle, .font-selector-box, .music-link-btn {
+    .btn-edit-text-toggle, .font-selector-box, .music-link-btn, .custom-color-picker, .custom-size-input {
       background: #ff1493;
       color: #fff;
       border: none;
       border-radius: 6px;
-      padding: 5px 10px;
-      font-size: 11px;
+      padding: 4px 8px;
+      font-size: 10px;
       font-weight: 800;
       cursor: pointer;
       box-shadow: 0 3px 10px rgba(255, 20, 147, 0.4);
@@ -392,9 +391,34 @@
     .btn-edit-text-toggle:hover, .music-link-btn:hover { transform: scale(1.05); }
 
     .font-selector-box { background: #111; border: 1px solid #ff1493; color: #fff; }
+    .custom-color-picker { width: 28px; height: 26px; padding: 0; border: 1px solid #fff; cursor: pointer; }
+    .custom-size-input { width: 45px; background: #111; border: 1px solid #ff1493; text-align: center; color: #fff; }
 
     .edit-active-only { display: none !important; }
     .editing-mode-active .edit-active-only { display: inline-block !important; }
+
+    /* REMOVE PHOTO BUTTON HOOSEEYA KONTAROLKA SAWIRKA */
+    .photo-action-container {
+      position: absolute;
+      bottom: 5px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      z-index: 40;
+    }
+    .btn-remove-active-photo {
+      background: rgba(220, 20, 60, 0.9);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 3px 6px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
 
     .sub-card-page { background: radial-gradient(circle, #4a000e 0%, #120004 100%); flex-direction: column; padding: 30px 20px; text-align: center; color: #ffffff; gap: 15px; }
     .sub-card-box { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); padding: 30px 20px; border-radius: 20px; max-width: 340px; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 15px; animation: fadeInScale 0.4s ease; }
@@ -402,7 +426,6 @@
     .btn-finish-link { background: linear-gradient(135deg, #ff1493, #ff4081); color: #ffffff; border: 2px solid #ffffff; padding: 12px 30px; border-radius: 30px; font-size: 15px; font-weight: 800; text-decoration: none; display: inline-block; transition: 0.3s; }
     .btn-finish-link:hover { transform: scale(1.05); }
 
-    /* MUSIC SETUP MODAL */
     .music-input-modal {
       display: none;
       position: fixed;
@@ -425,7 +448,6 @@
   <input type="file" id="imageUploader" accept="image/*" style="display: none;">
   <input type="file" id="audioFileUploader" accept="audio/*,video/*" style="display: none;" onchange="handleAudioFileUpload(event)">
 
-  <!-- MUSIC TOGGLE BUTTON -->
   <button id="musicToggleBtn" class="btn-music-toggle" onclick="togglePlayMusic()">
     <span id="musicIcon">🔊</span> <span id="musicText">Music On</span>
   </button>
@@ -491,7 +513,6 @@
       <div class="polaroid-slot slot-4" onclick="triggerUpload(this, 's4')"><span>+ Photo 4</span></div>
       <div class="polaroid-slot slot-5" onclick="triggerUpload(this, 's5')"><span>+ Photo 5</span></div>
 
-      <!-- ADD PHOTO OO LA YARYEERE ISNA WAX LA KA DARSADAY -->
       <div class="add-photo-btn-slot" onclick="triggerUpload(this, 'main')">
         <span class="add-photo-text">📷<br>+ Add Photo</span>
       </div>
@@ -511,17 +532,27 @@
     <div class="letter-wrapper-new" id="letterWrapperBox">
       <div class="letter-controls creator-only">
         <button class="music-link-btn edit-active-only" onclick="openMusicModal()">🎵 Set Music</button>
+        
+        <!-- FONT-YO BADAN OO LA KORDHIYAY -->
         <select id="fontSelector" class="font-selector-box edit-active-only" onchange="changeLetterFont(this.value)">
+          <option value="'Amiri', serif">Amiri</option>
           <option value="'Great Vibes', cursive">Great Vibes</option>
           <option value="'Dancing Script', cursive">Dancing Script</option>
-          <option value="'Amiri', serif">Amiri</option>
           <option value="'Pacifico', cursive">Pacifico</option>
           <option value="'Reenie Beanie', cursive">Handwritten</option>
+          <option value="'Cairo', sans-serif">Cairo</option>
+          <option value="'Readex Pro', sans-serif">Readex Pro</option>
+          <option value="'Cinzel', serif">Cinzel</option>
         </select>
+
+        <!-- FONT SIZE & FONT COLOR KONTAROLO -->
+        <input type="number" id="fontSizeSelector" class="custom-size-input edit-active-only" value="18" min="10" max="32" onchange="changeFontSize(this.value)" title="Font Size">
+        <input type="color" id="fontColorSelector" class="custom-color-picker edit-active-only" value="#222222" onchange="changeFontColor(this.value)" title="Font Color">
+
         <button class="btn-edit-text-toggle" onclick="toggleTextEdit()">✏️ Edit</button>
       </div>
 
-      <!-- QORAALKA OO KU FIIRSAN WARQADDA DHEXTAYEEDA SI SAX AH -->
+      <!-- QORAALKA OO HOOS LOO DHIGAY SI UUSAN WADNADDA U GALIN -->
       <textarea id="customLetterNote" class="custom-letter-text-new" placeholder="Halkan ku qor farriintaada quruxda badan... ❤️" readonly></textarea>
     </div>
   </div>
@@ -570,13 +601,13 @@
   <div id="musicModal" class="music-input-modal">
     <div class="link-modal-content">
       <h3 style="font-size: 18px;">🎵 Dooro Muusigga Heesta</h3>
-      <p style="font-size: 12px; color: #ccc;">Ka dooro qalabkaaga (Upload) ama geli link-ga YouTube/Spotify:</p>
+      <p style="font-size: 12px; color: #ccc;">Haddii feylku ka weyn yahay 1MB, fadlan isticmaal link YouTube ama Spotify si uusan error u keenin:</p>
       
       <button class="btn-modal btn-copy-modal" style="width:100%;" onclick="document.getElementById('audioFileUploader').click()">
-        <span>📁</span> Upload Audio/Video (Gallery)
+        <span>📁</span> Upload Audio (Gaaban)
       </button>
 
-      <div style="font-size: 11px; color: #aaa; margin: 5px 0;">-- AMA GELI LINK --</div>
+      <div style="font-size: 11px; color: #aaa; margin: 5px 0;">-- AMA GELI LINK (Waa la hubo) --</div>
 
       <input type="text" id="musicLinkInput" class="share-link-input" placeholder="Ku dheji Link-ga YouTube ama Spotify halkan...">
       
@@ -642,6 +673,14 @@
       document.getElementById('customLetterNote').style.fontFamily = fontFamily;
     };
 
+    window.changeFontSize = function(sizeVal) {
+      document.getElementById('customLetterNote').style.fontSize = sizeVal + 'px';
+    };
+
+    window.changeFontColor = function(colorVal) {
+      document.getElementById('customLetterNote').style.color = colorVal;
+    };
+
     window.openMusicModal = function() {
       document.getElementById('musicModal').style.display = 'flex';
     };
@@ -654,12 +693,17 @@
       const file = event.target.files[0];
       if (!file) return;
 
+      if (file.size > 1000000) {
+        alert("Feylkaaga codku wuu ka weyn yahay 1MB! Fadlan isticmaal link YouTube ama Spotify si uusan Error u keenin.");
+        return;
+      }
+
       const reader = new FileReader();
       reader.onload = function(e) {
         window.customAudioData = e.target.result;
         window.musicLinkValue = ""; 
         playAudioData(window.customAudioData);
-        alert("Feylkii muusigga / video-ga si guul leh ayaa loo geliyay! 🎵");
+        alert("Feylkii muusigga si guul leh ayaa loo geliyay! 🎵");
         closeMusicModal();
       };
       reader.readAsDataURL(file);
@@ -671,14 +715,14 @@
       const isSpotify = linkVal.includes("spotify.com");
 
       if (!linkVal || (!isYouTube && !isSpotify)) {
-        alert("Waan ka xumahay, link-ga aad gelisay waa qalad ama ma aha mid sax ah! Fadlan geli link YouTube albo Spotify oo sax ah. 🎵✨");
+        alert("Fadlan geli link YouTube ama Spotify oo sax ah. 🎵✨");
         return;
       }
 
       window.musicLinkValue = linkVal;
       window.customAudioData = ""; 
       renderMusicPlayer(window.musicLinkValue);
-      alert("Link-ga heesta waa la keydiyay oo waa sax! ❤️");
+      alert("Link-ga heesta waa la keydiyay! ❤️");
       closeMusicModal();
     };
 
@@ -735,6 +779,19 @@
       }
     };
 
+    // REMOVE PHOTO FUNCTION
+    window.removeSpecificPhoto = function(key, event) {
+      event.stopPropagation();
+      delete window.uploadedImages[key];
+      
+      if (key === 'main') {
+        document.querySelector('.add-photo-btn-slot').innerHTML = `<span class="add-photo-text">📷<br>+ Add Photo</span>`;
+      } else {
+        const slotNum = key.replace('s', '');
+        document.querySelector(`.slot-${slotNum}`).innerHTML = `<span>+ Photo ${slotNum}</span>`;
+      }
+    };
+
     document.getElementById('imageUploader').addEventListener('change', function(e) {
       if (window.isReadOnlyMode) return;
       const file = e.target.files[0];
@@ -768,7 +825,14 @@
             const compressedBase64 = canvas.toDataURL('image/jpeg', 0.75);
 
             window.uploadedImages[activeSlotKey] = compressedBase64;
-            currentElement.innerHTML = `<img src="${compressedBase64}" style="width:100%; height:100%; object-fit:cover;">`;
+            
+            // Ku dar Remove button sawirka dushiisa ama agtiisa
+            currentElement.innerHTML = `
+              <img src="${compressedBase64}" style="width:100%; height:100%; object-fit:cover;">
+              <div class="photo-action-container creator-only">
+                <button class="btn-remove-active-photo" onclick="removeSpecificPhoto('${activeSlotKey}', event)">Remove</button>
+              </div>
+            `;
           };
           img.src = event.target.result;
         };
@@ -788,9 +852,13 @@
       try {
         const noteText = document.getElementById('customLetterNote').value;
         const selectedFont = document.getElementById('fontSelector').value;
+        const selectedSize = document.getElementById('fontSizeSelector').value;
+        const selectedColor = document.getElementById('fontColorSelector').value;
         
         window.uploadedImages['letterNote'] = noteText;
         window.uploadedImages['letterFont'] = selectedFont;
+        window.uploadedImages['letterSize'] = selectedSize;
+        window.uploadedImages['letterColor'] = selectedColor;
         window.uploadedImages['bgAudio'] = window.customAudioData;
         window.uploadedImages['musicLink'] = window.musicLinkValue;
 
@@ -805,7 +873,7 @@
         btnMsg.innerText = "✨ Done!";
         btnLet.innerText = "✨ Done!";
       } catch (error) {
-        alert("Cillad ayaa dhacday: " + error.message);
+        alert("Cillad ayaa dhacday (Xogta ama muusiggu waa weyn yahay): " + error.message);
         btnMsg.innerText = "✨ Finish";
         btnLet.innerText = "✨ Finish";
       }
@@ -870,6 +938,8 @@
             }
 
             if (data.letterFont) letterArea.style.fontFamily = data.letterFont;
+            if (data.letterSize) letterArea.style.fontSize = data.letterSize + 'px';
+            if (data.letterColor) letterArea.style.color = data.letterColor;
             
             if (data.bgAudio) {
               window.customAudioData = data.bgAudio;
@@ -943,3 +1013,4 @@
 
 </body>
 </html>
+
