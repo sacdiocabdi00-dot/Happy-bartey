@@ -6,7 +6,7 @@
   <title>Happy-bartey</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- FONTS OO DHAMMAAN LA ISKU DARAY -->
+  <!-- FONTS -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Amiri:wght@400;700&family=Dancing+Script:wght@600;700&family=Pacifico&family=Reenie+Beanie&display=swap" rel="stylesheet">
 
   <style>
@@ -23,6 +23,22 @@
       margin: 0;
       padding: 0;
       background-color: #000;
+      overflow-x: hidden;
+    }
+
+    @keyframes fadeInScale {
+      0% { opacity: 0; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes floatEffect {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 15px rgba(255, 20, 147, 0.4); }
+      50% { box-shadow: 0 0 30px rgba(255, 20, 147, 0.8); }
     }
 
     .page {
@@ -39,12 +55,7 @@
 
     .page.active {
       display: flex;
-      animation: fadeIn 0.4s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.98); }
-      to { opacity: 1; transform: scale(1); }
+      animation: fadeInScale 0.5s ease forwards;
     }
 
     .btn-back {
@@ -61,7 +72,9 @@
       font-weight: 700;
       cursor: pointer;
       backdrop-filter: blur(8px);
+      transition: 0.3s;
     }
+    .btn-back:hover { background: rgba(255, 20, 147, 0.8); }
 
     .btn-finish-top {
       position: fixed;
@@ -78,6 +91,7 @@
       cursor: pointer;
       box-shadow: 0 4px 20px rgba(0, 200, 83, 0.7);
       backdrop-filter: blur(8px);
+      animation: pulseGlow 2s infinite;
     }
 
     .created-by-badge {
@@ -129,6 +143,7 @@
       flex-direction: column;
       gap: 15px;
       align-items: center;
+      animation: fadeInScale 0.3s ease;
     }
 
     .share-link-input {
@@ -176,43 +191,19 @@
       position: relative;
     }
 
-    .love-bubble {
-      position: absolute;
-      bottom: -50px;
-      background: rgba(255, 105, 180, 0.25);
-      border-radius: 50%;
-      pointer-events: none;
-      animation: floatUp 4s infinite linear;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 16px;
-    }
-
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(0.8); opacity: 0; }
-      20% { opacity: 0.8; }
-      100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
-    }
-
     .loader-title { font-family: 'Great Vibes', cursive; font-size: 44px; color: #ff80bf; }
-    .countdown-number { font-size: 90px; font-weight: 900; color: #ffffff; line-height: 1; margin: 10px 0; }
-    .countdown-number.excited { color: #ff1744; font-size: 115px; animation: heartPulse 0.4s infinite alternate ease-in-out; }
-
-    @keyframes heartPulse {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.25); }
-    }
-
+    .countdown-number { font-size: 90px; font-weight: 900; color: #ffffff; line-height: 1; margin: 10px 0; animation: floatEffect 1s ease-in-out infinite; }
+    
     .progress-container { width: 80%; max-width: 280px; height: 9px; background: rgba(255, 255, 255, 0.15); border-radius: 20px; overflow: hidden; }
     .progress-bar { width: 100%; height: 100%; background: linear-gradient(90deg, #ff1493, #ff69b4, #ffeb3b); border-radius: 20px; transition: width 1s linear; }
     .loading-text { font-size: 14px; font-weight: 700; color: #ffb3d9; }
 
     #page-1 { background-image: radial-gradient(circle, #a80000 0%, #500000 100%); padding: 20px; }
-    .envelope-card { background-color: #fdfbf7; width: 100%; max-width: 360px; border-radius: 18px; padding: 40px 20px 30px 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .envelope-card { background-color: #fdfbf7; width: 100%; max-width: 360px; border-radius: 18px; padding: 40px 20px 30px 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); display: flex; flex-direction: column; align-items: center; text-align: center; animation: floatEffect 3s ease-in-out infinite; }
     .greeting-title { font-family: 'Great Vibes', cursive; font-size: 44px; color: #9e1b1b; margin-bottom: 25px; }
     .envelope-box { width: 100%; max-width: 260px; height: 180px; background: #ffffff; border-radius: 12px; display: flex; justify-content: center; align-items: center; margin-bottom: 25px; border: 1px solid #f0f0f0; }
-    .red-envelope { width: 85%; height: 110px; background-color: #9e1b1b; border-radius: 8px; position: relative; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); }
+    .red-envelope { width: 85%; height: 110px; background-color: #9e1b1b; border-radius: 8px; position: relative; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); transition: transform 0.3s; }
+    .red-envelope:hover { transform: scale(1.05); }
     .red-envelope::before { content: ''; position: absolute; top: 0; width: 0; height: 0; border-left: 105px solid transparent; border-right: 105px solid transparent; border-top: 58px solid #7a1212; }
     .ribbon-seal { width: 38px; height: 30px; position: relative; z-index: 2; }
     .ribbon-seal::before, .ribbon-seal::after { content: ''; position: absolute; width: 16px; height: 20px; background: #ffffff; border-radius: 50% 50% 0 50%; top: 4px; }
@@ -221,42 +212,45 @@
     .instruction-text { font-size: 12px; color: #777777; font-weight: 600; }
 
     #page-2 { background-image: url('https://i.postimg.cc/jqkNPbJ1/da1478c736e944eb8f1ec711d8c60617.webp'); background-size: cover; background-position: center; }
-    #confettiCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
     .text-overlay-container { position: relative; z-index: 2; text-align: center; color: #ffffff; padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
     .big-title { font-family: 'Great Vibes', cursive; font-size: 62px; font-weight: 700; color: #ffffff; }
-    .popper-icon { font-size: 36px; }
+    .popper-icon { font-size: 36px; animation: floatEffect 1.5s infinite; }
     .big-subtitle { font-size: 16px; font-weight: 700; color: #ffffff; max-width: 320px; background: rgba(0, 0, 0, 0.25); padding: 8px 16px; border-radius: 20px; }
-    .btn-click-here { background: #ffffff; color: #000000; border: none; padding: 10px 24px; border-radius: 25px; font-size: 13px; font-weight: 800; cursor: pointer; }
+    .btn-click-here { background: #ffffff; color: #000000; border: none; padding: 10px 24px; border-radius: 25px; font-size: 13px; font-weight: 800; cursor: pointer; transition: 0.3s; animation: pulseGlow 1.5s infinite; }
+    .btn-click-here:hover { transform: scale(1.1); }
 
     #page-3 { background-image: radial-gradient(circle, #5a0010 0%, #1a0005 100%); flex-direction: column; justify-content: center; padding: 20px; gap: 30px; }
     .options-title { font-family: 'Great Vibes', cursive; font-size: 48px; color: #ff80bf; text-align: center; }
     .options-container { display: flex; flex-direction: column; gap: 15px; width: 85%; max-width: 300px; margin: 0 auto; }
-    .btn-option { background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 105, 180, 0.5); color: #ffffff; padding: 15px; border-radius: 25px; font-size: 18px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .btn-option { background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 105, 180, 0.5); color: #ffffff; padding: 15px; border-radius: 25px; font-size: 18px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s; }
+    .btn-option:hover { background: rgba(255, 105, 180, 0.3); transform: scale(1.05); }
 
     #page-message { background-color: #0d0d0d; overflow-y: auto; padding: 50px 10px 30px 10px; display: none; flex-direction: column; align-items: center; }
     #page-message.active { display: flex; }
 
     .collage-wrapper { position: relative; width: 100%; max-width: 400px; background-image: url('https://i.postimg.cc/yxGZMqF5/Picsart-26-08-03-21-36-06-808.png'); background-size: cover; background-position: center; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.8); aspect-ratio: 9 / 16; overflow: hidden; margin: 0 auto; }
-    .polaroid-slot { position: absolute; background: rgba(17, 17, 17, 0.7); border-radius: 3px; overflow: hidden; cursor: pointer; display: flex; justify-content: center; align-items: center; border: 1px dashed rgba(255,255,255,0.4); }
+    .polaroid-slot { position: absolute; background: rgba(17, 17, 17, 0.7); border-radius: 3px; overflow: hidden; cursor: pointer; display: flex; justify-content: center; align-items: center; border: 1px dashed rgba(255,255,255,0.4); transition: 0.3s; }
+    .polaroid-slot:hover { border-color: #ff1493; }
     .polaroid-slot.readonly-mode { cursor: default !important; border: none !important; }
     .polaroid-slot img, .add-photo-btn-slot img { width: 100%; height: 100%; object-fit: cover; }
     .polaroid-slot span { color: #ffffff; font-size: 10px; font-weight: 700; text-align: center; opacity: 0.7; }
 
-    .slot-1 { top: 1.5%; right: 29.5%; width: 18.5%; height: 11.5%; transform: rotate(-5deg); }
-    .slot-2 { top: 3.5%; right: 7%; width: 18.5%; height: 11.5%; transform: rotate(6deg); }
-    .slot-3 { top: 14%; right: 11.5%; width: 19%; height: 12%; transform: rotate(-3deg); }
-    .slot-4 { top: 25.5%; right: 3.5%; width: 20%; height: 12.5%; transform: rotate(4deg); }
-    .slot-5 { top: 33.5%; right: 38%; width: 19%; height: 11.8%; transform: rotate(-8deg); }
+    .slot-1 { top: 1.5%; right: 29.5%; width: 18.5%; height: 11.5%; }
+    .slot-2 { top: 3.5%; right: 7%; width: 18.5%; height: 11.5%; }
+    .slot-3 { top: 14%; right: 11.5%; width: 19%; height: 12%; }
+    .slot-4 { top: 25.5%; right: 3.5%; width: 20%; height: 12.5%; }
+    .slot-5 { top: 33.5%; right: 38%; width: 19%; height: 11.8%; }
 
-    .add-photo-btn-slot { position: absolute; bottom: 12.5%; left: 7.5%; width: 27%; height: 21%; background: rgba(240, 240, 240, 0.95); border: 2px dashed #888; border-radius: 6px; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; overflow: hidden; }
+    .add-photo-btn-slot { position: absolute; bottom: 12.5%; left: 7.5%; width: 27%; height: 21%; background: rgba(240, 240, 240, 0.95); border: 2px dashed #888; border-radius: 6px; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; overflow: hidden; transition: 0.3s; }
+    .add-photo-btn-slot:hover { background: #fff; border-color: #ff1493; }
     .add-photo-btn-slot.readonly-mode { cursor: default !important; border: none !important; background: transparent !important; }
     .add-photo-text { font-size: 13px; font-weight: 800; color: #333333; text-align: center; }
 
-    .floating-envelope-corner { position: absolute; bottom: 15px; right: 15px; width: 110px; background: rgba(0, 0, 0, 0.75); border: 2px solid #ff1493; border-radius: 12px; padding: 6px; display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; z-index: 30; }
+    .floating-envelope-corner { position: absolute; bottom: 15px; right: 15px; width: 110px; background: rgba(0, 0, 0, 0.75); border: 2px solid #ff1493; border-radius: 12px; padding: 6px; display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; z-index: 30; animation: floatEffect 2s infinite; }
     .floating-envelope-corner img { width: 100%; height: 70px; object-fit: cover; border-radius: 6px; }
     .btn-corner-click { background: #ff1493; color: #fff; border: none; border-radius: 10px; font-size: 10px; font-weight: 800; padding: 4px 8px; width: 100%; text-align: center; }
 
-    /* PAGE LETTER (HAL SAWIR + FONT SELECTOR + EDIT) */
+    /* PAGE LETTER */
     #page-letter { background-color: #000; overflow-y: auto; padding: 50px 10px 30px 10px; display: none; justify-content: center; align-items: flex-start; }
     #page-letter.active { display: flex; }
 
@@ -279,31 +273,42 @@
       padding: 5px;
     }
 
-    /* KONTAROOLKA FONT-KA IYO EDIT-KA (WAA KALIYA ADIGA) */
+    /* CONTROLS (Only visible during editing / creator mode) */
     .letter-controls {
       position: absolute;
       top: 5px;
       right: 5px;
       display: flex;
-      gap: 5px;
+      flex-wrap: wrap;
+      gap: 4px;
       z-index: 50;
+      max-width: 250px;
+      justify-content: flex-end;
     }
 
-    .btn-edit-text-toggle, .font-selector-box {
+    .btn-edit-text-toggle, .font-selector-box, .music-selector-box, .music-link-btn {
       background: #ff1493;
       color: #fff;
       border: none;
       border-radius: 5px;
       padding: 3px 6px;
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 800;
       cursor: pointer;
     }
 
-    .font-selector-box {
+    .font-selector-box, .music-selector-box {
       background: #111;
       border: 1px solid #ff1493;
       color: #fff;
+    }
+
+    /* Controls hidden by default until edit is clicked */
+    .edit-active-only {
+      display: none !important;
+    }
+    .editing-mode-active .edit-active-only {
+      display: inline-block !important;
     }
 
     .photo-slot-frame-1 { position: absolute; top: 29.5%; left: 8.5%; width: 32.5%; height: 33%; background: rgba(0, 0, 0, 0.4); border: 1px dashed rgba(255, 255, 255, 0.6); border-radius: 4px; display: flex; justify-content: center; align-items: center; color: #ffffff; font-size: 11px; font-weight: 700; cursor: pointer; overflow: hidden; }
@@ -311,12 +316,16 @@
     .photo-slot-frame-1 img { width: 100%; height: 100%; object-fit: cover; }
 
     .sub-card-page { background: radial-gradient(circle, #4a000e 0%, #120004 100%); flex-direction: column; padding: 30px 20px; text-align: center; color: #ffffff; gap: 15px; }
-    .sub-card-box { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); padding: 30px 20px; border-radius: 20px; max-width: 340px; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 15px; }
-    .card-icon { font-size: 60px; }
-    .btn-finish-link { background: linear-gradient(135deg, #ff1493, #ff4081); color: #ffffff; border: 2px solid #ffffff; padding: 12px 30px; border-radius: 30px; font-size: 15px; font-weight: 800; text-decoration: none; display: inline-block; }
+    .sub-card-box { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); padding: 30px 20px; border-radius: 20px; max-width: 340px; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 15px; animation: fadeInScale 0.4s ease; }
+    .card-icon { font-size: 60px; animation: floatEffect 2s infinite; }
+    .btn-finish-link { background: linear-gradient(135deg, #ff1493, #ff4081); color: #ffffff; border: 2px solid #ffffff; padding: 12px 30px; border-radius: 30px; font-size: 15px; font-weight: 800; text-decoration: none; display: inline-block; transition: 0.3s; }
+    .btn-finish-link:hover { transform: scale(1.05); }
   </style>
 </head>
 <body>
+
+  <!-- MUSIC CONTAINER -->
+  <div id="youtubePlayerContainer"></div>
 
   <input type="file" id="imageUploader" accept="image/*" style="display: none;">
 
@@ -350,7 +359,6 @@
   <!-- PAGE 2 -->
   <div id="page-2" class="page">
     <button class="btn-back" onclick="openPage1()">&larr; Back</button>
-    <canvas id="confettiCanvas"></canvas>
 
     <div class="text-overlay-container">
       <h1 class="big-title">Happy Birthday!</h1>
@@ -400,16 +408,17 @@
     <button class="btn-back" onclick="openMessagePage()">&larr; Back</button>
     <button class="btn-finish-top creator-only" id="finishBtnLetter" onclick="saveToFirebaseAndGetLink()">✨ Finish</button>
 
-    <div class="letter-wrapper-new">
-      <!-- KONTAROOLKA FONT-KA IYO EDIT-KA (WAA KALIYA ADIGA) -->
+    <div class="letter-wrapper-new" id="letterWrapperBox">
+      <!-- CONTROLS -->
       <div class="letter-controls creator-only">
-        <select id="fontSelector" class="font-selector-box" onchange="changeLetterFont(this.value)">
+        <!-- Fonts & Music buttons are hidden until Edit is clicked -->
+        <button class="music-link-btn edit-active-only" onclick="setCustomMusicLink()">🎵 Music Link</button>
+        <select id="fontSelector" class="font-selector-box edit-active-only" onchange="changeLetterFont(this.value)">
           <option value="'Great Vibes', cursive">Great Vibes</option>
           <option value="'Dancing Script', cursive">Dancing Script</option>
-          <option value="'Amiri', serif">Amiri (Carabi)</option>
+          <option value="'Amiri', serif">Amiri</option>
           <option value="'Pacifico', cursive">Pacifico</option>
           <option value="'Reenie Beanie', cursive">Handwritten</option>
-          <option value="'Plus Jakarta Sans', sans-serif">Sans Regular</option>
         </select>
         <button class="btn-edit-text-toggle" onclick="toggleTextEdit()">✏️ Edit</button>
       </div>
@@ -460,7 +469,7 @@
     </div>
   </div>
 
-  <!-- FIREBASE SCRIPT -->
+  <!-- FIREBASE & LOGIC SCRIPT -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -480,6 +489,8 @@
 
     window.uploadedImages = {};
     window.isReadOnlyMode = false;
+    // Heestaada aad codsatay inuu automatic noqdo:
+    window.customMusicUrl = "https://youtu.be/9ACIy3MLPuU";
 
     let activeSlotKey = '';
     let currentElement = null;
@@ -493,20 +504,52 @@
 
     window.toggleTextEdit = function() {
       const textarea = document.getElementById('customLetterNote');
+      const wrapperBox = document.getElementById('letterWrapperBox');
+      
       if (textarea.hasAttribute('readonly')) {
         textarea.removeAttribute('readonly');
         textarea.focus();
-        alert("Hadda waad wax ka bedeli kartaa qoraalka!");
+        wrapperBox.classList.add('editing-mode-active');
       } else {
         textarea.setAttribute('readonly', true);
-        alert("Qoraalkii waa la xiray oo waa la keydiyay!");
+        wrapperBox.classList.remove('editing-mode-active');
       }
     };
 
     window.changeLetterFont = function(fontFamily) {
-      const textarea = document.getElementById('customLetterNote');
-      textarea.style.fontFamily = fontFamily;
+      document.getElementById('customLetterNote').style.fontFamily = fontFamily;
     };
+
+    window.setCustomMusicLink = function() {
+      const link = prompt("Ku soo dheji link-ga Heesta (YouTube ama Spotify ama MP3):", window.customMusicUrl);
+      if (link) {
+        window.customMusicUrl = link;
+        playMusicFromLink(link);
+        alert("Heesta waa la badelay oo waa la keydin doonaa!");
+      }
+    };
+
+    function playMusicFromLink(url) {
+      const ytContainer = document.getElementById('youtubePlayerContainer');
+      ytContainer.innerHTML = ""; 
+
+      if (url.includes("youtube.com") || url.includes("youtu.be")) {
+        let videoId = "";
+        if (url.includes("youtu.be/")) {
+          videoId = url.split("youtu.be/")[1]?.split("?")[0];
+        } else if (url.includes("watch?v=")) {
+          videoId = url.split("watch?v=")[1]?.split("&")[0];
+        }
+        if (videoId) {
+          ytContainer.innerHTML = `<iframe width="0" height="0" src="https://www.youtube.com/embed/${videoId}?autoplay=1" allow="autoplay"></iframe>`;
+        }
+      } else if (url.includes("spotify.com")) {
+        let embedUrl = url.replace("track/", "embed/track/");
+        ytContainer.innerHTML = `<iframe src="${embedUrl}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media" style="position:fixed; bottom:0; left:0; z-index:999; display:none;"></iframe>`;
+      } else {
+        ytContainer.innerHTML = `<audio autoplay loop><source src="${url}" type="audio/mpeg"></audio>`;
+      }
+    }
 
     document.getElementById('imageUploader').addEventListener('change', function(e) {
       if (window.isReadOnlyMode) return;
@@ -564,6 +607,7 @@
         
         window.uploadedImages['letterNote'] = noteText;
         window.uploadedImages['letterFont'] = selectedFont;
+        window.uploadedImages['bgMusic'] = window.customMusicUrl;
 
         const uniqueId = "Happy-bartey-" + Math.random().toString(36).substring(2, 8);
         await setDoc(doc(db, "surprises", uniqueId), window.uploadedImages);
@@ -599,6 +643,12 @@
       const urlParams = new URLSearchParams(window.location.search);
       const cardId = urlParams.get('id');
 
+      // Auto play music on first click anywhere
+      const playAudioOnClick = () => {
+        playMusicFromLink(window.customMusicUrl);
+      };
+      document.body.addEventListener('click', playAudioOnClick, { once: true });
+
       if (cardId) {
         window.isReadOnlyMode = true;
 
@@ -609,8 +659,7 @@
           slot.onclick = null;
         });
 
-        const letterInput = document.getElementById('customLetterNote');
-        letterInput.readOnly = true;
+        document.getElementById('customLetterNote').readOnly = true;
 
         try {
           const docRef = doc(db, "surprises", cardId);
@@ -619,8 +668,13 @@
           if (docSnap.exists()) {
             const data = docSnap.data();
 
-            if (data.letterNote) letterInput.value = data.letterNote;
-            if (data.letterFont) letterInput.style.fontFamily = data.letterFont;
+            if (data.letterNote) document.getElementById('customLetterNote').value = data.letterNote;
+            if (data.letterFont) document.getElementById('customLetterNote').style.fontFamily = data.letterFont;
+            
+            if (data.bgMusic) {
+              window.customMusicUrl = data.bgMusic;
+            }
+            playMusicFromLink(window.customMusicUrl);
 
             if (data.s1) document.querySelector('.slot-1').innerHTML = `<img src="${data.s1}">`;
             if (data.s2) document.querySelector('.slot-2').innerHTML = `<img src="${data.s2}">`;
@@ -628,7 +682,6 @@
             if (data.s4) document.querySelector('.slot-4').innerHTML = `<img src="${data.s4}">`;
             if (data.s5) document.querySelector('.slot-5').innerHTML = `<img src="${data.s5}">`;
             if (data.main) document.querySelector('.add-photo-btn-slot').innerHTML = `<img src="${data.main}">`;
-
             if (data.l1) document.querySelector('.photo-slot-frame-1').innerHTML = `<img src="${data.l1}">`;
           }
         } catch (err) {
@@ -640,20 +693,6 @@
 
   <!-- NAVIGATION & ANIMATION -->
   <script>
-    const loadingPage = document.getElementById('page-loading');
-    for (let i = 0; i < 15; i++) {
-      const bubble = document.createElement('div');
-      bubble.classList.add('love-bubble');
-      const size = Math.random() * 30 + 20;
-      bubble.style.width = `${size}px`;
-      bubble.style.height = `${size}px`;
-      bubble.style.left = `${Math.random() * 100}%`;
-      bubble.style.animationDuration = `${Math.random() * 3 + 3}s`;
-      bubble.style.animationDelay = `${Math.random() * 2}s`;
-      bubble.innerHTML = '❤️';
-      loadingPage.appendChild(bubble);
-    }
-
     let timeLeft = 10;
     const countdownNum = document.getElementById('countdownNum');
     const progressBar = document.getElementById('progressBar');
@@ -667,7 +706,6 @@
         progressBar.style.width = (timeLeft / 10) * 100 + '%';
       }
       if (timeLeft <= 3 && timeLeft > 0) {
-        countdownNum.classList.add('excited');
         loadingText.innerText = "GET READY MY LOVE! 💖✨";
         loadingText.style.color = "#ffeb3b";
         loaderTitle.innerText = "Almost There! 💞";
@@ -676,52 +714,19 @@
         clearInterval(timerInterval);
         document.getElementById('page-loading').classList.remove('active');
         document.getElementById('page-1').classList.add('active');
+        
+        playMusicFromLink(window.customMusicUrl);
       }
     }, 1000);
 
     function hideAllPages() { document.querySelectorAll('.page').forEach(page => page.classList.remove('active')); }
     function openPage1() { hideAllPages(); document.getElementById('page-1').classList.add('active'); }
-    function openPage2() { hideAllPages(); document.getElementById('page-2').classList.add('active'); startConfetti(); }
+    function openPage2() { hideAllPages(); document.getElementById('page-2').classList.add('active'); }
     function openPage3() { hideAllPages(); document.getElementById('page-3').classList.add('active'); }
     function openMessagePage() { hideAllPages(); document.getElementById('page-message').classList.add('active'); }
     function openCakePage() { hideAllPages(); document.getElementById('page-cake').classList.add('active'); }
     function openGiftPage() { hideAllPages(); document.getElementById('page-gift').classList.add('active'); }
     function openLetterPage() { hideAllPages(); document.getElementById('page-letter').classList.add('active'); }
-
-    function startConfetti() {
-      const canvas = document.getElementById('confettiCanvas');
-      const ctx = canvas.getContext('2d');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      const particles = [];
-      const colors = ['#f44336', '#e91e63', '#ff69b4', '#ff1493', '#ffeb3b', '#ff9800'];
-
-      for (let i = 0; i < 80; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          r: Math.random() * 3.5 + 1,
-          color: colors[Math.floor(Math.random() * colors.length)],
-          vx: Math.random() * 2 - 1,
-          vy: Math.random() * 1.5 + 0.5
-        });
-      }
-
-      function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = p.color;
-          ctx.fill();
-          p.x += p.vx;
-          p.y += p.vy;
-          if (p.y > canvas.height) p.y = 0;
-        });
-        requestAnimationFrame(draw);
-      }
-      draw();
-    }
   </script>
 
 </body>
