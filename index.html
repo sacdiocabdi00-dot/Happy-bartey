@@ -363,14 +363,14 @@
       box-shadow: 0 12px 25px rgba(255, 20, 147, 0.6);
     }
 
-    /* ================= OPTION 1: MESSAGE (COLLAGE PAGE + GEESKA BASHQADDA) ================= */
+    /* ================= OPTION 1: MESSAGE (COLLAGE PAGE) ================= */
     #page-message {
       background-color: #0d0d0d;
       overflow-y: auto;
       padding: 50px 10px 30px 10px;
       display: none;
-      justify-content: center;
-      align-items: flex-start;
+      flex-direction: column;
+      align-items: center;
     }
 
     #page-message.active {
@@ -411,29 +411,9 @@
       animation: slotPopIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
     }
 
-    #page-message.active .slot-1 { animation-delay: 0.1s; }
-    #page-message.active .slot-2 { animation-delay: 0.2s; }
-    #page-message.active .slot-3 { animation-delay: 0.3s; }
-    #page-message.active .slot-4 { animation-delay: 0.4s; }
-    #page-message.active .slot-5 { animation-delay: 0.5s; }
-    #page-message.active .add-photo-btn-slot { animation-delay: 0.6s; }
-
     .polaroid-slot:hover { transform: scale(1.05) rotate(0deg) !important; border-color: #ff1493; z-index: 10; }
-
-    .polaroid-slot img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .polaroid-slot span {
-      color: #ffffff;
-      font-size: 10px;
-      font-weight: 700;
-      text-align: center;
-      padding: 2px;
-      opacity: 0.7;
-    }
+    .polaroid-slot img, .add-photo-btn-slot img, .btn-side-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .polaroid-slot span { color: #ffffff; font-size: 10px; font-weight: 700; text-align: center; opacity: 0.7; }
 
     .slot-1 { top: 1.5%; right: 29.5%; width: 18.5%; height: 11.5%; transform: rotate(-5deg); }
     .slot-2 { top: 3.5%; right: 7%; width: 18.5%; height: 11.5%; transform: rotate(6deg); }
@@ -460,22 +440,9 @@
       animation: slotPopIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
     }
 
-    .add-photo-btn-slot:hover { background: #ffffff; border-color: #ff1493; transform: scale(1.05); }
+    .add-photo-text { font-size: 13px; font-weight: 800; color: #333333; text-align: center; }
 
-    .add-photo-btn-slot img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .add-photo-text {
-      font-size: 13px;
-      font-weight: 800;
-      color: #333333;
-      text-align: center;
-    }
-
-    /* BASHQADDA GEESKA GUDEHEEDA KA SOO BAXAYSA (FLOATING ENVELOPE) */
+    /* FLOATING ENVELOPE CORNER */
     .floating-envelope-corner {
       position: absolute;
       bottom: 15px;
@@ -492,7 +459,7 @@
       cursor: pointer;
       box-shadow: 0 8px 25px rgba(255, 20, 147, 0.5);
       backdrop-filter: blur(5px);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease;
       z-index: 30;
       animation: bouncePulse 2s infinite alternate ease-in-out;
     }
@@ -502,31 +469,10 @@
       100% { transform: translateY(-6px) scale(1.05); }
     }
 
-    .floating-envelope-corner:hover {
-      transform: scale(1.1);
-      box-shadow: 0 12px 30px rgba(255, 20, 147, 0.8);
-    }
+    .floating-envelope-corner img { width: 100%; height: 70px; object-fit: cover; border-radius: 6px; }
+    .btn-corner-click { background: #ff1493; color: #fff; border: none; border-radius: 10px; font-size: 10px; font-weight: 800; padding: 4px 8px; width: 100%; text-align: center; }
 
-    .floating-envelope-corner img {
-      width: 100%;
-      height: 70px;
-      object-fit: cover;
-      border-radius: 6px;
-    }
-
-    .btn-corner-click {
-      background: #ff1493;
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-size: 10px;
-      font-weight: 800;
-      padding: 4px 8px;
-      width: 100%;
-      text-align: center;
-    }
-
-    /* ================= BOGGA BASHQADDA CUSUB (LETTER PAGE) ================= */
+    /* ================= NEW LETTER PAGE ================= */
     #page-letter {
       background-color: #000;
       overflow-y: auto;
@@ -536,9 +482,7 @@
       align-items: flex-start;
     }
 
-    #page-letter.active {
-      display: flex;
-    }
+    #page-letter.active { display: flex; }
 
     .letter-wrapper {
       position: relative;
@@ -554,7 +498,6 @@
       margin: 0 auto;
     }
 
-    /* 5 ADD PHOTO BUTTONS ON THE CORNER/SIDE */
     .side-photos-container {
       position: absolute;
       top: 5%;
@@ -579,23 +522,10 @@
       font-weight: 700;
       cursor: pointer;
       overflow: hidden;
-      transition: all 0.3s;
       backdrop-filter: blur(4px);
     }
 
-    .btn-side-photo:hover {
-      background: rgba(255, 20, 147, 0.8);
-      border-color: #ffffff;
-      transform: scale(1.05);
-    }
-
-    .btn-side-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* ================= SUB-PAGES: CAKE & GIFT ================= */
+    /* ================= CAKE & GIFT PAGES ================= */
     .sub-card-page {
       background: radial-gradient(circle, #4a000e 0%, #120004 100%);
       flex-direction: column;
@@ -617,7 +547,6 @@
       flex-direction: column;
       align-items: center;
       gap: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
     .card-icon { font-size: 60px; }
@@ -633,15 +562,39 @@
       cursor: pointer;
       text-decoration: none;
       display: inline-block;
-      margin-top: 10px;
-      box-shadow: 0 6px 20px rgba(255, 20, 147, 0.5);
     }
 
-    /* DESKTOP RESPONSIVE */
-    @media (min-width: 768px) {
-      .big-title { font-size: 80px; }
-      .big-subtitle { font-size: 20px; max-width: 450px; }
-      .btn-click-here { font-size: 15px; padding: 12px 30px; }
+    /* FINISH BUTTON CONTAINER */
+    .finish-box {
+      text-align: center;
+      margin-top: 20px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .btn-finish {
+      background: linear-gradient(135deg, #00c853, #b2ff59);
+      color: #000;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0,200,83,0.4);
+      transition: transform 0.2s;
+    }
+
+    .btn-finish:hover { transform: scale(1.05); }
+
+    .share-link-input {
+      width: 80%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ff1493;
+      margin-top: 10px;
+      text-align: center;
+      font-size: 12px;
     }
   </style>
 </head>
@@ -650,7 +603,7 @@
   <!-- Hidden File Input for uploading photos -->
   <input type="file" id="imageUploader" accept="image/*" style="display: none;">
 
-  <!-- ================= PAGE 0: 10s COUNTDOWN ================= -->
+  <!-- PAGE 0: 10s COUNTDOWN -->
   <div id="page-loading" class="page active">
     <h1 id="loaderTitle" class="loader-title">Made with Love For You ❤️</h1>
     <div id="countdownNum" class="countdown-number">10</div>
@@ -660,7 +613,7 @@
     <p id="loadingText" class="loading-text">LOADING YOUR SURPRISE...</p>
   </div>
 
-  <!-- ================= PAGE 1: ENVELOPE CARD ================= -->
+  <!-- PAGE 1: ENVELOPE CARD -->
   <div id="page-1" class="page">
     <div class="envelope-card">
       <h1 class="greeting-title">Happy Birthday!</h1>
@@ -673,7 +626,7 @@
     </div>
   </div>
 
-  <!-- ================= PAGE 2: SECOND IMAGE ================= -->
+  <!-- PAGE 2: SECOND IMAGE -->
   <div id="page-2" class="page">
     <button class="btn-back" onclick="openPage1()">&larr; Back</button>
     <canvas id="confettiCanvas"></canvas>
@@ -686,68 +639,69 @@
     </div>
   </div>
 
-  <!-- ================= PAGE 3: 3 OPTIONS MENU ================= -->
+  <!-- PAGE 3: 3 OPTIONS MENU -->
   <div id="page-3" class="page">
     <button class="btn-back" onclick="openPage2()">&larr; Back</button>
 
     <h1 class="options-title">Choose Your Gift 🎁</h1>
 
     <div class="options-container">
-      <button class="btn-option" onclick="openMessagePage()">
-        <span>💌</span> Message
-      </button>
-      <button class="btn-option" onclick="openCakePage()">
-        <span>🎂</span> Cake
-      </button>
-      <button class="btn-option" onclick="openGiftPage()">
-        <span>🎁</span> Gift
-      </button>
+      <button class="btn-option" onclick="openMessagePage()"><span>💌</span> Message</button>
+      <button class="btn-option" onclick="openCakePage()"><span>🎂</span> Cake</button>
+      <button class="btn-option" onclick="openGiftPage()"><span>🎁</span> Gift</button>
     </div>
   </div>
 
-  <!-- ================= OPTION 1: MESSAGE (COLLAGE PAGE) ================= -->
+  <!-- PAGE MESSAGE (COLLAGE PAGE) -->
   <div id="page-message" class="page">
     <button class="btn-back" onclick="openPage3()">&larr; Back</button>
 
     <div class="collage-wrapper">
-      <div class="polaroid-slot slot-1" onclick="triggerUpload(this)"><span>+ Photo 1</span></div>
-      <div class="polaroid-slot slot-2" onclick="triggerUpload(this)"><span>+ Photo 2</span></div>
-      <div class="polaroid-slot slot-3" onclick="triggerUpload(this)"><span>+ Photo 3</span></div>
-      <div class="polaroid-slot slot-4" onclick="triggerUpload(this)"><span>+ Photo 4</span></div>
-      <div class="polaroid-slot slot-5" onclick="triggerUpload(this)"><span>+ Photo 5</span></div>
+      <div class="polaroid-slot slot-1" onclick="triggerUpload(this, 's1')"><span>+ Photo 1</span></div>
+      <div class="polaroid-slot slot-2" onclick="triggerUpload(this, 's2')"><span>+ Photo 2</span></div>
+      <div class="polaroid-slot slot-3" onclick="triggerUpload(this, 's3')"><span>+ Photo 3</span></div>
+      <div class="polaroid-slot slot-4" onclick="triggerUpload(this, 's4')"><span>+ Photo 4</span></div>
+      <div class="polaroid-slot slot-5" onclick="triggerUpload(this, 's5')"><span>+ Photo 5</span></div>
 
-      <div class="add-photo-btn-slot" onclick="triggerUpload(this)">
+      <div class="add-photo-btn-slot" onclick="triggerUpload(this, 'main')">
         <span class="add-photo-text">+<br>add photo</span>
       </div>
 
-      <!-- BASHQADDA GEESKA CUSUB EE MARKA LA TAAPTO ISKALA FURAYSA -->
       <div class="floating-envelope-corner" onclick="openLetterPage()">
         <img src="https://i.postimg.cc/bw53PMRH/392028c9e3d8353cb0076be97f7518ad.jpg" alt="Envelope">
         <div class="btn-corner-click">Click Here ✉️</div>
       </div>
     </div>
-  </div>
 
-  <!-- ================= NEW LETTER PAGE (BASHQADDA CUSUB) ================= -->
-  <div id="page-letter" class="page">
-    <button class="btn-back" onclick="openMessagePage()">&larr; Back</button>
-
-    <div class="letter-wrapper">
-      <!-- 5 PHOTO ADD BUTTONS ON THE CORNER -->
-      <div class="side-photos-container">
-        <div class="btn-side-photo" onclick="triggerUpload(this)">+ Photo 1</div>
-        <div class="btn-side-photo" onclick="triggerUpload(this)">+ Photo 2</div>
-        <div class="btn-side-photo" onclick="triggerUpload(this)">+ Photo 3</div>
-        <div class="btn-side-photo" onclick="triggerUpload(this)">+ Photo 4</div>
-        <div class="btn-side-photo" onclick="triggerUpload(this)">+ Photo 5</div>
+    <!-- FINISH BUTTON -->
+    <div class="finish-box">
+      <button class="btn-finish" id="finishBtn" onclick="saveToFirebaseAndGetLink()">✨ FINISH & SHARE LINK</button>
+      <div id="linkResult" style="display: none;">
+        <p style="color:#fff; font-size: 12px; margin-top: 10px;">Link-gii waa diyaar! Copy oo sii dir:</p>
+        <input type="text" id="generatedLink" class="share-link-input" readonly>
+        <button onclick="copyLink()" style="padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-top: 5px;">📋 Copy Link</button>
       </div>
     </div>
   </div>
 
-  <!-- ================= OPTION 2: CAKE PAGE ================= -->
+  <!-- PAGE LETTER -->
+  <div id="page-letter" class="page">
+    <button class="btn-back" onclick="openMessagePage()">&larr; Back</button>
+
+    <div class="letter-wrapper">
+      <div class="side-photos-container">
+        <div class="btn-side-photo" onclick="triggerUpload(this, 'l1')">+ Photo 1</div>
+        <div class="btn-side-photo" onclick="triggerUpload(this, 'l2')">+ Photo 2</div>
+        <div class="btn-side-photo" onclick="triggerUpload(this, 'l3')">+ Photo 3</div>
+        <div class="btn-side-photo" onclick="triggerUpload(this, 'l4')">+ Photo 4</div>
+        <div class="btn-side-photo" onclick="triggerUpload(this, 'l5')">+ Photo 5</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE CAKE -->
   <div id="page-cake" class="page sub-card-page">
     <button class="btn-back" onclick="openPage3()">&larr; Back</button>
-    
     <div class="sub-card-box">
       <div class="card-icon">🎂✨</div>
       <h1 class="big-title" style="font-size: 45px;">Make A Wish!</h1>
@@ -756,10 +710,9 @@
     </div>
   </div>
 
-  <!-- ================= OPTION 3: GIFT PAGE ================= -->
+  <!-- PAGE GIFT -->
   <div id="page-gift" class="page sub-card-page">
     <button class="btn-back" onclick="openPage3()">&larr; Back</button>
-    
     <div class="sub-card-box">
       <div class="card-icon">🎁❤️</div>
       <h1 class="big-title" style="font-size: 45px;">Special Gift!</h1>
@@ -768,8 +721,117 @@
     </div>
   </div>
 
+  <!-- FIREBASE INTEGRATION SCRIPT -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    // Key-yaashii Firebase-kaaga
+    const firebaseConfig = {
+      apiKey: "AIzaSyADqAcHRx8CBPp2RE6k4wEqd8E2Ip8Eqkc",
+      authDomain: "datapase-978bb.firebaseapp.com",
+      projectId: "datapase-978bb",
+      storageBucket: "datapase-978bb.firebasestorage.app",
+      messagingSenderId: "605525714762",
+      appId: "1:605525714762:web:98e4cb3c0c769da4c7c3b3",
+      measurementId: "G-ZJ8WNFQ8NL"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Dynamic Image Object
+    window.uploadedImages = {};
+
+    let activeSlotKey = '';
+    let currentElement = null;
+
+    window.triggerUpload = function(element, key) {
+      activeSlotKey = key;
+      currentElement = element;
+      document.getElementById('imageUploader').click();
+    };
+
+    document.getElementById('imageUploader').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          const base64Img = event.target.result;
+          window.uploadedImages[activeSlotKey] = base64Img;
+          currentElement.innerHTML = `<img src="${base64Img}">`;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Save To Firebase & Get Shareable Link
+    window.saveToFirebaseAndGetLink = async function() {
+      const btn = document.getElementById('finishBtn');
+      btn.innerText = "Saving Data... ⏳";
+      btn.disabled = true;
+
+      try {
+        const uniqueId = "card_" + Math.random().toString(36).substring(2, 9);
+        await setDoc(doc(db, "surprises", uniqueId), window.uploadedImages);
+
+        const shareableURL = window.location.origin + window.location.pathname + "?id=" + uniqueId;
+        
+        document.getElementById('generatedLink').value = shareableURL;
+        document.getElementById('linkResult').style.display = 'block';
+        btn.innerText = "✨ Done!";
+      } catch (error) {
+        alert("Cillad ayaa dhacday: " + error.message);
+        btn.innerText = "✨ FINISH & SHARE LINK";
+        btn.disabled = false;
+      }
+    };
+
+    window.copyLink = function() {
+      const copyText = document.getElementById("generatedLink");
+      copyText.select();
+      navigator.clipboard.writeText(copyText.value);
+      alert("Link-ga waa la copiyeey! Waad sii diri kartaa ❤️");
+    };
+
+    // Load Data If Link Has ?id=
+    window.addEventListener('load', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const cardId = urlParams.get('id');
+
+      if (cardId) {
+        const docRef = doc(db, "surprises", cardId);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+
+          // Hide Finish button if someone opens the shared link
+          if (document.querySelector('.finish-box')) {
+            document.querySelector('.finish-box').style.display = 'none';
+          }
+
+          // Populate images automatically
+          if (data.s1) document.querySelector('.slot-1').innerHTML = `<img src="${data.s1}">`;
+          if (data.s2) document.querySelector('.slot-2').innerHTML = `<img src="${data.s2}">`;
+          if (data.s3) document.querySelector('.slot-3').innerHTML = `<img src="${data.s3}">`;
+          if (data.s4) document.querySelector('.slot-4').innerHTML = `<img src="${data.s4}">`;
+          if (data.s5) document.querySelector('.slot-5').innerHTML = `<img src="${data.s5}">`;
+          if (data.main) document.querySelector('.add-photo-btn-slot').innerHTML = `<img src="${data.main}">`;
+
+          if (data.l1) document.querySelectorAll('.btn-side-photo')[0].innerHTML = `<img src="${data.l1}">`;
+          if (data.l2) document.querySelectorAll('.btn-side-photo')[1].innerHTML = `<img src="${data.l2}">`;
+          if (data.l3) document.querySelectorAll('.btn-side-photo')[2].innerHTML = `<img src="${data.l3}">`;
+          if (data.l4) document.querySelectorAll('.btn-side-photo')[3].innerHTML = `<img src="${data.l4}">`;
+          if (data.l5) document.querySelectorAll('.btn-side-photo')[4].innerHTML = `<img src="${data.l5}">`;
+        }
+      }
+    });
+  </script>
+
+  <!-- REGULAR NAVIGATION & CONFETTI JS -->
   <script>
-    // GENERATE FLOATING LOVE BUBBLES
+    // GENERATE BUBBLES
     const loadingPage = document.getElementById('page-loading');
     for (let i = 0; i < 15; i++) {
       const bubble = document.createElement('div');
@@ -784,7 +846,7 @@
       loadingPage.appendChild(bubble);
     }
 
-    // 10 TO 1 COUNTDOWN SYSTEM
+    // COUNTDOWN
     let timeLeft = 10;
     const countdownNum = document.getElementById('countdownNum');
     const progressBar = document.getElementById('progressBar');
@@ -793,19 +855,16 @@
 
     const timerInterval = setInterval(() => {
       timeLeft--;
-
       if (timeLeft >= 0) {
         countdownNum.innerText = timeLeft;
         progressBar.style.width = (timeLeft / 10) * 100 + '%';
       }
-
       if (timeLeft <= 3 && timeLeft > 0) {
         countdownNum.classList.add('excited');
         loadingText.innerText = "GET READY MY LOVE! 💖✨";
         loadingText.style.color = "#ffeb3b";
         loaderTitle.innerText = "Almost There! 💞";
       }
-
       if (timeLeft <= 0) {
         clearInterval(timerInterval);
         document.getElementById('page-loading').classList.remove('active');
@@ -813,51 +872,26 @@
       }
     }, 1000);
 
-    // NAVIGATION FUNCTIONS
-    function hideAllPages() {
-      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-    }
-
+    // PAGE SWITCHERS
+    function hideAllPages() { document.querySelectorAll('.page').forEach(page => page.classList.remove('active')); }
     function openPage1() { hideAllPages(); document.getElementById('page-1').classList.add('active'); }
     function openPage2() { hideAllPages(); document.getElementById('page-2').classList.add('active'); startConfetti(); }
     function openPage3() { hideAllPages(); document.getElementById('page-3').classList.add('active'); }
-    
     function openMessagePage() { hideAllPages(); document.getElementById('page-message').classList.add('active'); }
     function openCakePage() { hideAllPages(); document.getElementById('page-cake').classList.add('active'); }
     function openGiftPage() { hideAllPages(); document.getElementById('page-gift').classList.add('active'); }
     function openLetterPage() { hideAllPages(); document.getElementById('page-letter').classList.add('active'); }
 
-    // UPLOAD PHOTO SYSTEM FOR SLOTS
-    let currentTargetSlot = null;
-    const imageUploader = document.getElementById('imageUploader');
-
-    function triggerUpload(slotElement) {
-      currentTargetSlot = slotElement;
-      imageUploader.click();
-    }
-
-    imageUploader.addEventListener('change', function(e) {
-      const file = e.target.files[0];
-      if (file && currentTargetSlot) {
-        const reader = new FileReader();
-        reader.onload = function(event) {
-          currentTargetSlot.innerHTML = `<img src="${event.target.result}" alt="Uploaded Photo">`;
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-
-    // CONFETTI ANIMATION
+    // CONFETTI
     function startConfetti() {
       const canvas = document.getElementById('confettiCanvas');
       const ctx = canvas.getContext('2d');
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-
       const particles = [];
       const colors = ['#f44336', '#e91e63', '#ff69b4', '#ff1493', '#ffeb3b', '#ff9800'];
 
-      for (let i = 0; i < 90; i++) {
+      for (let i = 0; i < 80; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
@@ -875,13 +909,9 @@
           ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
           ctx.fillStyle = p.color;
           ctx.fill();
-
           p.x += p.vx;
           p.y += p.vy;
-
           if (p.y > canvas.height) p.y = 0;
-          if (p.x > canvas.width) p.x = 0;
-          if (p.x < 0) p.x = canvas.width;
         });
         requestAnimationFrame(draw);
       }
