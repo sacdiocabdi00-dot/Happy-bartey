@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday Gift Experience</title>
+  <title>Happy Birthday Love Surprise</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -47,41 +47,72 @@
       to { opacity: 1; transform: scale(1); }
     }
 
-    /* ================= PAGE 0: COUNTDOWN LOADING SCREEN ================= */
+    /* ================= PAGE 0: 10s LOVE COUNTDOWN SCREEN ================= */
     #page-loading {
-      background-image: radial-gradient(circle, #500000 0%, #1a0000 100%);
+      background-image: radial-gradient(circle, #7a0016 0%, #2a0008 100%);
       flex-direction: column;
       gap: 15px;
       color: #ffffff;
       text-align: center;
       padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* FLOATING LOVE BUBBLES BACKGROUND */
+    .love-bubble {
+      position: absolute;
+      bottom: -50px;
+      background: rgba(255, 105, 180, 0.25);
+      border-radius: 50%;
+      pointer-events: none;
+      box-shadow: 0 0 15px rgba(255, 20, 147, 0.4);
+      animation: floatUp 4s infinite linear;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(0.8);
+        opacity: 0;
+      }
+      20% { opacity: 0.8; }
+      100% {
+        transform: translateY(-110vh) scale(1.2);
+        opacity: 0;
+      }
     }
 
     .loader-title {
       font-family: 'Great Vibes', cursive;
-      font-size: 42px;
-      color: #ffffff;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      font-size: 44px;
+      color: #ff80bf;
+      text-shadow: 0 0 15px rgba(255, 128, 191, 0.5);
+      z-index: 2;
       transition: all 0.3s;
     }
 
     /* COUNTDOWN NUMBER STYLES */
     .countdown-number {
-      font-size: 85px;
+      font-size: 90px;
       font-weight: 900;
       color: #ffffff;
-      text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      text-shadow: 0 0 25px rgba(255, 105, 180, 0.6);
       line-height: 1;
       margin: 10px 0;
+      z-index: 2;
       transition: all 0.2s ease-in-out;
     }
 
     /* EXCITING LAST 3 SECONDS ANIMATION */
     .countdown-number.excited {
       color: #ff1744;
-      font-size: 110px;
-      text-shadow: 0 0 30px #ff1744, 0 0 50px #ff1744;
-      animation: heartPulse 0.5s infinite alternate ease-in-out;
+      font-size: 115px;
+      text-shadow: 0 0 35px #ff1744, 0 0 60px #ff69b4;
+      animation: heartPulse 0.4s infinite alternate ease-in-out;
     }
 
     @keyframes heartPulse {
@@ -92,17 +123,18 @@
     .progress-container {
       width: 80%;
       max-width: 280px;
-      height: 8px;
+      height: 9px;
       background: rgba(255, 255, 255, 0.15);
       border-radius: 20px;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 105, 180, 0.3);
+      z-index: 2;
     }
 
     .progress-bar {
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, #ff4081, #ffeb3b);
+      background: linear-gradient(90deg, #ff1493, #ff69b4, #ffeb3b);
       border-radius: 20px;
       transition: width 1s linear;
     }
@@ -111,7 +143,8 @@
       font-size: 14px;
       font-weight: 700;
       letter-spacing: 1px;
-      opacity: 0.9;
+      color: #ffb3d9;
+      z-index: 2;
       transition: all 0.3s;
     }
 
@@ -355,17 +388,18 @@
 </head>
 <body>
 
-  <!-- ================= BOGGA LOADING (30s COUNTDOWN) ================= -->
+  <!-- ================= PAGE 0: 10s LOVE COUNTDOWN SCREEN ================= -->
   <div id="page-loading" class="page active">
-    <h1 id="loaderTitle" class="loader-title">Preparing Your Surprise... 🎁</h1>
-    <div id="countdownNum" class="countdown-number">30</div>
+    <!-- Dynamic Love Bubbles container injected via JS -->
+    <h1 id="loaderTitle" class="loader-title">Made with Love For You ❤️</h1>
+    <div id="countdownNum" class="countdown-number">10</div>
     <div class="progress-container">
       <div id="progressBar" class="progress-bar"></div>
     </div>
-    <p id="loadingText" class="loading-text">PLEASE WAIT...</p>
+    <p id="loadingText" class="loading-text">LOADING YOUR SURPRISE...</p>
   </div>
 
-  <!-- ================= BOGGA 1-AAD ================= -->
+  <!-- ================= PAGE 1: ENVELOPE CARD ================= -->
   <div id="page-1" class="page">
     <div class="envelope-card">
       <h1 class="greeting-title">Happy Birthday!</h1>
@@ -380,7 +414,7 @@
     </div>
   </div>
 
-  <!-- ================= BOGGA 2-AAD ================= -->
+  <!-- ================= PAGE 2: FULL IMAGE (NO RED BOX) ================= -->
   <div id="page-2" class="page">
     <button class="btn-back" onclick="openPage1()">&larr; Back</button>
     <canvas id="confettiCanvas"></canvas>
@@ -394,8 +428,23 @@
   </div>
 
   <script>
-    // 30 TO 1 COUNTDOWN SYSTEM WITH XAMAASAD AT LAST 3 SECONDS
-    let timeLeft = 30;
+    // GENERATE FLOATING LOVE BUBBLES
+    const loadingPage = document.getElementById('page-loading');
+    for (let i = 0; i < 15; i++) {
+      const bubble = document.createElement('div');
+      bubble.classList.add('love-bubble');
+      const size = Math.random() * 30 + 20; // size between 20px and 50px
+      bubble.style.width = `${size}px`;
+      bubble.style.height = `${size}px`;
+      bubble.style.left = `${Math.random() * 100}%`;
+      bubble.style.animationDuration = `${Math.random() * 3 + 3}s`;
+      bubble.style.animationDelay = `${Math.random() * 2}s`;
+      bubble.innerHTML = '❤️';
+      loadingPage.appendChild(bubble);
+    }
+
+    // 10 TO 1 COUNTDOWN SYSTEM WITH LOVE THEME
+    let timeLeft = 10;
     const countdownNum = document.getElementById('countdownNum');
     const progressBar = document.getElementById('progressBar');
     const loadingText = document.getElementById('loadingText');
@@ -407,15 +456,15 @@
       // UPDATE NUMBER & PROGRESS BAR
       if (timeLeft >= 0) {
         countdownNum.innerText = timeLeft;
-        progressBar.style.width = (timeLeft / 30) * 100 + '%';
+        progressBar.style.width = (timeLeft / 10) * 100 + '%';
       }
 
       // XAMAASAD / EXCITEMENT FOR LAST 3 SECONDS (3, 2, 1)
       if (timeLeft <= 3 && timeLeft > 0) {
         countdownNum.classList.add('excited');
-        loadingText.innerText = "GET READY! 🔥✨";
+        loadingText.innerText = "GET READY MY LOVE! 💖✨";
         loadingText.style.color = "#ffeb3b";
-        loaderTitle.innerText = "Almost There! 🎉";
+        loaderTitle.innerText = "Almost There! 💞";
       }
 
       // WHEN COUNTDOWN FINISHES
@@ -453,7 +502,7 @@
       });
 
       const particles = [];
-      const colors = ['#f44336', '#e91e63', '#9c27b0', '#2196f3', '#ffeb3b', '#4caf50', '#ff9800'];
+      const colors = ['#f44336', '#e91e63', '#ff69b4', '#ff1493', '#ffeb3b', '#ff9800'];
 
       for (let i = 0; i < 90; i++) {
         particles.push({
@@ -489,3 +538,4 @@
 
 </body>
 </html>
+
