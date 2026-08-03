@@ -51,7 +51,7 @@
       50% { transform: translateY(-12px) scale(1.03); }
     }
 
-    /* BUBBLES / FIREWORKS ANIMATION (CIRKA LOO DIRO) */
+    /* BUBBLES / FIREWORKS ANIMATION */
     .bubbles-container {
       position: fixed;
       top: 0;
@@ -275,6 +275,10 @@
     .ribbon-seal::after { right: 1px; transform: rotate(25deg) scaleX(-1); }
     .instruction-text { font-size: 12px; color: #777777; font-weight: 600; }
 
+    /* PAGE 2 (RESTORED CARD DETAILS) */
+    #page-2 { background-image: radial-gradient(circle, #800015 0%, #300008 100%); flex-direction: column; padding: 20px; text-align: center; color: #fff; gap: 15px; }
+    .card-details-box { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); padding: 35px 20px; border-radius: 20px; max-width: 340px; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 15px; animation: fadeInScale 0.4s ease; backdrop-filter: blur(5px); }
+
     /* PAGE 3 */
     #page-3 { background-image: radial-gradient(circle, #5a0010 0%, #1a0005 100%); flex-direction: column; justify-content: center; padding: 20px; gap: 25px; }
     .options-title { font-family: 'Great Vibes', cursive; font-size: 46px; color: #ff80bf; text-align: center; animation: floatEffect 2s infinite; }
@@ -416,7 +420,6 @@
 
   <div id="audioPlayerContainer"></div>
   <input type="file" id="imageUploader" accept="image/*" style="display: none;">
-  <!-- AUDIO / MEDIA FILE UPLOADER -->
   <input type="file" id="audioFileUploader" accept="audio/*,video/*" style="display: none;" onchange="handleAudioFileUpload(event)">
 
   <!-- MUSIC TOGGLE BUTTON -->
@@ -443,7 +446,7 @@
     <div class="envelope-card">
       <h1 class="greeting-title">Happy Birthday!</h1>
       <div class="envelope-box">
-        <div class="red-envelope" onclick="openPageWithCountdown('page-3', 1)">
+        <div class="red-envelope" onclick="openPageWithCountdown('page-2', 1)">
           <div class="ribbon-seal"></div>
         </div>
       </div>
@@ -451,9 +454,19 @@
     </div>
   </div>
 
+  <!-- PAGE 2 (RESTORED PAGE) -->
+  <div id="page-2" class="page">
+    <button class="btn-back" onclick="openPageWithCountdown('page-1', 1)">&larr; Back</button>
+    <div class="card-details-box">
+      <h1 style="font-family: 'Great Vibes', cursive; font-size: 42px; color: #ff80bf;">Special Moment ✨</h1>
+      <p style="font-size: 13px; opacity: 0.9; line-height: 1.5;">Waxaan kuu diyaariyay haddiyad gaar ah oo ay ka buuxaan farriimo iyo xusuus qiimo leh. Hadda guji batoonka hoose si aad u gasho!</p>
+      <button class="btn-finish-link" style="border:none; cursor:pointer;" onclick="openPageWithCountdown('page-3', 1)">Sii Soco &rarr;</button>
+    </div>
+  </div>
+
   <!-- PAGE 3 -->
   <div id="page-3" class="page">
-    <button class="btn-back" onclick="openPageWithCountdown('page-1', 1)">&larr; Back</button>
+    <button class="btn-back" onclick="openPageWithCountdown('page-2', 1)">&larr; Back</button>
     <h1 class="options-title">Choose Your Gift 🎁</h1>
 
     <div class="options-container">
@@ -550,20 +563,18 @@
     </div>
   </div>
 
-  <!-- MUSIC SETUP MODAL (UPLOAD or YOUTUBE/SPOTIFY LINK) -->
+  <!-- MUSIC SETUP MODAL -->
   <div id="musicModal" class="music-input-modal">
     <div class="link-modal-content">
       <h3 style="font-size: 18px;">🎵 Dooro Muusigga Heesta</h3>
       <p style="font-size: 12px; color: #ccc;">Ka dooro qalabkaaga (Upload) ama geli link-ga YouTube/Spotify:</p>
       
-      <!-- Option 1: Upload from Gallery -->
       <button class="btn-modal btn-copy-modal" style="width:100%;" onclick="document.getElementById('audioFileUploader').click()">
         <span>📁</span> Upload Audio/Video (Gallery)
       </button>
 
       <div style="font-size: 11px; color: #aaa; margin: 5px 0;">-- AMA GELI LINK --</div>
 
-      <!-- Option 2: YouTube / Spotify Link -->
       <input type="text" id="musicLinkInput" class="share-link-input" placeholder="Ku dheji Link-ga YouTube ama Spotify halkan...">
       
       <button class="btn-modal btn-share-whatsapp" style="width:100%;" onclick="saveMusicLinkFromInput()">
@@ -636,7 +647,6 @@
       document.getElementById('musicModal').style.display = 'none';
     };
 
-    // HANDLE AUDIO/VIDEO FILE UPLOAD FROM GALLERY
     window.handleAudioFileUpload = function(event) {
       const file = event.target.files[0];
       if (!file) return;
@@ -644,25 +654,31 @@
       const reader = new FileReader();
       reader.onload = function(e) {
         window.customAudioData = e.target.result;
-        window.musicLinkValue = ""; //Clear link if file is uploaded
+        window.musicLinkValue = ""; 
         playAudioData(window.customAudioData);
-        alert("Feylkii muusigga / video-ga si guul leh ayaa loo geliyay!");
+        alert("Feylkii muusigga / video-ga si guul leh ayaa loo geliyay! 🎵");
         closeMusicModal();
       };
       reader.readAsDataURL(file);
     };
 
-    // SAVE MUSIC LINK (YOUTUBE / SPOTIFY)
+    // LINK VALIDATION & BEAUTIFUL WARNING MESSAGE
     window.saveMusicLinkFromInput = function() {
       const linkVal = document.getElementById('musicLinkInput').value.trim();
-      if (!linkVal) {
-        alert("Fadlan geli link sax ah!");
+      
+      // Check if it's a valid YouTube or Spotify link
+      const isYouTube = linkVal.includes("youtube.com") || linkVal.includes("youtu.be");
+      const isSpotify = linkVal.includes("spotify.com");
+
+      if (!linkVal || (!isYouTube && !isSpotify)) {
+        alert("Waan ka xumahay, link-ga aad gelisay waa qalad ama ma aha mid sax ah! Fadlan geli link YouTube ama Spotify oo sax ah. 🎵✨");
         return;
       }
+
       window.musicLinkValue = linkVal;
-      window.customAudioData = ""; //Clear local file if link is provided
+      window.customAudioData = ""; 
       renderMusicPlayer(window.musicLinkValue);
-      alert("Link-gii heesta waa la keydiyay!");
+      alert("Link-ga heesta waa la keydiyay oo waa sax! ❤️");
       closeMusicModal();
     };
 
@@ -676,7 +692,6 @@
       if (!window.isMusicPlaying || !link) return;
       const container = document.getElementById('audioPlayerContainer');
 
-      // Check if YouTube Link
       if (link.includes("youtube.com") || link.includes("youtu.be")) {
         let videoId = "";
         if (link.includes("youtu.be/")) {
@@ -689,14 +704,12 @@
           return;
         }
       } 
-      // Check if Spotify Link
       else if (link.includes("spotify.com")) {
         let embedUrl = link.replace("spotify.com/", "spotify.com/embed/");
         container.innerHTML = `<iframe src="${embedUrl}?utm_source=generator&theme=0" width="0" height="0" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`;
         return;
       }
 
-      // Generic fallback for direct audio/video link
       container.innerHTML = `<audio autoplay loop><source src="${link}"></audio>`;
     };
 
@@ -722,7 +735,6 @@
       }
     };
 
-    // CREATE FIREWORKS / BUBBLES
     function createBubbles() {
       const container = document.getElementById('bubblesContainer');
       if (!container) return;
@@ -958,4 +970,3 @@
 
 </body>
 </html>
-
