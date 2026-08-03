@@ -262,18 +262,70 @@
     .progress-bar { width: 100%; height: 100%; background: linear-gradient(90deg, #ff1493, #ff69b4, #ffeb3b); border-radius: 20px; transition: width 1s linear; }
     .loading-text { font-size: 14px; font-weight: 700; color: #ffb3d9; }
 
-    #page-1 { background-image: radial-gradient(circle, #a80000 0%, #500000 100%); padding: 20px; }
-    .envelope-card { background-color: #fdfbf7; width: 100%; max-width: 360px; border-radius: 18px; padding: 40px 20px 30px 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); display: flex; flex-direction: column; align-items: center; text-align: center; animation: floatEffect 3s ease-in-out infinite; }
-    .greeting-title { font-family: 'Great Vibes', cursive; font-size: 44px; color: #9e1b1b; margin-bottom: 25px; }
-    .envelope-box { width: 100%; max-width: 260px; height: 180px; background: #ffffff; border-radius: 12px; display: flex; justify-content: center; align-items: center; margin-bottom: 25px; border: 1px solid #f0f0f0; }
-    .red-envelope { width: 85%; height: 110px; background-color: #9e1b1b; border-radius: 8px; position: relative; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); transition: transform 0.3s; }
-    .red-envelope:hover { transform: scale(1.05); }
-    .red-envelope::before { content: ''; position: absolute; top: 0; width: 0; height: 0; border-left: 105px solid transparent; border-right: 105px solid transparent; border-top: 58px solid #7a1212; }
-    .ribbon-seal { width: 38px; height: 30px; position: relative; z-index: 2; }
-    .ribbon-seal::before, .ribbon-seal::after { content: ''; position: absolute; width: 16px; height: 20px; background: #ffffff; border-radius: 50% 50% 0 50%; top: 4px; }
-    .ribbon-seal::before { left: 1px; transform: rotate(-25deg); }
-    .ribbon-seal::after { right: 1px; transform: rotate(25deg) scaleX(-1); }
-    .instruction-text { font-size: 12px; color: #777777; font-weight: 600; }
+    /* PAGE 1 WITH NEW BACKGROUND IMAGE AND EXACT TEXT STYLING */
+    #page-1 {
+      background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://i.postimg.cc/Fz5SNYDh/d0cd2d857c66d30fcb15af2998c8a57c.jpg');
+      background-size: cover;
+      background-position: center;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .birthday-content-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      max-width: 360px;
+      width: 100%;
+      animation: fadeInScale 0.6s ease;
+    }
+
+    .birthday-main-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 55px;
+      color: #ffffff;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+      line-height: 1.1;
+    }
+
+    .birthday-subtext {
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+      padding: 12px 20px;
+      border-radius: 16px;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .btn-click-here-custom {
+      background: #ffffff;
+      color: #111111;
+      border: 2px solid #ff1493;
+      padding: 12px 35px;
+      border-radius: 30px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255, 20, 147, 0.8);
+      transition: 0.3s;
+      animation: pulseGlow 2s infinite;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+    .btn-click-here-custom:hover {
+      transform: scale(1.08);
+      background: #ff1493;
+      color: #fff;
+    }
 
     /* PAGE 2 (RESTORED CARD DETAILS) */
     #page-2 { background-image: radial-gradient(circle, #800015 0%, #300008 100%); flex-direction: column; padding: 20px; text-align: center; color: #fff; gap: 15px; }
@@ -441,16 +493,16 @@
     <p id="loadingText" class="loading-text">LOADING YOUR SURPRISE...</p>
   </div>
 
-  <!-- PAGE 1 -->
+  <!-- PAGE 1 WITH NEW BACKGROUND AND REQUESTED TEXT -->
   <div id="page-1" class="page">
-    <div class="envelope-card">
-      <h1 class="greeting-title">Happy Birthday!</h1>
-      <div class="envelope-box">
-        <div class="red-envelope" onclick="openPageWithCountdown('page-2', 1)">
-          <div class="ribbon-seal"></div>
-        </div>
+    <div class="birthday-content-box">
+      <h1 class="birthday-main-title">Happy Birthday!</h1>
+      <div class="birthday-subtext">
+        I hope this little gift will make you happy ❤️
       </div>
-      <p class="instruction-text">Click the seal to open</p>
+      <button class="btn-click-here-custom" onclick="openPageWithCountdown('page-2', 1)">
+        Click here ✨
+      </button>
     </div>
   </div>
 
@@ -575,7 +627,7 @@
 
       <div style="font-size: 11px; color: #aaa; margin: 5px 0;">-- AMA GELI LINK --</div>
 
-      <input type="text" id="musicLinkInput" class="share-link-input" placeholder="Ku dheji Link-ga YouTube ama Spotify halkan...">
+      <input type="text" id="musicLinkInput" class="share-link-input" placeholder="Ku dheji Link-ga YouTube või Spotify halkan...">
       
       <button class="btn-modal btn-share-whatsapp" style="width:100%;" onclick="saveMusicLinkFromInput()">
         <span>💾</span> Save Link-ga Heesta
@@ -662,11 +714,9 @@
       reader.readAsDataURL(file);
     };
 
-    // LINK VALIDATION & BEAUTIFUL WARNING MESSAGE
     window.saveMusicLinkFromInput = function() {
       const linkVal = document.getElementById('musicLinkInput').value.trim();
       
-      // Check if it's a valid YouTube or Spotify link
       const isYouTube = linkVal.includes("youtube.com") || linkVal.includes("youtu.be");
       const isSpotify = linkVal.includes("spotify.com");
 
