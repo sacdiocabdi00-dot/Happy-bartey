@@ -6,7 +6,7 @@
   <title>Happy Birthday Gift Experience</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -47,11 +47,11 @@
       to { opacity: 1; transform: scale(1); }
     }
 
-    /* ================= PAGE 0: LOADING SCREEN (30s) ================= */
+    /* ================= PAGE 0: COUNTDOWN LOADING SCREEN ================= */
     #page-loading {
       background-image: radial-gradient(circle, #500000 0%, #1a0000 100%);
       flex-direction: column;
-      gap: 20px;
+      gap: 15px;
       color: #ffffff;
       text-align: center;
       padding: 20px;
@@ -59,15 +59,40 @@
 
     .loader-title {
       font-family: 'Great Vibes', cursive;
-      font-size: 48px;
+      font-size: 42px;
       color: #ffffff;
       text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      transition: all 0.3s;
+    }
+
+    /* COUNTDOWN NUMBER STYLES */
+    .countdown-number {
+      font-size: 85px;
+      font-weight: 900;
+      color: #ffffff;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      line-height: 1;
+      margin: 10px 0;
+      transition: all 0.2s ease-in-out;
+    }
+
+    /* EXCITING LAST 3 SECONDS ANIMATION */
+    .countdown-number.excited {
+      color: #ff1744;
+      font-size: 110px;
+      text-shadow: 0 0 30px #ff1744, 0 0 50px #ff1744;
+      animation: heartPulse 0.5s infinite alternate ease-in-out;
+    }
+
+    @keyframes heartPulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.25); }
     }
 
     .progress-container {
       width: 80%;
       max-width: 280px;
-      height: 10px;
+      height: 8px;
       background: rgba(255, 255, 255, 0.15);
       border-radius: 20px;
       overflow: hidden;
@@ -75,18 +100,19 @@
     }
 
     .progress-bar {
-      width: 0%;
+      width: 100%;
       height: 100%;
       background: linear-gradient(90deg, #ff4081, #ffeb3b);
       border-radius: 20px;
-      transition: width 0.1s linear;
+      transition: width 1s linear;
     }
 
     .loading-text {
-      font-size: 13px;
-      font-weight: 600;
-      opacity: 0.85;
-      letter-spacing: 0.5px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      opacity: 0.9;
+      transition: all 0.3s;
     }
 
     /* ================= PAGE 1: ENVELOPE CARD ================= */
@@ -329,13 +355,14 @@
 </head>
 <body>
 
-  <!-- ================= BOGGA LOADING (30 SECOND) ================= -->
+  <!-- ================= BOGGA LOADING (30s COUNTDOWN) ================= -->
   <div id="page-loading" class="page active">
-    <h1 class="loader-title">Preparing Your Surprise... 🎁</h1>
+    <h1 id="loaderTitle" class="loader-title">Preparing Your Surprise... 🎁</h1>
+    <div id="countdownNum" class="countdown-number">30</div>
     <div class="progress-container">
       <div id="progressBar" class="progress-bar"></div>
     </div>
-    <p id="loadingPercent" class="loading-text">Loading... 0%</p>
+    <p id="loadingText" class="loading-text">PLEASE WAIT...</p>
   </div>
 
   <!-- ================= BOGGA 1-AAD ================= -->
@@ -367,29 +394,39 @@
   </div>
 
   <script>
-    // 30-SECOND LOADING SYSTEM
-    let progress = 0;
-    const totalDuration = 30000; // 30 Seconds
-    const intervalTime = 100; // updates every 0.1s
-    const step = (intervalTime / totalDuration) * 100;
-
+    // 30 TO 1 COUNTDOWN SYSTEM WITH XAMAASAD AT LAST 3 SECONDS
+    let timeLeft = 30;
+    const countdownNum = document.getElementById('countdownNum');
     const progressBar = document.getElementById('progressBar');
-    const loadingPercent = document.getElementById('loadingPercent');
+    const loadingText = document.getElementById('loadingText');
+    const loaderTitle = document.getElementById('loaderTitle');
 
-    const loadingInterval = setInterval(() => {
-      progress += step;
-      if (progress >= 100) {
-        progress = 100;
-        clearInterval(loadingInterval);
+    const timerInterval = setInterval(() => {
+      timeLeft--;
+
+      // UPDATE NUMBER & PROGRESS BAR
+      if (timeLeft >= 0) {
+        countdownNum.innerText = timeLeft;
+        progressBar.style.width = (timeLeft / 30) * 100 + '%';
+      }
+
+      // XAMAASAD / EXCITEMENT FOR LAST 3 SECONDS (3, 2, 1)
+      if (timeLeft <= 3 && timeLeft > 0) {
+        countdownNum.classList.add('excited');
+        loadingText.innerText = "GET READY! 🔥✨";
+        loadingText.style.color = "#ffeb3b";
+        loaderTitle.innerText = "Almost There! 🎉";
+      }
+
+      // WHEN COUNTDOWN FINISHES
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
         
         // SWITCH FROM LOADING TO PAGE 1
         document.getElementById('page-loading').classList.remove('active');
         document.getElementById('page-1').classList.add('active');
       }
-
-      progressBar.style.width = progress + '%';
-      loadingPercent.innerText = `Loading... ${Math.floor(progress)}%`;
-    }, intervalTime);
+    }, 1000);
 
     // PAGE SWITCHING FUNCTIONS
     function openPage2() {
@@ -452,4 +489,3 @@
 
 </body>
 </html>
-
