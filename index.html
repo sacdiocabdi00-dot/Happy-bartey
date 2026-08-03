@@ -21,7 +21,7 @@
       height: 100%;
       margin: 0;
       padding: 0;
-      overflow: hidden;
+      overflow-x: hidden;
       background-color: #000;
     }
 
@@ -45,6 +45,23 @@
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(0.97); }
       to { opacity: 1; transform: scale(1); }
+    }
+
+    /* BACK BUTTON */
+    .btn-back {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
     }
 
     /* ================= PAGE 0: 10s LOVE COUNTDOWN SCREEN ================= */
@@ -74,15 +91,9 @@
     }
 
     @keyframes floatUp {
-      0% {
-        transform: translateY(0) scale(0.8);
-        opacity: 0;
-      }
+      0% { transform: translateY(0) scale(0.8); opacity: 0; }
       20% { opacity: 0.8; }
-      100% {
-        transform: translateY(-110vh) scale(1.2);
-        opacity: 0;
-      }
+      100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
     }
 
     .loader-title {
@@ -179,7 +190,6 @@
       align-items: center;
       margin-bottom: 25px;
       border: 1px solid #f0f0f0;
-      box-shadow: inset 0 0 10px rgba(0,0,0,0.03);
     }
 
     .red-envelope {
@@ -196,9 +206,7 @@
       transition: transform 0.3s ease;
     }
 
-    .red-envelope:hover {
-      transform: scale(1.05);
-    }
+    .red-envelope:hover { transform: scale(1.05); }
 
     .red-envelope::before {
       content: '';
@@ -218,8 +226,7 @@
       z-index: 2;
     }
 
-    .ribbon-seal::before,
-    .ribbon-seal::after {
+    .ribbon-seal::before, .ribbon-seal::after {
       content: '';
       position: absolute;
       width: 16px;
@@ -229,28 +236,16 @@
       top: 4px;
     }
 
-    .ribbon-seal::before {
-      left: 1px;
-      transform: rotate(-25deg);
-    }
+    .ribbon-seal::before { left: 1px; transform: rotate(-25deg); }
+    .ribbon-seal::after { right: 1px; transform: rotate(25deg) scaleX(-1); }
 
-    .ribbon-seal::after {
-      right: 1px;
-      transform: rotate(25deg) scaleX(-1);
-    }
+    .instruction-text { font-size: 12px; color: #777777; font-weight: 600; }
 
-    .instruction-text {
-      font-size: 12px;
-      color: #777777;
-      font-weight: 600;
-    }
-
-    /* ================= PAGE 2: FULL IMAGE ================= */
+    /* ================= PAGE 2: SECOND IMAGE ================= */
     #page-2 {
       background-image: url('https://i.postimg.cc/jqkNPbJ1/da1478c736e944eb8f1ec711d8c60617.webp');
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
     }
 
     #confettiCanvas {
@@ -263,22 +258,6 @@
       z-index: 1;
     }
 
-    .btn-back {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      z-index: 10;
-      background: rgba(0, 0, 0, 0.4);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      backdrop-filter: blur(8px);
-    }
-
     .text-overlay-container {
       position: relative;
       z-index: 2;
@@ -289,7 +268,7 @@
       flex-direction: column;
       align-items: center;
       gap: 12px;
-      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 255, 255, 0.4);
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
       animation: floatPulse 3s infinite ease-in-out;
     }
 
@@ -303,25 +282,15 @@
       font-size: 62px;
       font-weight: 700;
       color: #ffffff;
-      line-height: 1.1;
     }
 
-    .popper-icon {
-      font-size: 36px;
-      animation: rotateBounce 2s infinite ease-in-out;
-    }
-
-    @keyframes rotateBounce {
-      0%, 100% { transform: rotate(-10deg) scale(1); }
-      50% { transform: rotate(10deg) scale(1.2); }
-    }
+    .popper-icon { font-size: 36px; }
 
     .big-subtitle {
       font-size: 16px;
       font-weight: 700;
       color: #ffffff;
       max-width: 320px;
-      line-height: 1.4;
       background: rgba(0, 0, 0, 0.25);
       padding: 8px 16px;
       border-radius: 20px;
@@ -339,55 +308,195 @@
       cursor: pointer;
       box-shadow: 0 6px 20px rgba(0,0,0,0.4);
       transition: all 0.3s ease;
-      margin-top: 5px;
     }
 
-    .btn-click-here:hover {
-      transform: scale(1.1);
-      background: #ffeb3b;
-    }
+    .btn-click-here:hover { transform: scale(1.1); background: #ffeb3b; }
 
-    /* ================= PAGE 3: FINAL PAGE WITH FINISH BUTTON ================= */
+    /* ================= PAGE 3: 3 OPTIONS MENU ================= */
     #page-3 {
-      background-image: url('https://i.postimg.cc/XYQ5wyPs/0f62e692464f50f11d5809f413f4b852.jpg');
+      background-image: radial-gradient(circle, #5a0010 0%, #1a0005 100%);
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .options-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 48px;
+      color: #ff80bf;
+      text-shadow: 0 0 15px rgba(255, 128, 191, 0.5);
+      margin-bottom: 10px;
+    }
+
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 85%;
+      max-width: 300px;
+    }
+
+    .btn-option {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 105, 180, 0.5);
+      color: #ffffff;
+      padding: 15px;
+      border-radius: 25px;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+
+    .btn-option:hover {
+      background: #ff1493;
+      border-color: #ffffff;
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 12px 25px rgba(255, 20, 147, 0.6);
+    }
+
+    /* ================= SUB-PAGE: MESSAGE COLLAGE TEMPLATE ================= */
+    #page-message {
+      background-color: #0d0d0d;
+      overflow-y: auto;
+      display: none;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 50px 10px 30px 10px;
+    }
+
+    #page-message.active { display: flex; }
+
+    .collage-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      background-image: url('https://i.postimg.cc/Vvtfk2xT/Picsart-26-08-03-21-29-09-077.png');
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
-      flex-direction: column;
+      border-radius: 12px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+      aspect-ratio: 9 / 16;
+      overflow: hidden;
     }
 
-    .page3-content {
-      position: relative;
-      z-index: 2;
+    /* 5 POLAROID SLOTS (COVERING BLACK RECTANGLES) */
+    .polaroid-slot {
+      position: absolute;
+      background: #111111;
+      border-radius: 3px;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px dashed rgba(255,255,255,0.4);
+      transition: transform 0.2s;
+    }
+
+    .polaroid-slot:hover { transform: scale(1.05); border-color: #ff1493; }
+
+    .polaroid-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .polaroid-slot span {
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 700;
+      text-align: center;
+      padding: 2px;
+      opacity: 0.7;
+    }
+
+    /* Slot Positions matching the template layout */
+    .slot-1 { top: 1.5%; right: 29.5%; width: 18.5%; height: 11.5%; transform: rotate(-5deg); }
+    .slot-2 { top: 3.5%; right: 7%; width: 18.5%; height: 11.5%; transform: rotate(6deg); }
+    .slot-3 { top: 14%; right: 11.5%; width: 19%; height: 12%; transform: rotate(-3deg); }
+    .slot-4 { top: 25.5%; right: 3.5%; width: 20%; height: 12.5%; transform: rotate(4deg); }
+    .slot-5 { top: 33.5%; right: 38%; width: 19%; height: 11.8%; transform: rotate(-8deg); }
+
+    /* ADD PHOTO BUTTON SLOT */
+    .add-photo-btn-slot {
+      position: absolute;
+      bottom: 12.5%;
+      left: 7.5%;
+      width: 27%;
+      height: 21%;
+      background: rgba(240, 240, 240, 0.95);
+      border: 2px dashed #888;
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      overflow: hidden;
+    }
+
+    .add-photo-btn-slot:hover { background: #ffffff; border-color: #ff1493; }
+
+    .add-photo-btn-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .add-photo-text {
+      font-size: 13px;
+      font-weight: 800;
+      color: #333333;
+      text-align: center;
+    }
+
+    /* ================= SUB-PAGES: CAKE & GIFT ================= */
+    .sub-card-page {
+      background: radial-gradient(circle, #4a000e 0%, #120004 100%);
+      flex-direction: column;
+      padding: 30px 20px;
       text-align: center;
       color: #ffffff;
-      padding: 20px;
+      gap: 15px;
+    }
+
+    .sub-card-box {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 30px 20px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      max-width: 340px;
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 15px;
-      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
-    .btn-finish {
+    .card-icon { font-size: 60px; }
+
+    .btn-finish-link {
       background: linear-gradient(135deg, #ff1493, #ff4081);
       color: #ffffff;
       border: 2px solid #ffffff;
-      padding: 14px 35px;
+      padding: 12px 30px;
       border-radius: 30px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 800;
       cursor: pointer;
-      box-shadow: 0 8px 25px rgba(255, 20, 147, 0.6);
-      transition: all 0.3s ease;
       text-decoration: none;
       display: inline-block;
-    }
-
-    .btn-finish:hover {
-      transform: scale(1.1);
-      box-shadow: 0 10px 30px rgba(255, 20, 147, 0.9);
-      background: linear-gradient(135deg, #ff4081, #ff1493);
+      margin-top: 10px;
+      box-shadow: 0 6px 20px rgba(255, 20, 147, 0.5);
     }
 
     /* DESKTOP RESPONSIVE */
@@ -395,11 +504,13 @@
       .big-title { font-size: 80px; }
       .big-subtitle { font-size: 20px; max-width: 450px; }
       .btn-click-here { font-size: 15px; padding: 12px 30px; }
-      .btn-finish { font-size: 18px; padding: 16px 40px; }
     }
   </style>
 </head>
 <body>
+
+  <!-- Hidden File Inputs for uploading photos directly -->
+  <input type="file" id="imageUploader" accept="image/*" style="display: none;">
 
   <!-- ================= PAGE 0: 10s COUNTDOWN ================= -->
   <div id="page-loading" class="page active">
@@ -433,21 +544,69 @@
       <h1 class="big-title">Happy Birthday!</h1>
       <div class="popper-icon">🎉</div>
       <p class="big-subtitle">I hope this little gift will make you happy ❤️</p>
-      <!-- CLICK HERE TO OPEN PAGE 3 -->
       <button class="btn-click-here" onclick="openPage3()">Click here ✨</button>
     </div>
   </div>
 
-  <!-- ================= PAGE 3: FINAL PAGE WITH BACKGROUND & FINISH BUTTON ================= -->
+  <!-- ================= PAGE 3: 3 OPTIONS MENU ================= -->
   <div id="page-3" class="page">
     <button class="btn-back" onclick="openPage2()">&larr; Back</button>
+
+    <h1 class="options-title">Choose Your Gift 🎁</h1>
+
+    <div class="options-container">
+      <button class="btn-option" onclick="openMessagePage()">
+        <span>💌</span> Message
+      </button>
+      <button class="btn-option" onclick="openCakePage()">
+        <span>🎂</span> Cake
+      </button>
+      <button class="btn-option" onclick="openGiftPage()">
+        <span>🎁</span> Gift
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= OPTION 1: MESSAGE (COLLAGE PAGE) ================= -->
+  <div id="page-message" class="page">
+    <button class="btn-back" onclick="openPage3()">&larr; Back</button>
+
+    <div class="collage-wrapper">
+      <!-- 5 POLAROID SLOTS OVERLAYING THE BLACK AREAS -->
+      <div class="polaroid-slot slot-1" onclick="triggerUpload(this)"><span>+ Photo 1</span></div>
+      <div class="polaroid-slot slot-2" onclick="triggerUpload(this)"><span>+ Photo 2</span></div>
+      <div class="polaroid-slot slot-3" onclick="triggerUpload(this)"><span>+ Photo 3</span></div>
+      <div class="polaroid-slot slot-4" onclick="triggerUpload(this)"><span>+ Photo 4</span></div>
+      <div class="polaroid-slot slot-5" onclick="triggerUpload(this)"><span>+ Photo 5</span></div>
+
+      <!-- ADD PHOTO BUTTON SLOT -->
+      <div class="add-photo-btn-slot" onclick="triggerUpload(this)">
+        <span class="add-photo-text">+<br>add photo</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= OPTION 2: CAKE PAGE ================= -->
+  <div id="page-cake" class="page sub-card-page">
+    <button class="btn-back" onclick="openPage3()">&larr; Back</button>
     
-    <div class="page3-content">
-      <h1 class="big-title">Special Gift For You ❤️</h1>
-      <p class="big-subtitle">Thank you for being in my life! Click below to complete.</p>
-      
-      <!-- FINISH BUTTON (Badhan Finish ah oo Link-gaaga geeysa) -->
-      <a href="https://wa.me/" target="_blank" class="btn-finish">Finish 🎁</a>
+    <div class="sub-card-box">
+      <div class="card-icon">🎂✨</div>
+      <h1 class="big-title" style="font-size: 45px;">Make A Wish!</h1>
+      <p style="font-size: 14px; opacity: 0.9;">May all your dreams and wishes come true today and forever ❤️</p>
+      <a href="https://wa.me/" target="_blank" class="btn-finish-link">Send Wish 🎁</a>
+    </div>
+  </div>
+
+  <!-- ================= OPTION 3: GIFT PAGE ================= -->
+  <div id="page-gift" class="page sub-card-page">
+    <button class="btn-back" onclick="openPage3()">&larr; Back</button>
+    
+    <div class="sub-card-box">
+      <div class="card-icon">🎁❤️</div>
+      <h1 class="big-title" style="font-size: 45px;">Special Gift!</h1>
+      <p style="font-size: 14px; opacity: 0.9;">You are the best gift in my life! Click below to claim your surprise.</p>
+      <a href="https://wa.me/" target="_blank" class="btn-finish-link">Claim Gift 💖</a>
     </div>
   </div>
 
@@ -496,26 +655,38 @@
       }
     }, 1000);
 
-    // PAGE SWITCHING FUNCTIONS
-    function openPage1() {
-      hideAllPages();
-      document.getElementById('page-1').classList.add('active');
-    }
-
-    function openPage2() {
-      hideAllPages();
-      document.getElementById('page-2').classList.add('active');
-      startConfetti();
-    }
-
-    function openPage3() {
-      hideAllPages();
-      document.getElementById('page-3').classList.add('active');
-    }
-
+    // NAVIGATION FUNCTIONS
     function hideAllPages() {
       document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
     }
+
+    function openPage1() { hideAllPages(); document.getElementById('page-1').classList.add('active'); }
+    function openPage2() { hideAllPages(); document.getElementById('page-2').classList.add('active'); startConfetti(); }
+    function openPage3() { hideAllPages(); document.getElementById('page-3').classList.add('active'); }
+    
+    function openMessagePage() { hideAllPages(); document.getElementById('page-message').classList.add('active'); }
+    function openCakePage() { hideAllPages(); document.getElementById('page-cake').classList.add('active'); }
+    function openGiftPage() { hideAllPages(); document.getElementById('page-gift').classList.add('active'); }
+
+    // UPLOAD PHOTO SYSTEM FOR SLOTS
+    let currentTargetSlot = null;
+    const imageUploader = document.getElementById('imageUploader');
+
+    function triggerUpload(slotElement) {
+      currentTargetSlot = slotElement;
+      imageUploader.click();
+    }
+
+    imageUploader.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file && currentTargetSlot) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          currentTargetSlot.innerHTML = `<img src="${event.target.result}" alt="Uploaded Photo">`;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
 
     // CONFETTI ANIMATION
     function startConfetti() {
