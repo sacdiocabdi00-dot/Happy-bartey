@@ -27,8 +27,8 @@
     }
 
     @keyframes fadeInScale {
-      0% { opacity: 0; transform: scale(0.9); }
-      100% { opacity: 1; transform: scale(1); }
+      0% { opacity: 0; transform: scale(0.85) translateY(20px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
     }
 
     @keyframes floatEffect {
@@ -39,6 +39,16 @@
     @keyframes pulseGlow {
       0%, 100% { box-shadow: 0 0 15px rgba(255, 20, 147, 0.4); }
       50% { box-shadow: 0 0 30px rgba(255, 20, 147, 0.8); }
+    }
+
+    @keyframes typingEffect {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounceAnim {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-12px) scale(1.03); }
     }
 
     .page {
@@ -55,7 +65,7 @@
 
     .page.active {
       display: flex;
-      animation: fadeInScale 0.5s ease forwards;
+      animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     .btn-back {
@@ -181,6 +191,7 @@
     .btn-share-whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; }
     .btn-copy-modal { background: linear-gradient(135deg, #ff1493, #ff69b4); color: #fff; }
 
+    /* LOADING PAGE */
     #page-loading {
       background-image: radial-gradient(circle, #7a0016 0%, #2a0008 100%);
       flex-direction: column;
@@ -188,7 +199,6 @@
       color: #ffffff;
       text-align: center;
       padding: 20px;
-      position: relative;
     }
 
     .loader-title { font-family: 'Great Vibes', cursive; font-size: 44px; color: #ff80bf; }
@@ -219,17 +229,42 @@
     .btn-click-here { background: #ffffff; color: #000000; border: none; padding: 10px 24px; border-radius: 25px; font-size: 13px; font-weight: 800; cursor: pointer; transition: 0.3s; animation: pulseGlow 1.5s infinite; }
     .btn-click-here:hover { transform: scale(1.1); }
 
-    #page-3 { background-image: radial-gradient(circle, #5a0010 0%, #1a0005 100%); flex-direction: column; justify-content: center; padding: 20px; gap: 30px; }
-    .options-title { font-family: 'Great Vibes', cursive; font-size: 48px; color: #ff80bf; text-align: center; }
+    /* PAGE 3 - ANIMATED BUTTONS */
+    #page-3 { background-image: radial-gradient(circle, #5a0010 0%, #1a0005 100%); flex-direction: column; justify-content: center; padding: 20px; gap: 25px; }
+    .options-title { font-family: 'Great Vibes', cursive; font-size: 46px; color: #ff80bf; text-align: center; animation: floatEffect 2s infinite; }
     .options-container { display: flex; flex-direction: column; gap: 15px; width: 85%; max-width: 300px; margin: 0 auto; }
-    .btn-option { background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 105, 180, 0.5); color: #ffffff; padding: 15px; border-radius: 25px; font-size: 18px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s; }
-    .btn-option:hover { background: rgba(255, 105, 180, 0.3); transform: scale(1.05); }
+    
+    .btn-option { 
+      background: linear-gradient(135deg, rgba(255, 20, 147, 0.25), rgba(255, 105, 180, 0.15)); 
+      border: 2px solid rgba(255, 105, 180, 0.7); 
+      color: #ffffff; 
+      padding: 16px; 
+      border-radius: 30px; 
+      font-size: 17px; 
+      font-weight: 800; 
+      cursor: pointer; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      gap: 12px; 
+      transition: 0.3s; 
+      box-shadow: 0 5px 20px rgba(255, 20, 147, 0.3);
+      animation: bounceAnim 2.5s infinite ease-in-out;
+    }
+    .btn-option:nth-child(2) { animation-delay: 0.3s; }
+    .btn-option:nth-child(3) { animation-delay: 0.6s; }
+
+    .btn-option:hover { 
+      background: linear-gradient(135deg, #ff1493, #ff69b4); 
+      transform: scale(1.08); 
+      box-shadow: 0 0 25px rgba(255, 20, 147, 0.9);
+    }
 
     #page-message { background-color: #0d0d0d; overflow-y: auto; padding: 50px 10px 30px 10px; display: none; flex-direction: column; align-items: center; }
     #page-message.active { display: flex; }
 
-    .collage-wrapper { position: relative; width: 100%; max-width: 400px; background-image: url('https://i.postimg.cc/yxGZMqF5/Picsart-26-08-03-21-36-06-808.png'); background-size: cover; background-position: center; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.8); aspect-ratio: 9 / 16; overflow: hidden; margin: 0 auto; }
-    .polaroid-slot { position: absolute; background: rgba(17, 17, 17, 0.7); border-radius: 3px; overflow: hidden; cursor: pointer; display: flex; justify-content: center; align-items: center; border: 1px dashed rgba(255,255,255,0.4); transition: 0.3s; }
+    .collage-wrapper { position: relative; width: 100%; max-width: 400px; background-image: url('https://i.postimg.cc/yxGZMqF5/Picsart-26-08-03-21-36-06-808.png'); background-size: cover; background-position: center; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.8); aspect-ratio: 9 / 16; overflow: hidden; margin: 0 auto; animation: fadeInScale 0.5s ease; }
+    .polaroid-slot { position: absolute; background: rgba(17, 17, 17, 0.7); border-radius: 3px; overflow: hidden; cursor: pointer; display: flex; justify-content: center; align-items: center; border: 1px dashed rgba(255,255,255,0.4); transition: 0.3s; animation: fadeInScale 0.6s ease; }
     .polaroid-slot:hover { border-color: #ff1493; }
     .polaroid-slot.readonly-mode { cursor: default !important; border: none !important; }
     .polaroid-slot img, .add-photo-btn-slot img { width: 100%; height: 100%; object-fit: cover; }
@@ -250,11 +285,10 @@
     .floating-envelope-corner img { width: 100%; height: 70px; object-fit: cover; border-radius: 6px; }
     .btn-corner-click { background: #ff1493; color: #fff; border: none; border-radius: 10px; font-size: 10px; font-weight: 800; padding: 4px 8px; width: 100%; text-align: center; }
 
-    /* PAGE LETTER */
     #page-letter { background-color: #000; overflow-y: auto; padding: 50px 10px 30px 10px; display: none; justify-content: center; align-items: flex-start; }
     #page-letter.active { display: flex; }
 
-    .letter-wrapper-new { position: relative; width: 100%; max-width: 400px; background-image: url('https://i.postimg.cc/bwnyPGXF/29847-edited.jpg'); background-size: cover; background-position: center; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.8); aspect-ratio: 1 / 1; overflow: hidden; margin: 0 auto; }
+    .letter-wrapper-new { position: relative; width: 100%; max-width: 400px; background-image: url('https://i.postimg.cc/bwnyPGXF/29847-edited.jpg'); background-size: cover; background-position: center; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.8); aspect-ratio: 1 / 1; overflow: hidden; margin: 0 auto; animation: fadeInScale 0.5s ease; }
 
     .custom-letter-text-new {
       position: absolute;
@@ -273,7 +307,10 @@
       padding: 5px;
     }
 
-    /* CONTROLS (Only visible during editing / creator mode) */
+    .typing-receiver-simulation {
+      animation: typingEffect 1s ease forwards;
+    }
+
     .letter-controls {
       position: absolute;
       top: 5px;
@@ -286,7 +323,7 @@
       justify-content: flex-end;
     }
 
-    .btn-edit-text-toggle, .font-selector-box, .music-selector-box, .music-link-btn {
+    .btn-edit-text-toggle, .font-selector-box, .music-link-btn {
       background: #ff1493;
       color: #fff;
       border: none;
@@ -297,13 +334,12 @@
       cursor: pointer;
     }
 
-    .font-selector-box, .music-selector-box {
+    .font-selector-box {
       background: #111;
       border: 1px solid #ff1493;
       color: #fff;
     }
 
-    /* Controls hidden by default until edit is clicked */
     .edit-active-only {
       display: none !important;
     }
@@ -311,7 +347,7 @@
       display: inline-block !important;
     }
 
-    .photo-slot-frame-1 { position: absolute; top: 29.5%; left: 8.5%; width: 32.5%; height: 33%; background: rgba(0, 0, 0, 0.4); border: 1px dashed rgba(255, 255, 255, 0.6); border-radius: 4px; display: flex; justify-content: center; align-items: center; color: #ffffff; font-size: 11px; font-weight: 700; cursor: pointer; overflow: hidden; }
+    .photo-slot-frame-1 { position: absolute; top: 29.5%; left: 8.5%; width: 32.5%; height: 33%; background: rgba(0, 0, 0, 0.4); border: 1px dashed rgba(255, 255, 255, 0.6); border-radius: 4px; display: flex; justify-content: center; align-items: center; color: #ffffff; font-size: 11px; font-weight: 700; cursor: pointer; overflow: hidden; animation: fadeInScale 0.6s ease; }
     .photo-slot-frame-1.readonly-mode { cursor: default !important; border: none !important; background: transparent !important; }
     .photo-slot-frame-1 img { width: 100%; height: 100%; object-fit: cover; }
 
@@ -320,22 +356,40 @@
     .card-icon { font-size: 60px; animation: floatEffect 2s infinite; }
     .btn-finish-link { background: linear-gradient(135deg, #ff1493, #ff4081); color: #ffffff; border: 2px solid #ffffff; padding: 12px 30px; border-radius: 30px; font-size: 15px; font-weight: 800; text-decoration: none; display: inline-block; transition: 0.3s; }
     .btn-finish-link:hover { transform: scale(1.05); }
+
+    /* TikTok Player Box */
+    .tiktok-floating-player {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid #ff1493;
+      padding: 8px 12px;
+      border-radius: 20px;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 4px 15px rgba(255,20,147,0.4);
+    }
   </style>
 </head>
 <body>
 
-  <!-- MUSIC CONTAINER -->
   <div id="youtubePlayerContainer"></div>
-
   <input type="file" id="imageUploader" accept="image/*" style="display: none;">
 
-  <a href="https://yourwebsite.com" target="_blank" class="created-by-badge">
-    🔥 Created by MyWebsite
+  <a href="#" class="created-by-badge">
+    🔥 Created with Love
   </a>
 
-  <!-- PAGE 0: 10s COUNTDOWN -->
+  <!-- LOADING PAGE (Countdown Hub) -->
   <div id="page-loading" class="page active">
-    <h1 id="loaderTitle" class="loader-title">Made with Love For You ❤️</h1>
+    <h1 id="loaderTitle" class="loader-title">Welcome ❤️</h1>
     <div id="countdownNum" class="countdown-number">10</div>
     <div class="progress-container">
       <div id="progressBar" class="progress-bar"></div>
@@ -348,7 +402,7 @@
     <div class="envelope-card">
       <h1 class="greeting-title">Happy Birthday!</h1>
       <div class="envelope-box">
-        <div class="red-envelope" onclick="openPage2()">
+        <div class="red-envelope" onclick="openPageWithCountdown('page-2', 1)">
           <div class="ribbon-seal"></div>
         </div>
       </div>
@@ -358,31 +412,31 @@
 
   <!-- PAGE 2 -->
   <div id="page-2" class="page">
-    <button class="btn-back" onclick="openPage1()">&larr; Back</button>
+    <button class="btn-back" onclick="openPageWithCountdown('page-1', 1)">&larr; Back</button>
 
     <div class="text-overlay-container">
       <h1 class="big-title">Happy Birthday!</h1>
       <div class="popper-icon">🎉</div>
       <p class="big-subtitle">I hope this little gift will make you happy ❤️</p>
-      <button class="btn-click-here" onclick="openPage3()">Click here ✨</button>
+      <button class="btn-click-here" onclick="openPageWithCountdown('page-3', 1)">Click here ✨</button>
     </div>
   </div>
 
-  <!-- PAGE 3 -->
+  <!-- PAGE 3 (Animated Options) -->
   <div id="page-3" class="page">
-    <button class="btn-back" onclick="openPage2()">&larr; Back</button>
+    <button class="btn-back" onclick="openPageWithCountdown('page-2', 1)">&larr; Back</button>
     <h1 class="options-title">Choose Your Gift 🎁</h1>
 
     <div class="options-container">
-      <button class="btn-option" onclick="openMessagePage()"><span>💌</span> Message</button>
-      <button class="btn-option" onclick="openCakePage()"><span>🎂</span> Cake</button>
-      <button class="btn-option" onclick="openGiftPage()"><span>🎁</span> Gift</button>
+      <button class="btn-option" onclick="openPageWithCountdown('page-message', 1)"><span>💌</span> Message</button>
+      <button class="btn-option" onclick="openPageWithCountdown('page-cake', 1)"><span>🎂</span> Cake</button>
+      <button class="btn-option" onclick="openPageWithCountdown('page-gift', 1)"><span>🎁</span> Gift</button>
     </div>
   </div>
 
   <!-- PAGE MESSAGE -->
   <div id="page-message" class="page">
-    <button class="btn-back" onclick="openPage3()">&larr; Back</button>
+    <button class="btn-back" onclick="openPageWithCountdown('page-3', 1)">&larr; Back</button>
     <button class="btn-finish-top creator-only" id="finishBtnMessage" onclick="saveToFirebaseAndGetLink()">✨ Finish</button>
 
     <div class="collage-wrapper">
@@ -396,7 +450,7 @@
         <span class="add-photo-text">+<br>add photo</span>
       </div>
 
-      <div class="floating-envelope-corner" onclick="openLetterPage()">
+      <div class="floating-envelope-corner" onclick="openPageWithCountdown('page-letter', 1)">
         <img src="https://i.postimg.cc/bw53PMRH/392028c9e3d8353cb0076be97f7518ad.jpg" alt="Envelope">
         <div class="btn-corner-click">Click Here ✉️</div>
       </div>
@@ -405,13 +459,11 @@
 
   <!-- PAGE LETTER -->
   <div id="page-letter" class="page">
-    <button class="btn-back" onclick="openMessagePage()">&larr; Back</button>
+    <button class="btn-back" onclick="openPageWithCountdown('page-message', 1)">&larr; Back</button>
     <button class="btn-finish-top creator-only" id="finishBtnLetter" onclick="saveToFirebaseAndGetLink()">✨ Finish</button>
 
     <div class="letter-wrapper-new" id="letterWrapperBox">
-      <!-- CONTROLS -->
       <div class="letter-controls creator-only">
-        <!-- Fonts & Music buttons are hidden until Edit is clicked -->
         <button class="music-link-btn edit-active-only" onclick="setCustomMusicLink()">🎵 Music Link</button>
         <select id="fontSelector" class="font-selector-box edit-active-only" onchange="changeLetterFont(this.value)">
           <option value="'Great Vibes', cursive">Great Vibes</option>
@@ -431,7 +483,7 @@
 
   <!-- PAGE CAKE -->
   <div id="page-cake" class="page sub-card-page">
-    <button class="btn-back" onclick="openPage3()">&larr; Back</button>
+    <button class="btn-back" onclick="openPageWithCountdown('page-3', 1)">&larr; Back</button>
     <div class="sub-card-box">
       <div class="card-icon">🎂✨</div>
       <h1 class="big-title" style="font-size: 45px;">Make A Wish!</h1>
@@ -442,7 +494,7 @@
 
   <!-- PAGE GIFT -->
   <div id="page-gift" class="page sub-card-page">
-    <button class="btn-back" onclick="openPage3()">&larr; Back</button>
+    <button class="btn-back" onclick="openPageWithCountdown('page-3', 1)">&larr; Back</button>
     <div class="sub-card-box">
       <div class="card-icon">🎁❤️</div>
       <h1 class="big-title" style="font-size: 45px;">Special Gift!</h1>
@@ -489,7 +541,6 @@
 
     window.uploadedImages = {};
     window.isReadOnlyMode = false;
-    // Heestaada aad codsatay inuu automatic noqdo:
     window.customMusicUrl = "https://youtu.be/9ACIy3MLPuU";
 
     let activeSlotKey = '';
@@ -521,15 +572,15 @@
     };
 
     window.setCustomMusicLink = function() {
-      const link = prompt("Ku soo dheji link-ga Heesta (YouTube ama Spotify ama MP3):", window.customMusicUrl);
+      const link = prompt("Halkan ku soo dheji link-ga Heesta (TikTok, YouTube, ama MP3):", window.customMusicUrl);
       if (link) {
         window.customMusicUrl = link;
         playMusicFromLink(link);
-        alert("Heesta waa la badelay oo waa la keydin doonaa!");
+        alert("Heesta ama Music-ga waa la badelay!");
       }
     };
 
-    function playMusicFromLink(url) {
+    window.playMusicFromLink = function(url) {
       const ytContainer = document.getElementById('youtubePlayerContainer');
       ytContainer.innerHTML = ""; 
 
@@ -543,9 +594,8 @@
         if (videoId) {
           ytContainer.innerHTML = `<iframe width="0" height="0" src="https://www.youtube.com/embed/${videoId}?autoplay=1" allow="autoplay"></iframe>`;
         }
-      } else if (url.includes("spotify.com")) {
-        let embedUrl = url.replace("track/", "embed/track/");
-        ytContainer.innerHTML = `<iframe src="${embedUrl}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media" style="position:fixed; bottom:0; left:0; z-index:999; display:none;"></iframe>`;
+      } else if (url.includes("tiktok.com")) {
+        ytContainer.innerHTML = `<div class="tiktok-floating-player">🎵 TikTok Music Connected</div>`;
       } else {
         ytContainer.innerHTML = `<audio autoplay loop><source src="${url}" type="audio/mpeg"></audio>`;
       }
@@ -643,7 +693,6 @@
       const urlParams = new URLSearchParams(window.location.search);
       const cardId = urlParams.get('id');
 
-      // Auto play music on first click anywhere
       const playAudioOnClick = () => {
         playMusicFromLink(window.customMusicUrl);
       };
@@ -659,7 +708,8 @@
           slot.onclick = null;
         });
 
-        document.getElementById('customLetterNote').readOnly = true;
+        const letterArea = document.getElementById('customLetterNote');
+        letterArea.readOnly = true;
 
         try {
           const docRef = doc(db, "surprises", cardId);
@@ -668,8 +718,22 @@
           if (docSnap.exists()) {
             const data = docSnap.data();
 
-            if (data.letterNote) document.getElementById('customLetterNote').value = data.letterNote;
-            if (data.letterFont) document.getElementById('customLetterNote').style.fontFamily = data.letterFont;
+            if (data.letterNote) {
+              letterArea.value = "";
+              letterArea.classList.add('typing-receiver-simulation');
+              let fullText = data.letterNote;
+              let charIndex = 0;
+              let typeInterval = setInterval(() => {
+                if (charIndex < fullText.length) {
+                  letterArea.value += fullText.charAt(charIndex);
+                  charIndex++;
+                } else {
+                  clearInterval(typeInterval);
+                }
+              }, 40);
+            }
+
+            if (data.letterFont) letterArea.style.fontFamily = data.letterFont;
             
             if (data.bgMusic) {
               window.customMusicUrl = data.bgMusic;
@@ -688,45 +752,52 @@
           console.error("Error loading surprise card:", err);
         }
       }
+
+      openPageWithCountdown('page-1', 10);
     });
   </script>
 
-  <!-- NAVIGATION & ANIMATION -->
+  <!-- NAVIGATION & UNIVERSAL COUNTDOWN SYSTEM -->
   <script>
-    let timeLeft = 10;
-    const countdownNum = document.getElementById('countdownNum');
-    const progressBar = document.getElementById('progressBar');
-    const loadingText = document.getElementById('loadingText');
-    const loaderTitle = document.getElementById('loaderTitle');
+    let timerInterval = null;
 
-    const timerInterval = setInterval(() => {
-      timeLeft--;
-      if (timeLeft >= 0) {
-        countdownNum.innerText = timeLeft;
-        progressBar.style.width = (timeLeft / 10) * 100 + '%';
-      }
-      if (timeLeft <= 3 && timeLeft > 0) {
-        loadingText.innerText = "GET READY MY LOVE! 💖✨";
-        loadingText.style.color = "#ffeb3b";
-        loaderTitle.innerText = "Almost There! 💞";
-      }
-      if (timeLeft <= 0) {
-        clearInterval(timerInterval);
-        document.getElementById('page-loading').classList.remove('active');
-        document.getElementById('page-1').classList.add('active');
-        
-        playMusicFromLink(window.customMusicUrl);
-      }
-    }, 1000);
+    function openPageWithCountdown(targetPageId, durationSeconds) {
+      clearInterval(timerInterval);
+      
+      let timeLeft = durationSeconds;
+      const countdownNum = document.getElementById('countdownNum');
+      const progressBar = document.getElementById('progressBar');
+      const loadingText = document.getElementById('loadingText');
+      
+      countdownNum.innerText = timeLeft;
+      progressBar.style.width = '100%';
 
-    function hideAllPages() { document.querySelectorAll('.page').forEach(page => page.classList.remove('active')); }
-    function openPage1() { hideAllPages(); document.getElementById('page-1').classList.add('active'); }
-    function openPage2() { hideAllPages(); document.getElementById('page-2').classList.add('active'); }
-    function openPage3() { hideAllPages(); document.getElementById('page-3').classList.add('active'); }
-    function openMessagePage() { hideAllPages(); document.getElementById('page-message').classList.add('active'); }
-    function openCakePage() { hideAllPages(); document.getElementById('page-cake').classList.add('active'); }
-    function openGiftPage() { hideAllPages(); document.getElementById('page-gift').classList.add('active'); }
-    function openLetterPage() { hideAllPages(); document.getElementById('page-letter').classList.add('active'); }
+      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+      document.getElementById('page-loading').classList.add('active');
+
+      if (durationSeconds > 1) {
+        loadingText.innerText = "LOADING YOUR SURPRISE...";
+      } else {
+        loadingText.innerText = "LOADING...";
+      }
+
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        if (timeLeft >= 0) {
+          countdownNum.innerText = timeLeft;
+          progressBar.style.width = (timeLeft / durationSeconds) * 100 + '%';
+        }
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          document.getElementById('page-loading').classList.remove('active');
+          document.getElementById(targetPageId).classList.add('active');
+          
+          if (window.playMusicFromLink) {
+            playMusicFromLink(window.customMusicUrl);
+          }
+        }
+      }, 1000);
+    }
   </script>
 
 </body>
