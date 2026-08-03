@@ -6,7 +6,7 @@
   <title>Happy-bartey</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Amiri:wght@400;700&family=Dancing+Script:wght@600;700&family=Pacifico&family=Reenie+Beanie&family=Cairo:wght@400;700&family=Readex+Pro:wght@400;600&family=Cinzel:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Amiri:wght@400;700&family=Dancing+Script:wght@600;700&family=Pacifico&family=Reenie+Beanie&family=Cairo:wght@400;700&family=Readex+Pro:wght@400;600&family=Cinzel:wght@600&family=Permanent+Marker&family=Sacramento&family=Bubblegum+Sans&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -46,16 +46,22 @@
     }
 
     @keyframes photoPopIn {
-      0% { opacity: 0; transform: scale(0.5) translateY(30px); }
-      70% { transform: scale(1.05) translateY(-5px); }
-      100% { opacity: 1; transform: scale(1) translateY(0); }
+      0% { opacity: 0; transform: scale(0.3) translateY(40px) rotate(-10deg); }
+      70% { transform: scale(1.08) translateY(-5px) rotate(3deg); }
+      100% { opacity: 1; transform: scale(1) translateY(0) rotate(0deg); }
     }
 
-    /* TEXT ANIMATION STYLES FOR PREVIEW & DISPLAY */
+    @keyframes touchPulseEffect {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.06); box-shadow: 0 0 25px #ff1493; }
+      100% { transform: scale(1); }
+    }
+
     .anim-fade { animation: fadeInScale 0.8s ease forwards; }
     .anim-bounce { animation: bounceAnim 1.5s infinite ease-in-out; }
     .anim-float { animation: floatEffect 2s infinite ease-in-out; }
     .anim-glow { animation: pulseGlow 1.5s infinite; }
+    .anim-touch { animation: touchPulseEffect 1.2s infinite ease-in-out; }
 
     .page {
       display: none;
@@ -164,7 +170,7 @@
       z-index: 300;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 15px;
       backdrop-filter: blur(5px);
     }
 
@@ -172,9 +178,9 @@
       background: linear-gradient(145deg, #161616, #0a0a0a);
       border: 2px solid #ff1493;
       border-radius: 24px;
-      padding: 30px 22px;
+      padding: 25px 20px;
       width: 100%;
-      max-width: 350px;
+      max-width: 420px;
       text-align: center;
       color: #fff;
       box-shadow: 0 15px 40px rgba(255, 20, 147, 0.4);
@@ -183,6 +189,8 @@
       gap: 15px;
       align-items: center;
       animation: fadeInScale 0.3s ease;
+      max-height: 90vh;
+      overflow-y: auto;
     }
 
     .share-link-input {
@@ -226,9 +234,9 @@
     .font-list-container {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
       width: 100%;
-      max-height: 250px;
+      max-height: 320px;
       overflow-y: auto;
       padding-right: 5px;
     }
@@ -236,7 +244,7 @@
     .font-item-option {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 20, 147, 0.3);
-      padding: 10px 15px;
+      padding: 12px 15px;
       border-radius: 12px;
       color: #fff;
       cursor: pointer;
@@ -251,7 +259,6 @@
       border-color: #ff1493;
     }
 
-    /* LOADING PAGE */
     #page-loading {
       background-image: radial-gradient(circle, #7a0016 0%, #2a0008 100%);
       flex-direction: column;
@@ -318,27 +325,27 @@
 
     .collage-wrapper { position: relative; width: 100%; max-width: 400px; background-image: url('https://i.postimg.cc/yxGZMqF5/Picsart-26-08-03-21-36-06-808.png'); background-size: cover; background-position: center; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.8); aspect-ratio: 9 / 16; overflow: hidden; margin: 0 auto; animation: fadeInScale 0.5s ease; }
     
-    .polaroid-slot { position: absolute; background: rgba(17, 17, 17, 0.7); border-radius: 3px; overflow: hidden; cursor: pointer; display: flex; justify-content: center; align-items: center; border: 1px dashed rgba(255,255,255,0.4); transition: 0.3s; animation: photoPopIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) both; }
-    .slot-1 { top: 1.5%; right: 29.5%; width: 18.5%; height: 11.5%; animation-delay: 0.1s; }
-    .slot-2 { top: 3.5%; right: 7%; width: 18.5%; height: 11.5%; animation-delay: 0.2s; }
-    .slot-3 { top: 14%; right: 11.5%; width: 19%; height: 12%; animation-delay: 0.3s; }
-    .slot-4 { top: 25.5%; right: 3.5%; width: 20%; height: 12.5%; animation-delay: 0.4s; }
-    .slot-5 { top: 33.5%; right: 38%; width: 19%; height: 11.8%; animation-delay: 0.5s; }
+    .polaroid-slot { position: absolute; background: rgba(17, 17, 17, 0.65); border-radius: 8px; overflow: hidden; cursor: pointer; display: flex; justify-content: center; align-items: center; border: 2px dashed rgba(255,255,255,0.6); transition: 0.3s; animation: photoPopIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) both; }
+    .slot-1 { top: 1%; right: 26%; width: 23%; height: 15%; animation-delay: 0.1s; }
+    .slot-2 { top: 3%; right: 2%; width: 23%; height: 15%; animation-delay: 0.2s; }
+    .slot-3 { top: 18%; right: 6%; width: 25%; height: 16%; animation-delay: 0.3s; }
+    .slot-4 { top: 27%; right: 2%; width: 26%; height: 17%; animation-delay: 0.4s; }
+    .slot-5 { top: 33%; right: 34%; width: 24%; height: 16%; animation-delay: 0.5s; }
 
-    .polaroid-slot:hover { border-color: #ff1493; }
+    .polaroid-slot:hover { border-color: #ff1493; background: rgba(255, 20, 147, 0.2); }
     .polaroid-slot.readonly-mode { cursor: default !important; border: none !important; }
     .polaroid-slot img, .add-photo-btn-slot img { width: 100%; height: 100%; object-fit: cover; }
-    .polaroid-slot span { color: #ffffff; font-size: 10px; font-weight: 700; text-align: center; opacity: 0.7; }
+    .polaroid-slot span { color: #ffffff; font-size: 11px; font-weight: 800; text-align: center; }
 
     .add-photo-btn-slot { 
       position: absolute; 
-      bottom: 12%; 
-      left: 8%; 
-      width: 26%; 
-      height: 20%; 
+      bottom: 10%; 
+      left: 6%; 
+      width: 32%; 
+      height: 22%; 
       background: rgba(255, 255, 255, 0.95); 
       border: 2px dashed #ff1493; 
-      border-radius: 10px; 
+      border-radius: 12px; 
       display: flex; 
       flex-direction: column; 
       justify-content: center; 
@@ -351,7 +358,7 @@
     }
     .add-photo-btn-slot:hover { background: #fff; transform: scale(1.05); border-color: #ff69b4; }
     .add-photo-btn-slot.readonly-mode { cursor: default !important; border: none !important; background: transparent !important; animation: none !important; }
-    .add-photo-text { font-size: 12px; font-weight: 800; color: #ff1493; text-align: center; line-height: 1.2; }
+    .add-photo-text { font-size: 13px; font-weight: 900; color: #ff1493; text-align: center; line-height: 1.2; }
 
     .floating-envelope-corner { position: absolute; bottom: 15px; right: 15px; width: 110px; background: rgba(0, 0, 0, 0.75); border: 2px solid #ff1493; border-radius: 12px; padding: 6px; display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; z-index: 30; animation: floatEffect 2s infinite; }
     .floating-envelope-corner img { width: 100%; height: 70px; object-fit: cover; border-radius: 6px; }
@@ -546,11 +553,9 @@
       <div class="letter-controls creator-only">
         <button class="music-link-btn edit-active-only" onclick="openMusicModal()">🎵 Music</button>
         
-        <!-- FONT & ANIMATION SELECTION BUTTONS -->
         <button class="font-trigger-btn edit-active-only" id="currentFontBtn" onclick="openFontModal()">Font</button>
         <button class="anim-trigger-btn edit-active-only" id="currentAnimBtn" onclick="openAnimModal()">Animation</button>
 
-        <!-- FONT SIZE & FONT COLOR -->
         <input type="number" id="fontSizeSelector" class="custom-size-input edit-active-only" value="18" min="10" max="32" onchange="changeFontSize(this.value)" title="Font Size">
         <input type="color" id="fontColorSelector" class="custom-color-picker edit-active-only" value="#222222" onchange="changeFontColor(this.value)" title="Font Color">
 
@@ -588,20 +593,24 @@
     <div class="link-modal-content">
       <h3 style="font-size: 18px;">✨ Dooro Nooca Farta (Font)</h3>
       <div class="font-list-container">
-        <div class="font-item-option selected" onclick="selectFontCustom(this, ''\'Amiri\', serif'', 'Amiri')"><span style="font-family: 'Amiri', serif; font-size: 18px;">Amiri</span><span>✓</span></div>
-        <div class="font-item-option" onclick="selectFontCustom(this, ''\'Great Vibes\', cursive'', 'Great Vibes')"><span style="font-family: 'Great Vibes', cursive; font-size: 22px;">Great Vibes</span></div>
-        <div class="font-item-option" onclick="selectFontCustom(this, ''\'Dancing Script\', cursive'', 'Dancing Script')"><span style="font-family: 'Dancing Script', cursive; font-size: 20px;">Dancing Script</span></div>
-        <div class="font-item-option" onclick="selectFontCustom(this, ''\'Pacifico\', cursive'', 'Pacifico')"><span style="font-family: 'Pacifico', cursive; font-size: 18px;">Pacifico</span></div>
-        <div class="font-item-option" onclick="selectFontCustom(this, ''\'Reenie Beanie\', cursive'', 'Handwritten')"><span style="font-family: 'Reenie Beanie', cursive; font-size: 22px;">Handwritten</span></div>
-        <div class="font-item-option" onclick="selectFontCustom(this, ''\'Cairo\', sans-serif'', 'Cairo')"><span style="font-family: 'Cairo', sans-serif; font-size: 16px;">Cairo</span></div>
-        <div class="font-item-option" onclick="selectFontCustom(this, ''\'Readex Pro\', sans-serif'', 'Readex Pro')"><span style="font-family: 'Readex Pro', sans-serif; font-size: 16px;">Readex Pro</span></div>
-        <div class="font-item-option" onclick="selectFontCustom(this, ''\'Cinzel\', serif'', 'Cinzel')"><span style="font-family: 'Cinzel', serif; font-size: 16px;">Cinzel</span></div>
+        <div class="font-item-option selected" onclick="selectFontCustom(this, 'Amiri, serif', 'Amiri')"><span style="font-family: 'Amiri', serif; font-size: 18px;">Amiri</span><span>✓</span></div>
+        <div class="font-item-option" onclick="selectFontCustom(this, 'Great Vibes, cursive', 'Great Vibes')"><span style="font-family: 'Great Vibes', cursive; font-size: 22px;">Great Vibes</span></div>
+        <div class="font-item-option" onclick="selectFontCustom(this, 'Dancing Script, cursive', 'Dancing Script')"><span style="font-family: 'Dancing Script', cursive; font-size: 20px;">Dancing Script</span></div>
+        <div class="font-item-option" onclick="selectFontCustom(this, 'Pacifico, cursive', 'Pacifico')"><span style="font-family: 'Pacifico', cursive; font-size: 18px;">Pacifico</span></div>
+        <div class="font-item-option" onclick="selectFontCustom(this, 'Reenie Beanie, cursive', 'Handwritten')"><span style="font-family: 'Reenie Beanie', cursive; font-size: 22px;">Handwritten</span></div>
+        <div class="font-item-option" onclick="selectFontCustom(this, 'Cairo, sans-serif', 'Cairo')"><span style="font-family: 'Cairo', sans-serif; font-size: 16px;">Cairo</span></div>
+        <div class="font-item-option" onclick="selectFontCustom(this, 'Readex Pro, sans-serif', 'Readex Pro')"><span style="font-family: 'Readex Pro', sans-serif; font-size: 16px;">Readex Pro</span></div>
+        <div class="font-item-option" onclick="selectFontCustom(this, 'Cinzel, serif', 'Cinzel')"><span style="font-family: 'Cinzel', serif; font-size: 16px;">Cinzel</span></div>
+        <div class="font-item-option" onclick="selectFontCustom(this, 'Permanent Marker, cursive', 'Marker')"><span style="font-family: 'Permanent Marker', cursive; font-size: 16px;">Permanent Marker</span></div>
+        <div class="font-item-option" onclick="selectFontCustom(this, 'Sacramento, cursive', 'Sacramento')"><span style="font-family: 'Sacramento', cursive; font-size: 20px;">Sacramento</span></div>
+        <div class="font-item-option" onclick="selectFontCustom(this, 'Bubblegum Sans, cursive', 'Bubblegum')"><span style="font-family: 'Bubblegum Sans', cursive; font-size: 18px;">Bubblegum Sans</span></div>
+        <div class="font-item-option" onclick="selectFontCustom(this, 'Playfair Display, serif', 'Playfair')"><span style="font-family: 'Playfair Display', serif; font-size: 16px;">Playfair Display</span></div>
       </div>
       <button class="btn-modal btn-copy-modal" style="width:100%; margin-top:5px;" onclick="closeFontModal()">Xir / Save</button>
     </div>
   </div>
 
-  <!-- TEXT ANIMATION POPUP MODAL (PREVIEW & PICKER) -->
+  <!-- TEXT ANIMATION POPUP MODAL -->
   <div id="animModal" class="custom-font-modal">
     <div class="link-modal-content">
       <h3 style="font-size: 18px;">🎬 Dooro Animation-ka Qoraalka</h3>
@@ -619,6 +628,9 @@
         </div>
         <div class="font-item-option" onclick="selectAnimationCustom(this, 'anim-glow', 'Glow Pulse')">
           <span class="anim-glow" style="font-weight:700;">💫 Glow Pulse (Dhalaal joogto ah)</span>
+        </div>
+        <div class="font-item-option" onclick="selectAnimationCustom(this, 'anim-touch', 'Touch / Click Pulse')">
+          <span class="anim-touch" style="font-weight:700;">👆 Touch Pulse (Lulasho Taabasho)</span>
         </div>
         <div class="font-item-option" onclick="selectAnimationCustom(this, '', 'None')">
           <span style="font-weight:700;">❌ Caadi (Animation la'aan)</span>
@@ -693,8 +705,8 @@
     window.isReadOnlyMode = false;
     window.customAudioData = "";
     window.musicLinkValue = "";
-    window.isMusicPlaying = false;
-    window.selectedFontFamily = "'Amiri', serif";
+    window.isMusicPlaying = true;
+    window.selectedFontFamily = "Amiri, serif";
     window.selectedTextAnimation = "anim-fade";
 
     let activeSlotKey = '';
@@ -721,7 +733,6 @@
       }
     };
 
-    // FONT MODAL
     window.openFontModal = function() { document.getElementById('fontModal').style.display = 'flex'; };
     window.closeFontModal = function() { document.getElementById('fontModal').style.display = 'none'; };
     window.selectFontCustom = function(element, fontVal, fontName) {
@@ -734,7 +745,6 @@
       closeFontModal();
     };
 
-    // ANIMATION MODAL & PREVIEW
     window.openAnimModal = function() { document.getElementById('animModal').style.display = 'flex'; };
     window.closeAnimModal = function() { document.getElementById('animModal').style.display = 'none'; };
     window.selectAnimationCustom = function(element, animClass, animName) {
