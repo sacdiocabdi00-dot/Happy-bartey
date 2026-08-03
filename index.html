@@ -6,7 +6,6 @@
   <title>Happy-bartey</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- FONTS - FARTA OO LA BADIYAY -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Amiri:wght@400;700&family=Dancing+Script:wght@600;700&family=Pacifico&family=Reenie+Beanie&family=Cairo:wght@400;700&family=Readex+Pro:wght@400;600&family=Cinzel:wght@600&display=swap" rel="stylesheet">
 
   <style>
@@ -46,10 +45,10 @@
       50% { transform: translateY(-12px) scale(1.03); }
     }
 
-    @keyframes pulseAnimation {
-      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 20, 147, 0.7); }
-      70% { transform: scale(1.03); box-shadow: 0 0 0 10px rgba(255, 20, 147, 0); }
-      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 20, 147, 0); }
+    @keyframes photoPopIn {
+      0% { opacity: 0; transform: scale(0.5) translateY(30px); }
+      70% { transform: scale(1.05) translateY(-5px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
     }
 
     .page {
@@ -148,7 +147,7 @@
       gap: 5px;
     }
 
-    .link-modal {
+    .link-modal, .music-input-modal, .custom-font-modal {
       display: none;
       position: fixed;
       top: 0;
@@ -156,7 +155,7 @@
       width: 100vw;
       height: 100vh;
       background: rgba(0, 0, 0, 0.85);
-      z-index: 200;
+      z-index: 300;
       justify-content: center;
       align-items: center;
       padding: 20px;
@@ -218,6 +217,35 @@
     .btn-copy-modal { background: linear-gradient(135deg, #ff1493, #ff69b4); color: #fff; }
     .btn-modal:hover { transform: scale(1.05); }
 
+    /* FONT CUSTOM DROPDOWN LIST STYLING */
+    .font-list-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+      max-height: 250px;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
+
+    .font-item-option {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 20, 147, 0.3);
+      padding: 10px 15px;
+      border-radius: 12px;
+      color: #fff;
+      cursor: pointer;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: 0.2s;
+    }
+    .font-item-option:hover, .font-item-option.selected {
+      background: rgba(255, 20, 147, 0.25);
+      border-color: #ff1493;
+    }
+
     /* LOADING PAGE */
     #page-loading {
       background-image: radial-gradient(circle, #7a0016 0%, #2a0008 100%);
@@ -248,11 +276,9 @@
     .ribbon-seal::after { right: 1px; transform: rotate(25deg) scaleX(-1); }
     .instruction-text { font-size: 12px; color: #777777; font-weight: 600; }
 
-    /* PAGE 2 */
     #page-2 { background-image: radial-gradient(circle, #800015 0%, #300008 100%); flex-direction: column; padding: 20px; text-align: center; color: #fff; gap: 15px; }
     .card-details-box { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); padding: 35px 20px; border-radius: 20px; max-width: 340px; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 15px; animation: fadeInScale 0.4s ease; backdrop-filter: blur(5px); }
 
-    /* PAGE 3 */
     #page-3 { background-image: radial-gradient(circle, #5a0010 0%, #1a0005 100%); flex-direction: column; justify-content: center; padding: 20px; gap: 25px; }
     .options-title { font-family: 'Great Vibes', cursive; font-size: 46px; color: #ff80bf; text-align: center; animation: floatEffect 2s infinite; }
     .options-container { display: flex; flex-direction: column; gap: 15px; width: 85%; max-width: 300px; margin: 0 auto; }
@@ -286,17 +312,19 @@
     #page-message.active { display: flex; }
 
     .collage-wrapper { position: relative; width: 100%; max-width: 400px; background-image: url('https://i.postimg.cc/yxGZMqF5/Picsart-26-08-03-21-36-06-808.png'); background-size: cover; background-position: center; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.8); aspect-ratio: 9 / 16; overflow: hidden; margin: 0 auto; animation: fadeInScale 0.5s ease; }
-    .polaroid-slot { position: absolute; background: rgba(17, 17, 17, 0.7); border-radius: 3px; overflow: hidden; cursor: pointer; display: flex; justify-content: center; align-items: center; border: 1px dashed rgba(255,255,255,0.4); transition: 0.3s; animation: fadeInScale 0.6s ease; }
+    
+    /* ANIMATION-KA SAWIRADA MARKA MOBAYLKA KA SOO BAXAYAAN */
+    .polaroid-slot { position: absolute; background: rgba(17, 17, 17, 0.7); border-radius: 3px; overflow: hidden; cursor: pointer; display: flex; justify-content: center; align-items: center; border: 1px dashed rgba(255,255,255,0.4); transition: 0.3s; animation: photoPopIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) both; }
+    .slot-1 { top: 1.5%; right: 29.5%; width: 18.5%; height: 11.5%; animation-delay: 0.1s; }
+    .slot-2 { top: 3.5%; right: 7%; width: 18.5%; height: 11.5%; animation-delay: 0.2s; }
+    .slot-3 { top: 14%; right: 11.5%; width: 19%; height: 12%; animation-delay: 0.3s; }
+    .slot-4 { top: 25.5%; right: 3.5%; width: 20%; height: 12.5%; animation-delay: 0.4s; }
+    .slot-5 { top: 33.5%; right: 38%; width: 19%; height: 11.8%; animation-delay: 0.5s; }
+
     .polaroid-slot:hover { border-color: #ff1493; }
     .polaroid-slot.readonly-mode { cursor: default !important; border: none !important; }
     .polaroid-slot img, .add-photo-btn-slot img { width: 100%; height: 100%; object-fit: cover; }
     .polaroid-slot span { color: #ffffff; font-size: 10px; font-weight: 700; text-align: center; opacity: 0.7; }
-
-    .slot-1 { top: 1.5%; right: 29.5%; width: 18.5%; height: 11.5%; }
-    .slot-2 { top: 3.5%; right: 7%; width: 18.5%; height: 11.5%; }
-    .slot-3 { top: 14%; right: 11.5%; width: 19%; height: 12%; }
-    .slot-4 { top: 25.5%; right: 3.5%; width: 20%; height: 12.5%; }
-    .slot-5 { top: 33.5%; right: 38%; width: 19%; height: 11.8%; }
 
     .add-photo-btn-slot { 
       position: absolute; 
@@ -315,7 +343,7 @@
       overflow: hidden; 
       transition: 0.3s; 
       box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
-      animation: pulseAnimation 2s infinite ease-in-out;
+      animation: photoPopIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.6s both;
     }
     .add-photo-btn-slot:hover { background: #fff; transform: scale(1.05); border-color: #ff69b4; }
     .add-photo-btn-slot.readonly-mode { cursor: default !important; border: none !important; background: transparent !important; animation: none !important; }
@@ -343,7 +371,6 @@
       animation: fadeInScale 0.5s ease; 
     }
 
-    /* QORAALKA OO HADA LA SOO HOOS DHIIGAY SI UUSAN WADNADDA U GALIN, LAGUNA DARAY COLOR & SIZE KONTAROL */
     .custom-letter-text-new {
       position: absolute;
       top: 26%;
@@ -376,28 +403,27 @@
       align-items: center;
     }
 
-    .btn-edit-text-toggle, .font-selector-box, .music-link-btn, .custom-color-picker, .custom-size-input {
+    .btn-edit-text-toggle, .font-trigger-btn, .music-link-btn, .custom-color-picker, .custom-size-input {
       background: #ff1493;
       color: #fff;
       border: none;
       border-radius: 6px;
-      padding: 4px 8px;
+      padding: 5px 9px;
       font-size: 10px;
       font-weight: 800;
       cursor: pointer;
       box-shadow: 0 3px 10px rgba(255, 20, 147, 0.4);
       transition: 0.2s;
     }
-    .btn-edit-text-toggle:hover, .music-link-btn:hover { transform: scale(1.05); }
+    .btn-edit-text-toggle:hover, .music-link-btn:hover, .font-trigger-btn:hover { transform: scale(1.05); }
 
-    .font-selector-box { background: #111; border: 1px solid #ff1493; color: #fff; }
+    .font-trigger-btn { background: #111; border: 1px solid #ff1493; color: #fff; }
     .custom-color-picker { width: 28px; height: 26px; padding: 0; border: 1px solid #fff; cursor: pointer; }
     .custom-size-input { width: 45px; background: #111; border: 1px solid #ff1493; text-align: center; color: #fff; }
 
     .edit-active-only { display: none !important; }
     .editing-mode-active .edit-active-only { display: inline-block !important; }
 
-    /* REMOVE PHOTO BUTTON HOOSEEYA KONTAROLKA SAWIRKA */
     .photo-action-container {
       position: absolute;
       bottom: 5px;
@@ -425,21 +451,6 @@
     .card-icon { font-size: 60px; animation: floatEffect 2s infinite; }
     .btn-finish-link { background: linear-gradient(135deg, #ff1493, #ff4081); color: #ffffff; border: 2px solid #ffffff; padding: 12px 30px; border-radius: 30px; font-size: 15px; font-weight: 800; text-decoration: none; display: inline-block; transition: 0.3s; }
     .btn-finish-link:hover { transform: scale(1.05); }
-
-    .music-input-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.85);
-      z-index: 300;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      backdrop-filter: blur(5px);
-    }
   </style>
 </head>
 <body>
@@ -533,26 +544,16 @@
       <div class="letter-controls creator-only">
         <button class="music-link-btn edit-active-only" onclick="openMusicModal()">🎵 Set Music</button>
         
-        <!-- FONT-YO BADAN OO LA KORDHIYAY -->
-        <select id="fontSelector" class="font-selector-box edit-active-only" onchange="changeLetterFont(this.value)">
-          <option value="'Amiri', serif">Amiri</option>
-          <option value="'Great Vibes', cursive">Great Vibes</option>
-          <option value="'Dancing Script', cursive">Dancing Script</option>
-          <option value="'Pacifico', cursive">Pacifico</option>
-          <option value="'Reenie Beanie', cursive">Handwritten</option>
-          <option value="'Cairo', sans-serif">Cairo</option>
-          <option value="'Readex Pro', sans-serif">Readex Pro</option>
-          <option value="'Cinzel', serif">Cinzel</option>
-        </select>
+        <!-- FONT CUSTOM DROPDOWN BUTTON -->
+        <button class="font-trigger-btn edit-active-only" id="currentFontBtn" onclick="openFontModal()">Font: Amiri</button>
 
-        <!-- FONT SIZE & FONT COLOR KONTAROLO -->
+        <!-- FONT SIZE & FONT COLOR -->
         <input type="number" id="fontSizeSelector" class="custom-size-input edit-active-only" value="18" min="10" max="32" onchange="changeFontSize(this.value)" title="Font Size">
         <input type="color" id="fontColorSelector" class="custom-color-picker edit-active-only" value="#222222" onchange="changeFontColor(this.value)" title="Font Color">
 
         <button class="btn-edit-text-toggle" onclick="toggleTextEdit()">✏️ Edit</button>
       </div>
 
-      <!-- QORAALKA OO HOOS LOO DHIGAY SI UUSAN WADNADDA U GALIN -->
       <textarea id="customLetterNote" class="custom-letter-text-new" placeholder="Halkan ku qor farriintaada quruxda badan... ❤️" readonly></textarea>
     </div>
   </div>
@@ -576,6 +577,24 @@
       <h1 class="big-title" style="font-size: 45px;">Special Gift!</h1>
       <p style="font-size: 14px; opacity: 0.9;">You are the best gift in my life! Click below to claim your surprise.</p>
       <a href="https://wa.me/" target="_blank" class="btn-finish-link">Claim Gift 💖</a>
+    </div>
+  </div>
+
+  <!-- CUSTOM FONT POPUP MODAL -->
+  <div id="fontModal" class="custom-font-modal">
+    <div class="link-modal-content">
+      <h3 style="font-size: 18px;">✨ Dooro Nooca Farta (Font)</h3>
+      <div class="font-list-container">
+        <div class="font-item-option selected" onclick="selectFontCustom(this, ''\'Amiri\', serif'', 'Amiri')"><span style="font-family: 'Amiri', serif; font-size: 18px;">Amiri (Classic)</span><span>✓</span></div>
+        <div class="font-item-option" onclick="selectFontCustom(this, ''\'Great Vibes\', cursive'', 'Great Vibes')"><span style="font-family: 'Great Vibes', cursive; font-size: 22px;">Great Vibes</span></div>
+        <div class="font-item-option" onclick="selectFontCustom(this, ''\'Dancing Script\', cursive'', 'Dancing Script')"><span style="font-family: 'Dancing Script', cursive; font-size: 20px;">Dancing Script</span></div>
+        <div class="font-item-option" onclick="selectFontCustom(this, ''\'Pacifico\', cursive'', 'Pacifico')"><span style="font-family: 'Pacifico', cursive; font-size: 18px;">Pacifico</span></div>
+        <div class="font-item-option" onclick="selectFontCustom(this, ''\'Reenie Beanie\', cursive'', 'Handwritten')"><span style="font-family: 'Reenie Beanie', cursive; font-size: 22px;">Handwritten</span></div>
+        <div class="font-item-option" onclick="selectFontCustom(this, ''\'Cairo\', sans-serif'', 'Cairo')"><span style="font-family: 'Cairo', sans-serif; font-size: 16px;">Cairo</span></div>
+        <div class="font-item-option" onclick="selectFontCustom(this, ''\'Readex Pro\', sans-serif'', 'Readex Pro')"><span style="font-family: 'Readex Pro', sans-serif; font-size: 16px;">Readex Pro</span></div>
+        <div class="font-item-option" onclick="selectFontCustom(this, ''\'Cinzel\', serif'', 'Cinzel')"><span style="font-family: 'Cinzel', serif; font-size: 16px;">Cinzel</span></div>
+      </div>
+      <button class="btn-modal btn-copy-modal" style="width:100%; margin-top:5px;" onclick="closeFontModal()">Xir / Save</button>
     </div>
   </div>
 
@@ -607,7 +626,7 @@
         <span>📁</span> Upload Audio (Gaaban)
       </button>
 
-      <div style="font-size: 11px; color: #aaa; margin: 5px 0;">-- AMA GELI LINK (Waa la hubo) --</div>
+      <div style="font-size: 11px; color: #aaa; margin: 5px 0;">-- AMA GELI LINK --</div>
 
       <input type="text" id="musicLinkInput" class="share-link-input" placeholder="Ku dheji Link-ga YouTube ama Spotify halkan...">
       
@@ -643,7 +662,8 @@
     window.isReadOnlyMode = false;
     window.customAudioData = "";
     window.musicLinkValue = "";
-    window.isMusicPlaying = true;
+    window.isMusicPlaying = false; // Hoos waxaa lagu shidi doonaa inta uusan user-ka damin
+    window.selectedFontFamily = "'Amiri', serif";
 
     let activeSlotKey = '';
     let currentElement = null;
@@ -669,8 +689,21 @@
       }
     };
 
-    window.changeLetterFont = function(fontFamily) {
-      document.getElementById('customLetterNote').style.fontFamily = fontFamily;
+    // CUSTOM FONT MODAL CONTROLS
+    window.openFontModal = function() {
+      document.getElementById('fontModal').style.display = 'flex';
+    };
+    window.closeFontModal = function() {
+      document.getElementById('fontModal').style.display = 'none';
+    };
+    window.selectFontCustom = function(element, fontVal, fontName) {
+      document.querySelectorAll('.font-item-option').forEach(el => el.classList.remove('selected'));
+      element.classList.add('selected');
+
+      window.selectedFontFamily = fontVal;
+      document.getElementById('customLetterNote').style.fontFamily = fontVal;
+      document.getElementById('currentFontBtn').innerText = "Font: " + fontName;
+      closeFontModal();
     };
 
     window.changeFontSize = function(sizeVal) {
@@ -694,7 +727,7 @@
       if (!file) return;
 
       if (file.size > 1000000) {
-        alert("Feylkaaga codku wuu ka weyn yahay 1MB! Fadlan isticmaal link YouTube ama Spotify si uusan Error u keenin.");
+        alert("Feylkaaga codku wuu ka weyn yahay 1MB! Fadlan isticmaal link YouTube ama Spotify.");
         return;
       }
 
@@ -702,7 +735,9 @@
       reader.onload = function(e) {
         window.customAudioData = e.target.result;
         window.musicLinkValue = ""; 
+        window.isMusicPlaying = true;
         playAudioData(window.customAudioData);
+        updateMusicButtonUI();
         alert("Feylkii muusigga si guul leh ayaa loo geliyay! 🎵");
         closeMusicModal();
       };
@@ -721,7 +756,9 @@
 
       window.musicLinkValue = linkVal;
       window.customAudioData = ""; 
+      window.isMusicPlaying = true;
       renderMusicPlayer(window.musicLinkValue);
+      updateMusicButtonUI();
       alert("Link-ga heesta waa la keydiyay! ❤️");
       closeMusicModal();
     };
@@ -779,7 +816,18 @@
       }
     };
 
-    // REMOVE PHOTO FUNCTION
+    window.updateMusicButtonUI = function() {
+      const musicIcon = document.getElementById('musicIcon');
+      const musicText = document.getElementById('musicText');
+      if (window.isMusicPlaying) {
+        musicIcon.innerText = "🔊";
+        musicText.innerText = "Music On";
+      } else {
+        musicIcon.innerText = "🔇";
+        musicText.innerText = "Music Off";
+      }
+    };
+
     window.removeSpecificPhoto = function(key, event) {
       event.stopPropagation();
       delete window.uploadedImages[key];
@@ -826,7 +874,6 @@
 
             window.uploadedImages[activeSlotKey] = compressedBase64;
             
-            // Ku dar Remove button sawirka dushiisa ama agtiisa
             currentElement.innerHTML = `
               <img src="${compressedBase64}" style="width:100%; height:100%; object-fit:cover;">
               <div class="photo-action-container creator-only">
@@ -851,12 +898,11 @@
 
       try {
         const noteText = document.getElementById('customLetterNote').value;
-        const selectedFont = document.getElementById('fontSelector').value;
         const selectedSize = document.getElementById('fontSizeSelector').value;
         const selectedColor = document.getElementById('fontColorSelector').value;
         
         window.uploadedImages['letterNote'] = noteText;
-        window.uploadedImages['letterFont'] = selectedFont;
+        window.uploadedImages['letterFont'] = window.selectedFontFamily;
         window.uploadedImages['letterSize'] = selectedSize;
         window.uploadedImages['letterColor'] = selectedColor;
         window.uploadedImages['bgAudio'] = window.customAudioData;
@@ -896,11 +942,15 @@
       const urlParams = new URLSearchParams(window.location.search);
       const cardId = urlParams.get('id');
 
-      const playAudioOnClick = () => {
+      const startMusicOnClick = () => {
+        if (!window.isMusicPlaying) {
+          window.isMusicPlaying = true;
+          updateMusicButtonUI();
+        }
         if (window.customAudioData) playAudioData(window.customAudioData);
         if (window.musicLinkValue) renderMusicPlayer(window.musicLinkValue);
       };
-      document.body.addEventListener('click', playAudioOnClick, { once: true });
+      document.body.addEventListener('click', startMusicOnClick, { once: true });
 
       if (cardId) {
         window.isReadOnlyMode = true;
@@ -937,18 +987,25 @@
               }, 40);
             }
 
-            if (data.letterFont) letterArea.style.fontFamily = data.letterFont;
+            if (data.letterFont) {
+              window.selectedFontFamily = data.letterFont;
+              letterArea.style.fontFamily = data.letterFont;
+            }
             if (data.letterSize) letterArea.style.fontSize = data.letterSize + 'px';
             if (data.letterColor) letterArea.style.color = data.letterColor;
             
             if (data.bgAudio) {
               window.customAudioData = data.bgAudio;
+              window.isMusicPlaying = true;
               playAudioData(window.customAudioData);
+              updateMusicButtonUI();
             }
 
             if (data.musicLink) {
               window.musicLinkValue = data.musicLink;
+              window.isMusicPlaying = true;
               renderMusicPlayer(window.musicLinkValue);
+              updateMusicButtonUI();
             }
 
             if (data.s1) document.querySelector('.slot-1').innerHTML = `<img src="${data.s1}">`;
@@ -1013,4 +1070,3 @@
 
 </body>
 </html>
-
