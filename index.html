@@ -57,12 +57,6 @@
       100% { transform: scale(1); }
     }
 
-    /* Sawirka dhinaca ka soo baxaya (Slide-in effect) */
-    @keyframes slideInLeft {
-      0% { opacity: 0; transform: translateX(-150px); }
-      100% { opacity: 1; transform: translateX(0); }
-    }
-
     .anim-fade { animation: fadeInScale 0.8s ease forwards; }
     .anim-bounce { animation: bounceAnim 1.5s infinite ease-in-out; }
     .anim-float { animation: floatEffect 2s infinite ease-in-out; }
@@ -329,21 +323,7 @@
     #page-message { background-color: #0d0d0d; overflow-y: auto; padding: 50px 10px 30px 10px; display: none; flex-direction: column; align-items: center; }
     #page-message.active { display: flex; }
 
-    /* Halkan waxaa lagu beddelay sawirka asalka ah ee cusub oo leh Slide-in animation */
-    .collage-wrapper { 
-      position: relative; 
-      width: 100%; 
-      max-width: 400px; 
-      background-image: url('https://i.postimg.cc/pdGqBJkF/29913-removebg-preview.png'); 
-      background-size: cover; 
-      background-position: center; 
-      border-radius: 12px; 
-      box-shadow: 0 15px 35px rgba(0,0,0,0.8); 
-      aspect-ratio: 9 / 16; 
-      overflow: hidden; 
-      margin: 0 auto; 
-      animation: slideInLeft 1s cubic-bezier(0.16, 1, 0.3, 1) both; 
-    }
+    .collage-wrapper { position: relative; width: 100%; max-width: 400px; background-image: url('https://i.postimg.cc/yxGZMqF5/Picsart-26-08-03-21-36-06-808.png'); background-size: cover; background-position: center; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.8); aspect-ratio: 9 / 16; overflow: hidden; margin: 0 auto; animation: fadeInScale 0.5s ease; }
     
     .polaroid-slot { position: absolute; background: rgba(17, 17, 17, 0.65); border-radius: 8px; overflow: hidden; cursor: pointer; display: flex; justify-content: center; align-items: center; border: 2px dashed rgba(255,255,255,0.6); transition: 0.3s; animation: photoPopIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) both; }
     .slot-1 { top: 1%; right: 26%; width: 23%; height: 15%; animation-delay: 0.1s; }
@@ -496,7 +476,6 @@
     🔥 Created with Love
   </a>
 
-  <!-- LOADING PAGE -->
   <div id="page-loading" class="page active">
     <h1 id="loaderTitle" class="loader-title">Welcome ❤️</h1>
     <div id="countdownNum" class="countdown-number">10</div>
@@ -506,7 +485,6 @@
     <p id="loadingText" class="loading-text">LOADING YOUR SURPRISE...</p>
   </div>
 
-  <!-- PAGE 1 -->
   <div id="page-1" class="page">
     <div class="envelope-card">
       <h1 class="greeting-title">Happy Birthday!</h1>
@@ -519,7 +497,6 @@
     </div>
   </div>
 
-  <!-- PAGE 2 -->
   <div id="page-2" class="page">
     <button class="btn-back" onclick="openPageWithCountdown('page-1', 1)">← Back</button>
     <div class="card-details-box">
@@ -529,7 +506,6 @@
     </div>
   </div>
 
-  <!-- PAGE 3 -->
   <div id="page-3" class="page">
     <button class="btn-back" onclick="openPageWithCountdown('page-2', 1)">← Back</button>
     <h1 class="options-title">Choose Your Gift 🎁</h1>
@@ -541,7 +517,6 @@
     </div>
   </div>
 
-  <!-- PAGE MESSAGE -->
   <div id="page-message" class="page">
     <button class="btn-back" onclick="openPageWithCountdown('page-3', 1)">← Back</button>
     <button class="btn-finish-top creator-only" id="finishBtnMessage" onclick="saveToFirebaseAndGetLink()">✨ Finish</button>
@@ -564,7 +539,6 @@
     </div>
   </div>
 
-  <!-- PAGE LETTER -->
   <div id="page-letter" class="page">
     <button class="btn-back" onclick="openPageWithCountdown('page-message', 1)">← Back</button>
     <button class="btn-finish-top creator-only" id="finishBtnLetter" onclick="saveToFirebaseAndGetLink()">✨ Finish</button>
@@ -586,7 +560,6 @@
     </div>
   </div>
 
-  <!-- PAGE CAKE -->
   <div id="page-cake" class="page sub-card-page">
     <button class="btn-back" onclick="openPageWithCountdown('page-3', 1)">← Back</button>
     <div class="sub-card-box">
@@ -597,7 +570,6 @@
     </div>
   </div>
 
-  <!-- PAGE GIFT -->
   <div id="page-gift" class="page sub-card-page">
     <button class="btn-back" onclick="openPageWithCountdown('page-3', 1)">← Back</button>
     <div class="sub-card-box">
@@ -608,7 +580,6 @@
     </div>
   </div>
 
-  <!-- CUSTOM FONT POPUP MODAL -->
   <div id="fontModal" class="custom-font-modal">
     <div class="link-modal-content">
       <h3 style="font-size: 18px;">✨ Dooro Nooca Farta (Font)</h3>
@@ -630,7 +601,6 @@
     </div>
   </div>
 
-  <!-- TEXT ANIMATION POPUP MODAL -->
   <div id="animModal" class="custom-font-modal">
     <div class="link-modal-content">
       <h3 style="font-size: 18px;">🎬 Dooro Animation-ka Qoraalka</h3>
@@ -661,7 +631,6 @@
     </div>
   </div>
 
-  <!-- LINK MODAL -->
   <div id="linkModal" class="link-modal">
     <div class="link-modal-content">
       <h3 style="font-size: 18px;">🎉 Link-gii waa diyaar!</h3>
@@ -679,7 +648,6 @@
     </div>
   </div>
 
-  <!-- MUSIC SETUP MODAL -->
   <div id="musicModal" class="music-input-modal">
     <div class="link-modal-content">
       <h3 style="font-size: 18px;">🎵 Dooro Muusigga Heesta</h3>
@@ -703,7 +671,6 @@
     </div>
   </div>
 
-  <!-- FIREBASE & LOGIC SCRIPT -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -806,6 +773,7 @@
       reader.readAsDataURL(file);
     };
 
+    // Halkan waxaa lagu daray xaqiijinta Link-ga saxda ah iyo digniinta Error-ka
     window.saveMusicLinkFromInput = function() {
       const linkVal = document.getElementById('musicLinkInput').value.trim();
       const isYouTube = linkVal.includes("youtube.com") || linkVal.includes("youtu.be");
@@ -1001,10 +969,11 @@
       window.open(`https://api.whatsapp.com/send?text=${message}`, '_blank');
     };
 
+    // Typing Animation function for receiver mode
     function startTypingEffect(text, element) {
       element.value = "";
       let i = 0;
-      const speed = 45;
+      const speed = 45; // Xawaaraha qorista (miliseconds)
       function typeWriter() {
         if (i < text.length) {
           element.value += text.charAt(i);
@@ -1050,6 +1019,7 @@
             const data = docSnap.data();
 
             if (data.letterNote) {
+              // Halkan waxaa laga hirgeliyay Typing Animation marka qofku link-ga furo
               startTypingEffect(data.letterNote, letterArea);
             }
 
@@ -1094,7 +1064,6 @@
     });
   </script>
 
-  <!-- NAVIGATION & COUNTDOWN SYSTEM -->
   <script>
     let timerInterval = null;
 
@@ -1129,6 +1098,7 @@
           document.getElementById('page-loading').classList.remove('active');
           document.getElementById(targetPageId).classList.add('active');
           
+          // Xaqiijinta in muusiggu uusan istaagin marka bogagga la beddelayo
           if (window.isMusicPlaying) {
             if (window.customAudioData) playAudioData(window.customAudioData);
             if (window.musicLinkValue) renderMusicPlayer(window.musicLinkValue);
@@ -1140,3 +1110,4 @@
 
 </body>
 </html>
+
