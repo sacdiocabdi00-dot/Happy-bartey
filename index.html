@@ -86,6 +86,29 @@
     }
     .btn-back:hover { background: rgba(255, 20, 147, 0.8); }
 
+    /* MUSIC TOGGLE BUTTON */
+    .btn-music-toggle {
+      position: fixed;
+      top: 15px;
+      right: 110px;
+      z-index: 150;
+      background: rgba(0, 0, 0, 0.75);
+      color: #fff;
+      border: 1px solid #ff1493;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 15px rgba(255, 20, 147, 0.4);
+      transition: 0.3s;
+    }
+    .btn-music-toggle:hover { background: rgba(255, 20, 147, 0.8); }
+
     .btn-finish-top {
       position: fixed;
       top: 15px;
@@ -125,6 +148,7 @@
       gap: 5px;
     }
 
+    /* GENERAL MODAL DESIGN */
     .link-modal {
       display: none;
       position: fixed;
@@ -137,18 +161,19 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
+      backdrop-filter: blur(5px);
     }
 
     .link-modal-content {
-      background: #1a1a1a;
+      background: linear-gradient(145deg, #161616, #0a0a0a);
       border: 2px solid #ff1493;
-      border-radius: 20px;
-      padding: 30px 20px;
+      border-radius: 24px;
+      padding: 30px 22px;
       width: 100%;
-      max-width: 340px;
+      max-width: 350px;
       text-align: center;
       color: #fff;
-      box-shadow: 0 10px 30px rgba(255, 20, 147, 0.5);
+      box-shadow: 0 15px 40px rgba(255, 20, 147, 0.4);
       display: flex;
       flex-direction: column;
       gap: 15px;
@@ -159,12 +184,13 @@
     .share-link-input {
       width: 100%;
       padding: 12px;
-      border-radius: 10px;
+      border-radius: 12px;
       border: 1px solid #ff1493;
       text-align: center;
       font-size: 12px;
       background: #000;
       color: #fff;
+      outline: none;
     }
 
     .modal-buttons-group {
@@ -186,10 +212,12 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
+      transition: 0.3s;
     }
 
     .btn-share-whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; }
     .btn-copy-modal { background: linear-gradient(135deg, #ff1493, #ff69b4); color: #fff; }
+    .btn-modal:hover { transform: scale(1.05); }
 
     /* LOADING PAGE */
     #page-loading {
@@ -221,14 +249,6 @@
     .ribbon-seal::after { right: 1px; transform: rotate(25deg) scaleX(-1); }
     .instruction-text { font-size: 12px; color: #777777; font-weight: 600; }
 
-    #page-2 { background-image: url('https://i.postimg.cc/jqkNPbJ1/da1478c736e944eb8f1ec711d8c60617.webp'); background-size: cover; background-position: center; }
-    .text-overlay-container { position: relative; z-index: 2; text-align: center; color: #ffffff; padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
-    .big-title { font-family: 'Great Vibes', cursive; font-size: 62px; font-weight: 700; color: #ffffff; }
-    .popper-icon { font-size: 36px; animation: floatEffect 1.5s infinite; }
-    .big-subtitle { font-size: 16px; font-weight: 700; color: #ffffff; max-width: 320px; background: rgba(0, 0, 0, 0.25); padding: 8px 16px; border-radius: 20px; }
-    .btn-click-here { background: #ffffff; color: #000000; border: none; padding: 10px 24px; border-radius: 25px; font-size: 13px; font-weight: 800; cursor: pointer; transition: 0.3s; animation: pulseGlow 1.5s infinite; }
-    .btn-click-here:hover { transform: scale(1.1); }
-
     /* PAGE 3 - ANIMATED BUTTONS */
     #page-3 { background-image: radial-gradient(circle, #5a0010 0%, #1a0005 100%); flex-direction: column; justify-content: center; padding: 20px; gap: 25px; }
     .options-title { font-family: 'Great Vibes', cursive; font-size: 46px; color: #ff80bf; text-align: center; animation: floatEffect 2s infinite; }
@@ -253,7 +273,6 @@
     }
     .btn-option:nth-child(2) { animation-delay: 0.3s; }
     .btn-option:nth-child(3) { animation-delay: 0.6s; }
-
     .btn-option:hover { 
       background: linear-gradient(135deg, #ff1493, #ff69b4); 
       transform: scale(1.08); 
@@ -307,9 +326,7 @@
       padding: 5px;
     }
 
-    .typing-receiver-simulation {
-      animation: typingEffect 1s ease forwards;
-    }
+    .typing-receiver-simulation { animation: typingEffect 1s ease forwards; }
 
     .letter-controls {
       position: absolute;
@@ -334,18 +351,10 @@
       cursor: pointer;
     }
 
-    .font-selector-box {
-      background: #111;
-      border: 1px solid #ff1493;
-      color: #fff;
-    }
+    .font-selector-box { background: #111; border: 1px solid #ff1493; color: #fff; }
 
-    .edit-active-only {
-      display: none !important;
-    }
-    .editing-mode-active .edit-active-only {
-      display: inline-block !important;
-    }
+    .edit-active-only { display: none !important; }
+    .editing-mode-active .edit-active-only { display: inline-block !important; }
 
     .photo-slot-frame-1 { position: absolute; top: 29.5%; left: 8.5%; width: 32.5%; height: 33%; background: rgba(0, 0, 0, 0.4); border: 1px dashed rgba(255, 255, 255, 0.6); border-radius: 4px; display: flex; justify-content: center; align-items: center; color: #ffffff; font-size: 11px; font-weight: 700; cursor: pointer; overflow: hidden; animation: fadeInScale 0.6s ease; }
     .photo-slot-frame-1.readonly-mode { cursor: default !important; border: none !important; background: transparent !important; }
@@ -357,24 +366,20 @@
     .btn-finish-link { background: linear-gradient(135deg, #ff1493, #ff4081); color: #ffffff; border: 2px solid #ffffff; padding: 12px 30px; border-radius: 30px; font-size: 15px; font-weight: 800; text-decoration: none; display: inline-block; transition: 0.3s; }
     .btn-finish-link:hover { transform: scale(1.05); }
 
-    /* TikTok Player Box */
-    .tiktok-floating-player {
+    /* STYLISH MUSIC INPUT MODAL */
+    .music-input-modal {
+      display: none;
       position: fixed;
-      bottom: 15px;
-      right: 15px;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       background: rgba(0, 0, 0, 0.85);
-      border: 1px solid #ff1493;
-      padding: 8px 12px;
-      border-radius: 20px;
-      color: #fff;
-      font-size: 11px;
-      font-weight: 700;
-      z-index: 999;
-      display: flex;
+      z-index: 300;
+      justify-content: center;
       align-items: center;
-      gap: 6px;
+      padding: 20px;
       backdrop-filter: blur(5px);
-      box-shadow: 0 4px 15px rgba(255,20,147,0.4);
     }
   </style>
 </head>
@@ -383,11 +388,16 @@
   <div id="youtubePlayerContainer"></div>
   <input type="file" id="imageUploader" accept="image/*" style="display: none;">
 
+  <!-- MUSIC TOGGLE BUTTON -->
+  <button id="musicToggleBtn" class="btn-music-toggle" onclick="togglePlayMusic()">
+    <span id="musicIcon">🔊</span> <span id="musicText">Music On</span>
+  </button>
+
   <a href="#" class="created-by-badge">
     🔥 Created with Love
   </a>
 
-  <!-- LOADING PAGE (Countdown Hub) -->
+  <!-- LOADING PAGE -->
   <div id="page-loading" class="page active">
     <h1 id="loaderTitle" class="loader-title">Welcome ❤️</h1>
     <div id="countdownNum" class="countdown-number">10</div>
@@ -402,7 +412,7 @@
     <div class="envelope-card">
       <h1 class="greeting-title">Happy Birthday!</h1>
       <div class="envelope-box">
-        <div class="red-envelope" onclick="openPageWithCountdown('page-2', 1)">
+        <div class="red-envelope" onclick="openPageWithCountdown('page-3', 1)">
           <div class="ribbon-seal"></div>
         </div>
       </div>
@@ -410,21 +420,9 @@
     </div>
   </div>
 
-  <!-- PAGE 2 -->
-  <div id="page-2" class="page">
-    <button class="btn-back" onclick="openPageWithCountdown('page-1', 1)">&larr; Back</button>
-
-    <div class="text-overlay-container">
-      <h1 class="big-title">Happy Birthday!</h1>
-      <div class="popper-icon">🎉</div>
-      <p class="big-subtitle">I hope this little gift will make you happy ❤️</p>
-      <button class="btn-click-here" onclick="openPageWithCountdown('page-3', 1)">Click here ✨</button>
-    </div>
-  </div>
-
-  <!-- PAGE 3 (Animated Options) -->
+  <!-- PAGE 3 -->
   <div id="page-3" class="page">
-    <button class="btn-back" onclick="openPageWithCountdown('page-2', 1)">&larr; Back</button>
+    <button class="btn-back" onclick="openPageWithCountdown('page-1', 1)">&larr; Back</button>
     <h1 class="options-title">Choose Your Gift 🎁</h1>
 
     <div class="options-container">
@@ -464,7 +462,7 @@
 
     <div class="letter-wrapper-new" id="letterWrapperBox">
       <div class="letter-controls creator-only">
-        <button class="music-link-btn edit-active-only" onclick="setCustomMusicLink()">🎵 Music Link</button>
+        <button class="music-link-btn edit-active-only" onclick="openMusicModal()">🎵 Music Link</button>
         <select id="fontSelector" class="font-selector-box edit-active-only" onchange="changeLetterFont(this.value)">
           <option value="'Great Vibes', cursive">Great Vibes</option>
           <option value="'Dancing Script', cursive">Dancing Script</option>
@@ -503,7 +501,7 @@
     </div>
   </div>
 
-  <!-- LINK MODAL -->
+  <!-- LINK MODAL (SHARE) -->
   <div id="linkModal" class="link-modal">
     <div class="link-modal-content">
       <h3 style="font-size: 18px;">🎉 Link-gii waa diyaar!</h3>
@@ -517,6 +515,20 @@
         <button class="btn-modal btn-copy-modal" onclick="copyLink()">
           <span>📋</span> Copy Link
         </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MUSIC LINK INPUT MODAL (Qurxinta Gelinta Link-ga Heesta / TikTok) -->
+  <div id="musicModal" class="music-input-modal">
+    <div class="link-modal-content">
+      <h3 style="font-size: 18px;">🎵 Geli Link-ga Muusigga</h3>
+      <p style="font-size: 12px; color: #ccc;">Geli link-ga YouTube ama <b>TikTok</b> ee heesta aad jeceshahay:</p>
+      <input type="text" id="musicLinkInput" class="share-link-input" placeholder="Tusaale: TikTok ama YouTube link...">
+      
+      <div class="modal-buttons-group">
+        <button class="btn-modal" style="background: #555; color:#fff;" onclick="closeMusicModal()">Ka noqo</button>
+        <button class="btn-modal btn-copy-modal" onclick="saveCustomMusicLink()">Kaydi 💖</button>
       </div>
     </div>
   </div>
@@ -542,6 +554,7 @@
     window.uploadedImages = {};
     window.isReadOnlyMode = false;
     window.customMusicUrl = "https://youtu.be/9ACIy3MLPuU";
+    window.isMusicPlaying = true;
 
     let activeSlotKey = '';
     let currentElement = null;
@@ -571,16 +584,29 @@
       document.getElementById('customLetterNote').style.fontFamily = fontFamily;
     };
 
-    window.setCustomMusicLink = function() {
-      const link = prompt("Halkan ku soo dheji link-ga Heesta (TikTok, YouTube, ama MP3):", window.customMusicUrl);
+    // Modal-ka Heesaha / TikTok
+    window.openMusicModal = function() {
+      document.getElementById('musicLinkInput').value = window.customMusicUrl;
+      document.getElementById('musicModal').style.display = 'flex';
+    };
+
+    window.closeMusicModal = function() {
+      document.getElementById('musicModal').style.display = 'none';
+    };
+
+    window.saveCustomMusicLink = function() {
+      const link = document.getElementById('musicLinkInput').value.trim();
       if (link) {
         window.customMusicUrl = link;
         playMusicFromLink(link);
-        alert("Heesta ama Music-ga waa la badelay!");
+        alert("Muusigga / TikTok-ga waa la xiriiriyay oo waa la badelay!");
+        closeMusicModal();
       }
     };
 
+    // TikTok & YouTube Handler oo la hagaajiyay
     window.playMusicFromLink = function(url) {
+      if (!window.isMusicPlaying) return;
       const ytContainer = document.getElementById('youtubePlayerContainer');
       ytContainer.innerHTML = ""; 
 
@@ -595,11 +621,37 @@
           ytContainer.innerHTML = `<iframe width="0" height="0" src="https://www.youtube.com/embed/${videoId}?autoplay=1" allow="autoplay"></iframe>`;
         }
       } else if (url.includes("tiktok.com")) {
-        ytContainer.innerHTML = `<div class="tiktok-floating-player">🎵 TikTok Music Connected</div>`;
+        // TikTok embed ama player sax ah oo muujinaya muusigga xiran
+        let tiktokVideoId = "";
+        const match = url.match(/\/video\/(\d+)/);
+        if (match && match[1]) {
+          tiktokVideoId = match[1];
+          ytContainer.innerHTML = `<div style="position:fixed; bottom:15px; right:15px; z-index:999; background:rgba(0,0,0,0.9); border:1px solid #ff1493; padding:10px 14px; border-radius:15px; color:#fff; font-size:11px; font-weight:700; display:flex; align-items:center; gap:8px; box-shadow:0 4px 15px rgba(255,20,147,0.5);">🎵 TikTok Audio Active <iframe src="https://www.tiktok.com/embed/v2/${tiktokVideoId}" style="width:0;height:0;border:0;visibility:hidden;"></iframe></div>`;
+        } else {
+          ytContainer.innerHTML = `<div style="position:fixed; bottom:15px; right:15px; z-index:999; background:rgba(0,0,0,0.9); border:1px solid #ff1493; padding:10px 14px; border-radius:15px; color:#fff; font-size:11px; font-weight:700;">🎵 TikTok Connected</div>`;
+        }
       } else {
         ytContainer.innerHTML = `<audio autoplay loop><source src="${url}" type="audio/mpeg"></audio>`;
       }
     }
+
+    window.togglePlayMusic = function() {
+      const ytContainer = document.getElementById('youtubePlayerContainer');
+      const musicIcon = document.getElementById('musicIcon');
+      const musicText = document.getElementById('musicText');
+
+      if (window.isMusicPlaying) {
+        window.isMusicPlaying = false;
+        ytContainer.innerHTML = "";
+        musicIcon.innerText = "🔇";
+        musicText.innerText = "Music Off";
+      } else {
+        window.isMusicPlaying = true;
+        musicIcon.innerText = "🔊";
+        musicText.innerText = "Music On";
+        playMusicFromLink(window.customMusicUrl);
+      }
+    };
 
     document.getElementById('imageUploader').addEventListener('change', function(e) {
       if (window.isReadOnlyMode) return;
