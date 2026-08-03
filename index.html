@@ -376,7 +376,7 @@
       position: relative;
       width: 100%;
       max-width: 420px;
-      background-image: url('https://i.postimg.cc/Vvtfk2xT/Picsart-26-08-03-21-29-09-077.png');
+      background-image: url('https://i.postimg.cc/yxGZMqF5/Picsart-26-08-03-21-36-06-808.png');
       background-size: cover;
       background-position: center;
       border-radius: 12px;
@@ -385,7 +385,14 @@
       overflow: hidden;
     }
 
-    /* 5 POLAROID SLOTS (COVERING BLACK RECTANGLES) */
+    /* PHOTO ANIMATIONS FOR SLOTS & ADD PHOTO BUTTON */
+    @keyframes slotPopIn {
+      0% { transform: scale(0) rotate(0deg); opacity: 0; }
+      70% { transform: scale(1.08); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* 5 POLAROID SLOTS WITH ANIMATIONS */
     .polaroid-slot {
       position: absolute;
       background: #111111;
@@ -397,14 +404,28 @@
       align-items: center;
       border: 1px dashed rgba(255,255,255,0.4);
       transition: transform 0.2s;
+      animation: slotPopIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
     }
 
-    .polaroid-slot:hover { transform: scale(1.05); border-color: #ff1493; }
+    #page-message.active .slot-1 { animation-delay: 0.1s; }
+    #page-message.active .slot-2 { animation-delay: 0.2s; }
+    #page-message.active .slot-3 { animation-delay: 0.3s; }
+    #page-message.active .slot-4 { animation-delay: 0.4s; }
+    #page-message.active .slot-5 { animation-delay: 0.5s; }
+    #page-message.active .add-photo-btn-slot { animation-delay: 0.6s; }
+
+    .polaroid-slot:hover { transform: scale(1.05) rotate(0deg) !important; border-color: #ff1493; z-index: 10; }
 
     .polaroid-slot img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      animation: imageZoomIn 0.5s ease-in-out;
+    }
+
+    @keyframes imageZoomIn {
+      from { transform: scale(1.2); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
     .polaroid-slot span {
@@ -416,14 +437,14 @@
       opacity: 0.7;
     }
 
-    /* Slot Positions matching the template layout */
+    /* Slot Positions matching the new template layout */
     .slot-1 { top: 1.5%; right: 29.5%; width: 18.5%; height: 11.5%; transform: rotate(-5deg); }
     .slot-2 { top: 3.5%; right: 7%; width: 18.5%; height: 11.5%; transform: rotate(6deg); }
     .slot-3 { top: 14%; right: 11.5%; width: 19%; height: 12%; transform: rotate(-3deg); }
     .slot-4 { top: 25.5%; right: 3.5%; width: 20%; height: 12.5%; transform: rotate(4deg); }
     .slot-5 { top: 33.5%; right: 38%; width: 19%; height: 11.8%; transform: rotate(-8deg); }
 
-    /* ADD PHOTO BUTTON SLOT */
+    /* ADD PHOTO BUTTON SLOT WITH ANIMATION */
     .add-photo-btn-slot {
       position: absolute;
       bottom: 12.5%;
@@ -440,14 +461,16 @@
       cursor: pointer;
       transition: all 0.3s;
       overflow: hidden;
+      animation: slotPopIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
     }
 
-    .add-photo-btn-slot:hover { background: #ffffff; border-color: #ff1493; }
+    .add-photo-btn-slot:hover { background: #ffffff; border-color: #ff1493; transform: scale(1.05); }
 
     .add-photo-btn-slot img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      animation: imageZoomIn 0.5s ease-in-out;
     }
 
     .add-photo-text {
@@ -572,14 +595,14 @@
     <button class="btn-back" onclick="openPage3()">&larr; Back</button>
 
     <div class="collage-wrapper">
-      <!-- 5 POLAROID SLOTS OVERLAYING THE BLACK AREAS -->
+      <!-- 5 POLAROID SLOTS WITH ANIMATIONS -->
       <div class="polaroid-slot slot-1" onclick="triggerUpload(this)"><span>+ Photo 1</span></div>
       <div class="polaroid-slot slot-2" onclick="triggerUpload(this)"><span>+ Photo 2</span></div>
       <div class="polaroid-slot slot-3" onclick="triggerUpload(this)"><span>+ Photo 3</span></div>
       <div class="polaroid-slot slot-4" onclick="triggerUpload(this)"><span>+ Photo 4</span></div>
       <div class="polaroid-slot slot-5" onclick="triggerUpload(this)"><span>+ Photo 5</span></div>
 
-      <!-- ADD PHOTO BUTTON SLOT -->
+      <!-- ADD PHOTO BUTTON SLOT WITH ANIMATION -->
       <div class="add-photo-btn-slot" onclick="triggerUpload(this)">
         <span class="add-photo-text">+<br>add photo</span>
       </div>
@@ -732,4 +755,3 @@
 
 </body>
 </html>
-
