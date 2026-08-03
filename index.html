@@ -275,7 +275,7 @@
     .ribbon-seal::after { right: 1px; transform: rotate(25deg) scaleX(-1); }
     .instruction-text { font-size: 12px; color: #777777; font-weight: 600; }
 
-    /* PAGE 2 (RESTORED CARD DETAILS) */
+    /* PAGE 2 */
     #page-2 { background-image: radial-gradient(circle, #800015 0%, #300008 100%); flex-direction: column; padding: 20px; text-align: center; color: #fff; gap: 15px; }
     .card-details-box { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); padding: 35px 20px; border-radius: 20px; max-width: 340px; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 15px; animation: fadeInScale 0.4s ease; backdrop-filter: blur(5px); }
 
@@ -337,7 +337,21 @@
     #page-letter { background-color: #000; overflow-y: auto; padding: 50px 10px 30px 10px; display: none; justify-content: center; align-items: flex-start; }
     #page-letter.active { display: flex; }
 
-    .letter-wrapper-new { position: relative; width: 100%; max-width: 400px; background-image: url('https://i.postimg.cc/bwnyPGXF/29847-edited.jpg'); background-size: cover; background-position: center; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.8); aspect-ratio: 1 / 1; overflow: hidden; margin: 0 auto; animation: fadeInScale 0.5s ease; }
+    /* LAKTII BADELAY BACKGROUND-KA CUSUB EE AD SOO DIRTAY */
+    .letter-wrapper-new { 
+      position: relative; 
+      width: 100%; 
+      max-width: 400px; 
+      background-image: url('https://i.postimg.cc/Fz5SNYDh/d0cd2d857c66d30fcb15af2998c8a57c.jpg'); 
+      background-size: cover; 
+      background-position: center; 
+      border-radius: 12px; 
+      box-shadow: 0 15px 35px rgba(0,0,0,0.8); 
+      aspect-ratio: 1 / 1; 
+      overflow: hidden; 
+      margin: 0 auto; 
+      animation: fadeInScale 0.5s ease; 
+    }
 
     .custom-letter-text-new {
       position: absolute;
@@ -454,7 +468,7 @@
     </div>
   </div>
 
-  <!-- PAGE 2 (RESTORED PAGE) -->
+  <!-- PAGE 2 -->
   <div id="page-2" class="page">
     <button class="btn-back" onclick="openPageWithCountdown('page-1', 1)">&larr; Back</button>
     <div class="card-details-box">
@@ -517,7 +531,10 @@
         <button class="btn-edit-text-toggle" onclick="toggleTextEdit()">✏️ Edit</button>
       </div>
 
-      <textarea id="customLetterNote" class="custom-letter-text-new" placeholder="Halkan ku qor farriintaada... ❤️" readonly></textarea>
+      <!-- QORAALKA CUSUB EE AAD RABTAY IN LA GELIYO -->
+      <textarea id="customLetterNote" class="custom-letter-text-new" placeholder="Halkan ku qor farriintaada... ❤️" readonly>Happy Birthday!
+
+I hope this little gift will make you happy</textarea>
 
       <div class="photo-slot-frame-1" onclick="triggerUpload(this, 'l1')">+ Photo 1</div>
     </div>
@@ -662,11 +679,8 @@
       reader.readAsDataURL(file);
     };
 
-    // LINK VALIDATION & BEAUTIFUL WARNING MESSAGE
     window.saveMusicLinkFromInput = function() {
       const linkVal = document.getElementById('musicLinkInput').value.trim();
-      
-      // Check if it's a valid YouTube or Spotify link
       const isYouTube = linkVal.includes("youtube.com") || linkVal.includes("youtu.be");
       const isSpotify = linkVal.includes("spotify.com");
 
@@ -970,3 +984,4 @@
 
 </body>
 </html>
+
