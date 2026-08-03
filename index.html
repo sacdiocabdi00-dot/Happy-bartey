@@ -46,6 +46,12 @@
       50% { transform: translateY(-12px) scale(1.03); }
     }
 
+    @keyframes pulseAnimation {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 20, 147, 0.7); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(255, 20, 147, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 20, 147, 0); }
+    }
+
     /* BUBBLES ANIMATION */
     .bubbles-container {
       position: fixed;
@@ -320,10 +326,29 @@
     .slot-4 { top: 25.5%; right: 3.5%; width: 20%; height: 12.5%; }
     .slot-5 { top: 33.5%; right: 38%; width: 19%; height: 11.8%; }
 
-    .add-photo-btn-slot { position: absolute; bottom: 12.5%; left: 7.5%; width: 27%; height: 21%; background: rgba(240, 240, 240, 0.95); border: 2px dashed #888; border-radius: 6px; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; overflow: hidden; transition: 0.3s; }
-    .add-photo-btn-slot:hover { background: #fff; border-color: #ff1493; }
-    .add-photo-btn-slot.readonly-mode { cursor: default !important; border: none !important; background: transparent !important; }
-    .add-photo-text { font-size: 13px; font-weight: 800; color: #333333; text-align: center; }
+    /* WEYNAAY OO ANIMATION LA SIIYAY "ADD PHOTO" */
+    .add-photo-btn-slot { 
+      position: absolute; 
+      bottom: 10%; 
+      left: 6%; 
+      width: 32%; 
+      height: 25%; 
+      background: rgba(255, 255, 255, 0.98); 
+      border: 3px dashed #ff1493; 
+      border-radius: 12px; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
+      align-items: center; 
+      cursor: pointer; 
+      overflow: hidden; 
+      transition: 0.3s; 
+      box-shadow: 0 8px 25px rgba(255, 20, 147, 0.5);
+      animation: pulseAnimation 2s infinite ease-in-out;
+    }
+    .add-photo-btn-slot:hover { background: #fff; transform: scale(1.08); border-color: #ff69b4; }
+    .add-photo-btn-slot.readonly-mode { cursor: default !important; border: none !important; background: transparent !important; animation: none !important; }
+    .add-photo-text { font-size: 15px; font-weight: 900; color: #ff1493; text-align: center; line-height: 1.3; }
 
     .floating-envelope-corner { position: absolute; bottom: 15px; right: 15px; width: 110px; background: rgba(0, 0, 0, 0.75); border: 2px solid #ff1493; border-radius: 12px; padding: 6px; display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; z-index: 30; animation: floatEffect 2s infinite; }
     .floating-envelope-corner img { width: 100%; height: 70px; object-fit: cover; border-radius: 6px; }
@@ -332,49 +357,52 @@
     #page-letter { background-color: #000; overflow-y: auto; padding: 50px 10px 30px 10px; display: none; justify-content: center; align-items: flex-start; }
     #page-letter.active { display: flex; }
 
-    /* BACKGROUND-KII ASALKA AHAA EE LABAAD (LAPAD / WEYN) */
+    /* WARQADDA CUSUB OO BACKGROUND-KA DHAN QAPXARTO (FULL COVER) */
     .letter-wrapper-new { 
       position: relative; 
       width: 100%; 
       max-width: 400px; 
-      background-image: url('https://i.postimg.cc/bwnyPGXF/29847-edited.jpg'); 
+      background-image: url('https://i.postimg.cc/R0MrNdpD/64d90aa58e80dae7fd6171a945c4c640.jpg'); 
       background-size: cover; 
       background-position: center; 
       border-radius: 12px; 
       box-shadow: 0 15px 35px rgba(0,0,0,0.8); 
-      aspect-ratio: 1 / 1; 
+      aspect-ratio: 9 / 16; 
       overflow: hidden; 
       margin: 0 auto; 
       animation: fadeInScale 0.5s ease; 
     }
 
-    /* QORAALKII WA LA TIRTIRAY, HADDABA WAA MADANFAAN / EMPTY */
+    /* MEESHA QORAALKA OO KU FIIRSAN WARQADDA DHEXTAYEEDA */
     .custom-letter-text-new {
       position: absolute;
-      top: 15%;
-      right: 5%;
-      width: 50%;
-      height: 75%;
-      background: transparent;
-      border: none;
+      top: 18%;
+      left: 10%;
+      width: 80%;
+      height: 65%;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(3px);
+      border: 1px dashed rgba(255, 255, 255, 0.5);
+      border-radius: 12px;
       outline: none;
       resize: none;
       font-family: 'Great Vibes', cursive;
-      font-size: 22px;
-      color: #111111;
-      line-height: 1.4;
-      padding: 5px;
+      font-size: 24px;
+      color: #222222;
+      line-height: 1.5;
+      padding: 15px;
+      box-shadow: inset 0 4px 10px rgba(0,0,0,0.1);
     }
 
     .typing-receiver-simulation { animation: typingEffect 1s ease forwards; }
 
     .letter-controls {
       position: absolute;
-      top: 5px;
-      right: 5px;
+      top: 10px;
+      right: 10px;
       display: flex;
       flex-wrap: wrap;
-      gap: 4px;
+      gap: 6px;
       z-index: 50;
       max-width: 280px;
       justify-content: flex-end;
@@ -384,20 +412,23 @@
       background: #ff1493;
       color: #fff;
       border: none;
-      border-radius: 5px;
-      padding: 3px 6px;
-      font-size: 9px;
+      border-radius: 6px;
+      padding: 5px 10px;
+      font-size: 11px;
       font-weight: 800;
       cursor: pointer;
+      box-shadow: 0 3px 10px rgba(255, 20, 147, 0.4);
+      transition: 0.2s;
     }
+    .btn-edit-text-toggle:hover, .music-link-btn:hover { transform: scale(1.05); }
 
     .font-selector-box { background: #111; border: 1px solid #ff1493; color: #fff; }
 
     .edit-active-only { display: none !important; }
     .editing-mode-active .edit-active-only { display: inline-block !important; }
 
-    .photo-slot-frame-1 { position: absolute; top: 29.5%; left: 8.5%; width: 32.5%; height: 33%; background: rgba(0, 0, 0, 0.4); border: 1px dashed rgba(255, 255, 255, 0.6); border-radius: 4px; display: flex; justify-content: center; align-items: center; color: #ffffff; font-size: 11px; font-weight: 700; cursor: pointer; overflow: hidden; animation: fadeInScale 0.6s ease; }
-    .photo-slot-frame-1.readonly-mode { cursor: default !important; border: none !important; background: transparent !important; }
+    .photo-slot-frame-1 { position: absolute; bottom: 8%; right: 8%; width: 32%; height: 22%; background: rgba(255, 255, 255, 0.85); border: 2px dashed #ff1493; border-radius: 10px; display: flex; justify-content: center; align-items: center; color: #ff1493; font-size: 12px; font-weight: 800; cursor: pointer; overflow: hidden; animation: pulseAnimation 2s infinite ease-in-out; }
+    .photo-slot-frame-1.readonly-mode { cursor: default !important; border: none !important; background: transparent !important; animation: none !important; }
     .photo-slot-frame-1 img { width: 100%; height: 100%; object-fit: cover; }
 
     .sub-card-page { background: radial-gradient(circle, #4a000e 0%, #120004 100%); flex-direction: column; padding: 30px 20px; text-align: center; color: #ffffff; gap: 15px; }
@@ -469,7 +500,7 @@
     <button class="btn-back" onclick="openPageWithCountdown('page-1', 1)">&larr; Back</button>
     <div class="card-details-box">
       <h1 style="font-family: 'Great Vibes', cursive; font-size: 42px; color: #ff80bf;">Special Moment ✨</h1>
-      <p style="font-size: 13px; opacity: 0.9; line-height: 1.5;">Waxaan kuu diyaariyay haddiyad gaار ah oo ay ka buuxaan farriimo iyo xusuus qiimo leh. Hadda guji batoonka hoose si aad u gasho!</p>
+      <p style="font-size: 13px; opacity: 0.9; line-height: 1.5;">Waxaan kuu diyaariyay haddiyad gaar ah oo ay ka buuxaan farriimo iyo xusuus qiimo leh. Hadda guji batoonka hoose si aad u gasho!</p>
       <button class="btn-finish-link" style="border:none; cursor:pointer;" onclick="openPageWithCountdown('page-3', 1)">Sii Soco &rarr;</button>
     </div>
   </div>
@@ -498,8 +529,9 @@
       <div class="polaroid-slot slot-4" onclick="triggerUpload(this, 's4')"><span>+ Photo 4</span></div>
       <div class="polaroid-slot slot-5" onclick="triggerUpload(this, 's5')"><span>+ Photo 5</span></div>
 
+      <!-- ADD PHOTO OO WEYN OO ANIMATION LEH -->
       <div class="add-photo-btn-slot" onclick="triggerUpload(this, 'main')">
-        <span class="add-photo-text">+<br>add photo</span>
+        <span class="add-photo-text">📷<br>+ Add Photo</span>
       </div>
 
       <div class="floating-envelope-corner" onclick="openPageWithCountdown('page-letter', 1)">
@@ -527,10 +559,11 @@
         <button class="btn-edit-text-toggle" onclick="toggleTextEdit()">✏️ Edit</button>
       </div>
 
-      <!-- QORAALKII WAA LA TIRTIRAY OO WAA BANAN -->
-      <textarea id="customLetterNote" class="custom-letter-text-new" placeholder="Halkan ku qor farriintaada... ❤️" readonly></textarea>
+      <!-- MEESHA QORAALKA OO KU FIIRSAN WARQADDA DHEXTAYEEDA -->
+      <textarea id="customLetterNote" class="custom-letter-text-new" placeholder="Halkan ku qor farriintaada quruxda badan... ❤️" readonly></textarea>
 
-      <div class="photo-slot-frame-1" onclick="triggerUpload(this, 'l1')">+ Photo 1</div>
+      <!-- PHOTO SLOT OO WEYN OO ANIMATION LEH -->
+      <div class="photo-slot-frame-1" onclick="triggerUpload(this, 'l1')">📷 + Add Photo</div>
     </div>
   </div>
 
