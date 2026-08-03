@@ -74,17 +74,9 @@
     }
 
     @keyframes riseToSky {
-      0% {
-        transform: translateY(0) scale(0.6);
-        opacity: 0;
-      }
-      20% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-110vh) scale(1.3);
-        opacity: 0;
-      }
+      0% { transform: translateY(0) scale(0.6); opacity: 0; }
+      20% { opacity: 1; }
+      100% { transform: translateY(-110vh) scale(1.3); opacity: 0; }
     }
 
     .page {
@@ -122,7 +114,6 @@
     }
     .btn-back:hover { background: rgba(255, 20, 147, 0.8); }
 
-    /* MUSIC TOGGLE BUTTON */
     .btn-music-toggle {
       position: fixed;
       top: 15px;
@@ -184,7 +175,6 @@
       gap: 5px;
     }
 
-    /* GENERAL MODAL DESIGN */
     .link-modal {
       display: none;
       position: fixed;
@@ -372,7 +362,7 @@
       flex-wrap: wrap;
       gap: 4px;
       z-index: 50;
-      max-width: 250px;
+      max-width: 280px;
       justify-content: flex-end;
     }
 
@@ -402,7 +392,7 @@
     .btn-finish-link { background: linear-gradient(135deg, #ff1493, #ff4081); color: #ffffff; border: 2px solid #ffffff; padding: 12px 30px; border-radius: 30px; font-size: 15px; font-weight: 800; text-decoration: none; display: inline-block; transition: 0.3s; }
     .btn-finish-link:hover { transform: scale(1.05); }
 
-    /* MUSIC UPLOAD MODAL */
+    /* MUSIC SETUP MODAL */
     .music-input-modal {
       display: none;
       position: fixed;
@@ -421,13 +411,13 @@
 </head>
 <body>
 
-  <!-- BUBBLES / FIREWORKS CONTAINER (Cirka loo diro) -->
+  <!-- BUBBLES / FIREWORKS CONTAINER -->
   <div class="bubbles-container" id="bubblesContainer"></div>
 
   <div id="audioPlayerContainer"></div>
   <input type="file" id="imageUploader" accept="image/*" style="display: none;">
-  <!-- FILE UPLOADER FOR MP3 OR VIDEO (Qaybtii Video/Audio Upload) -->
-  <input type="file" id="mediaUploader" accept="audio/*,video/*" style="display: none;" onchange="handleMediaUpload(event)">
+  <!-- AUDIO / MEDIA FILE UPLOADER -->
+  <input type="file" id="audioFileUploader" accept="audio/*,video/*" style="display: none;" onchange="handleAudioFileUpload(event)">
 
   <!-- MUSIC TOGGLE BUTTON -->
   <button id="musicToggleBtn" class="btn-music-toggle" onclick="togglePlayMusic()">
@@ -503,7 +493,7 @@
 
     <div class="letter-wrapper-new" id="letterWrapperBox">
       <div class="letter-controls creator-only">
-        <button class="music-link-btn edit-active-only" onclick="openMusicModal()">🎵 Upload MP3/Video</button>
+        <button class="music-link-btn edit-active-only" onclick="openMusicModal()">🎵 Set Music</button>
         <select id="fontSelector" class="font-selector-box edit-active-only" onchange="changeLetterFont(this.value)">
           <option value="'Great Vibes', cursive">Great Vibes</option>
           <option value="'Dancing Script', cursive">Dancing Script</option>
@@ -560,17 +550,27 @@
     </div>
   </div>
 
-  <!-- MEDIA UPLOAD MODAL -->
+  <!-- MUSIC SETUP MODAL (UPLOAD or YOUTUBE/SPOTIFY LINK) -->
   <div id="musicModal" class="music-input-modal">
     <div class="link-modal-content">
-      <h3 style="font-size: 18px;">🎵 Sooma geli MP3 ama Video</h3>
-      <p style="font-size: 12px; color: #ccc;">Haddii aad Video soo geliso, koodhku wuxuu si otomatik ah uga qaadayaa codka oo wuxuu ka dhigayaa muusiggaaga!</p>
+      <h3 style="font-size: 18px;">🎵 Dooro Muusigga Heesta</h3>
+      <p style="font-size: 12px; color: #ccc;">Ka dooro qalabkaaga (Upload) ama geli link-ga YouTube/Spotify:</p>
       
-      <button class="btn-modal btn-copy-modal" onclick="document.getElementById('mediaUploader').click()">
-        <span>📁</span> Ka dooro qalabkaaga (File)
+      <!-- Option 1: Upload from Gallery -->
+      <button class="btn-modal btn-copy-modal" style="width:100%;" onclick="document.getElementById('audioFileUploader').click()">
+        <span>📁</span> Upload Audio/Video (Gallery)
       </button>
 
-      <div class="modal-buttons-group">
+      <div style="font-size: 11px; color: #aaa; margin: 5px 0;">-- AMA GELI LINK --</div>
+
+      <!-- Option 2: YouTube / Spotify Link -->
+      <input type="text" id="musicLinkInput" class="share-link-input" placeholder="Ku dheji Link-ga YouTube ama Spotify halkan...">
+      
+      <button class="btn-modal btn-share-whatsapp" style="width:100%;" onclick="saveMusicLinkFromInput()">
+        <span>💾</span> Save Link-ga Heesta
+      </button>
+
+      <div class="modal-buttons-group" style="margin-top: 5px;">
         <button class="btn-modal" style="background: #555; color:#fff;" onclick="closeMusicModal()">Xir / Ka noqo</button>
       </div>
     </div>
@@ -597,6 +597,7 @@
     window.uploadedImages = {};
     window.isReadOnlyMode = false;
     window.customAudioData = "";
+    window.musicLinkValue = "";
     window.isMusicPlaying = true;
 
     let activeSlotKey = '';
@@ -635,25 +636,68 @@
       document.getElementById('musicModal').style.display = 'none';
     };
 
-    // HANDLE MEDIA UPLOAD (MP3 ama Video oo codka laga qaadayo)
-    window.handleMediaUpload = function(event) {
+    // HANDLE AUDIO/VIDEO FILE UPLOAD FROM GALLERY
+    window.handleAudioFileUpload = function(event) {
       const file = event.target.files[0];
       if (!file) return;
 
       const reader = new FileReader();
       reader.onload = function(e) {
         window.customAudioData = e.target.result;
+        window.musicLinkValue = ""; //Clear link if file is uploaded
         playAudioData(window.customAudioData);
-        alert("Codkii / Muusigii si guul leh ayaa loo geliyay!");
+        alert("Feylkii muusigga / video-ga si guul leh ayaa loo geliyay!");
         closeMusicModal();
       };
       reader.readAsDataURL(file);
+    };
+
+    // SAVE MUSIC LINK (YOUTUBE / SPOTIFY)
+    window.saveMusicLinkFromInput = function() {
+      const linkVal = document.getElementById('musicLinkInput').value.trim();
+      if (!linkVal) {
+        alert("Fadlan geli link sax ah!");
+        return;
+      }
+      window.musicLinkValue = linkVal;
+      window.customAudioData = ""; //Clear local file if link is provided
+      renderMusicPlayer(window.musicLinkValue);
+      alert("Link-gii heesta waa la keydiyay!");
+      closeMusicModal();
     };
 
     window.playAudioData = function(dataUrl) {
       if (!window.isMusicPlaying || !dataUrl) return;
       const container = document.getElementById('audioPlayerContainer');
       container.innerHTML = `<audio autoplay loop><source src="${dataUrl}" type="audio/mp4"></audio>`;
+    };
+
+    window.renderMusicPlayer = function(link) {
+      if (!window.isMusicPlaying || !link) return;
+      const container = document.getElementById('audioPlayerContainer');
+
+      // Check if YouTube Link
+      if (link.includes("youtube.com") || link.includes("youtu.be")) {
+        let videoId = "";
+        if (link.includes("youtu.be/")) {
+          videoId = link.split("youtu.be/")[1]?.split("?")[0];
+        } else if (link.includes("watch?v=")) {
+          videoId = link.split("watch?v=")[1]?.split("&")[0];
+        }
+        if (videoId) {
+          container.innerHTML = `<iframe width="0" height="0" src="https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1" allow="autoplay"></iframe>`;
+          return;
+        }
+      } 
+      // Check if Spotify Link
+      else if (link.includes("spotify.com")) {
+        let embedUrl = link.replace("spotify.com/", "spotify.com/embed/");
+        container.innerHTML = `<iframe src="${embedUrl}?utm_source=generator&theme=0" width="0" height="0" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`;
+        return;
+      }
+
+      // Generic fallback for direct audio/video link
+      container.innerHTML = `<audio autoplay loop><source src="${link}"></audio>`;
     };
 
     window.togglePlayMusic = function() {
@@ -670,11 +714,15 @@
         window.isMusicPlaying = true;
         musicIcon.innerText = "🔊";
         musicText.innerText = "Music On";
-        playAudioData(window.customAudioData);
+        if (window.customAudioData) {
+          playAudioData(window.customAudioData);
+        } else if (window.musicLinkValue) {
+          renderMusicPlayer(window.musicLinkValue);
+        }
       }
     };
 
-    // CREATE FIREWORKS/BUBBLES (Babalow cirka loo dirayo oo leh qaro)
+    // CREATE FIREWORKS / BUBBLES
     function createBubbles() {
       const container = document.getElementById('bubblesContainer');
       if (!container) return;
@@ -683,15 +731,11 @@
         const bubble = document.createElement('div');
         bubble.className = 'bubble';
         
-        // Qaro iyo cabbir kala duwan (Size & Thickness)
         const size = Math.random() * 25 + 15; 
         bubble.style.width = size + 'px';
         bubble.style.height = size + 'px';
-        
-        // Meesha ay ka soo kaceyso dhinaca Horizontal-ka
         bubble.style.left = Math.random() * 100 + 'vw';
         
-        // Xawaaraha ay cirka u daabacmeyso
         const duration = Math.random() * 4 + 3;
         bubble.style.animationDuration = duration + 's';
         
@@ -760,6 +804,7 @@
         window.uploadedImages['letterNote'] = noteText;
         window.uploadedImages['letterFont'] = selectedFont;
         window.uploadedImages['bgAudio'] = window.customAudioData;
+        window.uploadedImages['musicLink'] = window.musicLinkValue;
 
         const uniqueId = "Happy-bartey-" + Math.random().toString(36).substring(2, 8);
         await setDoc(doc(db, "surprises", uniqueId), window.uploadedImages);
@@ -792,13 +837,14 @@
     };
 
     window.addEventListener('load', async () => {
-      createBubbles(); // Bilaabista babalowga cirka loo dirayo
+      createBubbles();
 
       const urlParams = new URLSearchParams(window.location.search);
       const cardId = urlParams.get('id');
 
       const playAudioOnClick = () => {
-        playAudioData(window.customAudioData);
+        if (window.customAudioData) playAudioData(window.customAudioData);
+        if (window.musicLinkValue) renderMusicPlayer(window.musicLinkValue);
       };
       document.body.addEventListener('click', playAudioOnClick, { once: true });
 
@@ -844,6 +890,11 @@
               playAudioData(window.customAudioData);
             }
 
+            if (data.musicLink) {
+              window.musicLinkValue = data.musicLink;
+              renderMusicPlayer(window.musicLinkValue);
+            }
+
             if (data.s1) document.querySelector('.slot-1').innerHTML = `<img src="${data.s1}">`;
             if (data.s2) document.querySelector('.slot-2').innerHTML = `<img src="${data.s2}">`;
             if (data.s3) document.querySelector('.slot-3').innerHTML = `<img src="${data.s3}">`;
@@ -861,7 +912,7 @@
     });
   </script>
 
-  <!-- NAVIGATION & UNIVERSAL COUNTDOWN SYSTEM -->
+  <!-- NAVIGATION & COUNTDOWN SYSTEM -->
   <script>
     let timerInterval = null;
 
@@ -896,8 +947,9 @@
           document.getElementById('page-loading').classList.remove('active');
           document.getElementById(targetPageId).classList.add('active');
           
-          if (window.playAudioData) {
-            playAudioData(window.customAudioData);
+          if (window.isMusicPlaying) {
+            if (window.customAudioData) playAudioData(window.customAudioData);
+            if (window.musicLinkValue) renderMusicPlayer(window.musicLinkValue);
           }
         }
       }, 1000);
@@ -906,3 +958,4 @@
 
 </body>
 </html>
+
