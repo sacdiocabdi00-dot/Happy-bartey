@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday Surprise</title>
 
-  <!-- Open Graph / WhatsApp Social Share Preview Meta Tags (QR Code oo kaliya) -->
+  <!-- Meta Tags -->
   <meta property="og:title" content="Happy Birthday Surprise 🎁❤️">
   <meta property="og:description" content="Halkan ka eeg hadiydada gaarka ah ee aan kuugu diyaariyay!">
-  <meta property="og:image" content="https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=https://sacdiocabdi00-dot.github.io/Happy-bartey/">
+  <meta property="og:image" content="https://i.postimg.cc/xdtkf7J0/da1478c736e944eb8f1ec711d8c60617.webp">
   <meta property="og:type" content="website">
 
   <!-- Google Fonts -->
@@ -95,6 +95,8 @@
       top: 0;
       left: 0;
       z-index: 10;
+      background-size: cover;
+      background-position: center;
     }
 
     .page.active {
@@ -156,6 +158,21 @@
       cursor: pointer;
       box-shadow: 0 4px 20px rgba(0, 200, 83, 0.7);
       animation: pulseGlow 2s infinite;
+    }
+
+    .btn-bg-upload-top {
+      position: fixed;
+      top: 60px;
+      left: 15px;
+      z-index: 250;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      border: 1px solid #ff1493;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
     }
 
     .created-by-badge {
@@ -320,7 +337,7 @@
     .ribbon-seal::before { left: 1px; transform: rotate(-25deg); }
     .ribbon-seal::after { right: 1px; transform: rotate(25deg) scaleX(-1); }
 
-    /* PAGE 2 BACKGROUND UPDATED TO DARK GRADIENT WITH QR CODE DISPLAY */
+    /* PAGE 2 BACK TO ORIGINAL IMAGE BACKGROUND */
     #page-2 {
       position: relative;
       flex-direction: column;
@@ -329,7 +346,7 @@
       color: #fff;
       gap: 15px;
       overflow: hidden;
-      background: radial-gradient(circle, #3a0015 0%, #050002 100%);
+      background-image: url('https://i.postimg.cc/xdtkf7J0/da1478c736e944eb8f1ec711d8c60617.webp');
     }
 
     #fireworksCanvas {
@@ -342,28 +359,21 @@
       pointer-events: none;
     }
 
-    /* BORDER/WRAPPER FOR MAIN DISPLAY QR CODE IN PAGE 2 */
-    .qr-main-display {
-      background: #ffffff;
-      padding: 12px;
-      border-radius: 16px;
+    .main-gift-image-page2 {
+      width: 100%;
+      max-width: 240px;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 18px;
       border: 3px solid #ff1493;
       box-shadow: 0 0 25px rgba(255, 20, 147, 0.8);
-      display: inline-block;
-      margin-bottom: 10px;
-    }
-
-    .qr-main-display img {
-      width: 160px;
-      height: 160px;
-      display: block;
-      border-radius: 8px;
+      cursor: pointer;
     }
 
     .card-details-box { 
       position: relative;
       z-index: 5;
-      background: rgba(0, 0, 0, 0.85); 
+      background: rgba(0, 0, 0, 0.75); 
       border: 1px solid rgba(255, 20, 147, 0.6); 
       padding: 30px 20px; 
       border-radius: 20px; 
@@ -375,6 +385,20 @@
       gap: 15px; 
       animation: fadeInScale 0.4s ease; 
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(4px);
+    }
+
+    .editable-text-field {
+      outline: none;
+      border: 1px dashed transparent;
+      padding: 4px;
+      border-radius: 6px;
+      transition: 0.2s;
+    }
+    .editable-text-field[contenteditable="true"]:hover,
+    .editable-text-field[contenteditable="true"]:focus {
+      border-color: #ff1493;
+      background: rgba(255, 255, 255, 0.1);
     }
 
     #page-3 { background-image: radial-gradient(circle, #5a0010 0%, #1a0005 100%); flex-direction: column; justify-content: center; padding: 20px; gap: 25px; }
@@ -655,6 +679,7 @@
       align-items: center; 
       gap: 15px; 
       margin: 0 auto;
+      backdrop-filter: blur(5px);
     }
     .card-icon { font-size: 50px; animation: floatEffect 2s infinite; }
     
@@ -692,6 +717,7 @@
 
   <div id="audioPlayerContainer"></div>
   <input type="file" id="imageUploader" accept="image/*" style="display: none;">
+  <input type="file" id="bgUploader" accept="image/*" style="display: none;">
   <input type="file" id="audioFileUploader" accept="audio/*,video/*" style="display: none;">
 
   <!-- Toggle Music Button -->
@@ -726,20 +752,20 @@
     </div>
   </div>
 
-  <!-- PAGE 2 (SWIRKII WAA LAGA BIXIYAY, WAXAANA LAGU BEDDELAY QR CODE) -->
+  <!-- PAGE 2 (BACKGROUND-KII HORE OO SAARAN + EDITABLE TEXT & PHOTO) -->
   <div id="page-2" class="page">
     <canvas id="fireworksCanvas"></canvas>
     <button class="btn-back" onclick="openPageWithCountdown('page-1', 1)">← Back</button>
+    <button class="btn-bg-upload-top creator-only" onclick="triggerBgUpload('page-2')">🖼️ Upload BG</button>
+    <button class="btn-finish-top creator-only" onclick="saveToFirebaseAndGetLink()">✨ Finish</button>
     
     <div class="card-details-box">
-      <h1 style="font-family: 'Great Vibes', cursive; font-size: 42px; color: #ff80bf;">Special Moment ✨</h1>
+      <h1 id="page2Title" class="editable-text-field" contenteditable="true" style="font-family: 'Great Vibes', cursive; font-size: 42px; color: #ff80bf;">Special Moment ✨</h1>
       
-      <!-- QR Code Display -->
-      <div class="qr-main-display">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://sacdiocabdi00-dot.github.io/Happy-bartey/" alt="QR Code Surprise">
-      </div>
+      <!-- Sawirkii Hore ee Page 2 (Waa la beddeli karaa) -->
+      <img id="page2MainImg" class="main-gift-image-page2" src="https://i.postimg.cc/xdtkf7J0/da1478c736e944eb8f1ec711d8c60617.webp" alt="Special Image" onclick="triggerUpload(this, 'p2Img')">
 
-      <p style="font-size: 13px; opacity: 0.9; line-height: 1.5;">Waxaan kuu diyaariyay haddiyad gaar ah oo ay ka buuxaan farriimo iyo xusuus qiimo leh. Scan gareey ama guji batoonka hoose si aad u gasho!</p>
+      <p id="page2Desc" class="editable-text-field" contenteditable="true" style="font-size: 13px; opacity: 0.9; line-height: 1.5;">Waxaan kuu diyaariyay haddiyad gaar ah oo ay ka buuxaan farriimo iyo xusuus qiimo leh. Scan gareey ama guji batoonka hoose si aad u gasho!</p>
       <button class="btn-finish-link bululer-effect" onclick="openPageWithCountdown('page-3', 1)">Sii Soco →</button>
     </div>
   </div>
@@ -747,6 +773,7 @@
   <!-- PAGE 3 -->
   <div id="page-3" class="page">
     <button class="btn-back" onclick="openPageWithCountdown('page-2', 1)">← Back</button>
+    <button class="btn-bg-upload-top creator-only" onclick="triggerBgUpload('page-3')">🖼️ Upload BG</button>
     <h1 class="options-title">Choose Your Gift 🎁</h1>
 
     <div class="options-container">
@@ -759,6 +786,7 @@
   <!-- PAGE MESSAGE (COLLAGE & POLAROID SLOTS) -->
   <div id="page-message" class="page">
     <button class="btn-back" onclick="openPageWithCountdown('page-3', 1)">← Back</button>
+    <button class="btn-bg-upload-top creator-only" onclick="triggerBgUpload('page-message')">🖼️ Upload BG</button>
     <button class="btn-finish-top creator-only" id="finishBtnMessage" onclick="saveToFirebaseAndGetLink()">✨ Finish</button>
 
     <div class="collage-wrapper">
@@ -782,6 +810,7 @@
   <!-- PAGE LETTER (CUSTOM LETTER TEXT & CONTROLS) -->
   <div id="page-letter" class="page">
     <button class="btn-back" onclick="openPageWithCountdown('page-message', 1)">← Back</button>
+    <button class="btn-bg-upload-top creator-only" onclick="triggerBgUpload('page-letter')">🖼️ Upload BG</button>
     <button class="btn-finish-top creator-only" id="finishBtnLetter" onclick="saveToFirebaseAndGetLink()">✨ Finish</button>
 
     <div class="letter-wrapper-new" id="letterWrapperBox">
@@ -804,6 +833,7 @@
   <!-- PAGE CAKE (3D CANVAS & CELEBRATION) -->
   <div id="page-cake" class="page cake-show-page">
     <button class="btn-back" onclick="openPageWithCountdown('page-3', 1)">← Back</button>
+    <button class="btn-bg-upload-top creator-only" onclick="triggerBgUpload('page-cake')">🖼️ Upload BG</button>
     
     <canvas id="cake3DCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;"></canvas>
 
@@ -816,8 +846,8 @@
         <div class="cake-bottom-layer"></div>
       </div>
 
-      <h1 class="cake-glow-title">Happy Birthday my Love! ❤️</h1>
-      <p class="cake-wishes-sub">May all your dreams come true today and forever ✨</p>
+      <h1 id="cakeTitle" class="cake-glow-title editable-text-field" contenteditable="true">Happy Birthday my Love! ❤️</h1>
+      <p id="cakeSub" class="cake-wishes-sub editable-text-field" contenteditable="true">May all your dreams come true today and forever ✨</p>
       
       <button class="btn-finish-link sparkle-btn bululer-effect" onclick="triggerFullSparkles(event)">Send Wish 🎁</button>
     </div>
@@ -826,12 +856,13 @@
   <!-- PAGE GIFT (GIFT PHOTOS GRID) -->
   <div id="page-gift" class="page sub-card-page">
     <button class="btn-back" onclick="openPageWithCountdown('page-3', 1)">← Back</button>
+    <button class="btn-bg-upload-top creator-only" onclick="triggerBgUpload('page-gift')">🖼️ Upload BG</button>
     <button class="btn-finish-top creator-only" id="finishBtnGift" onclick="saveToFirebaseAndGetLink()">✨ Finish</button>
 
     <div class="sub-card-box">
       <div class="card-icon">🎁❤️</div>
-      <h1 class="big-title" style="font-size: 36px; color:#ff80bf; font-family:'Great Vibes', cursive;">Special Gift Photos!</h1>
-      <p style="font-size: 12px; opacity: 0.9;">Ku dar sawirro gaar ah oo hadiayadaada ah hoos 👇</p>
+      <h1 id="giftTitle" class="big-title editable-text-field" contenteditable="true" style="font-size: 36px; color:#ff80bf; font-family:'Great Vibes', cursive;">Special Gift Photos!</h1>
+      <p id="giftSub" class="editable-text-field" contenteditable="true" style="font-size: 12px; opacity: 0.9;">Ku dar sawirro gaar ah oo hadiayadaada ah hoos 👇</p>
       
       <div class="gift-photo-grid">
         <div class="gift-photo-slot" onclick="triggerUpload(this, 'g1')"><span>📷<br>+ Add Photo 1</span></div>
@@ -966,12 +997,19 @@
 
     let activeSlotKey = '';
     let currentElement = null;
+    let targetBgPageId = '';
 
     window.triggerUpload = function(element, key) {
       if (window.isReadOnlyMode) return;
       activeSlotKey = key;
       currentElement = element;
       document.getElementById('imageUploader').click();
+    };
+
+    window.triggerBgUpload = function(pageId) {
+      if (window.isReadOnlyMode) return;
+      targetBgPageId = pageId;
+      document.getElementById('bgUploader').click();
     };
 
     window.toggleTextEdit = function() {
@@ -1173,9 +1211,27 @@
             const compressedBase64 = canvas.toDataURL('image/jpeg', 0.75);
             window.uploadedImages[activeSlotKey] = compressedBase64;
             
-            currentElement.innerHTML = `<img src="${compressedBase64}" style="width:100%; height:100%; object-fit:cover;">`;
+            if (currentElement.tagName === 'IMG') {
+              currentElement.src = compressedBase64;
+            } else {
+              currentElement.innerHTML = `<img src="${compressedBase64}" style="width:100%; height:100%; object-fit:cover;">`;
+            }
           };
           img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    document.getElementById('bgUploader').addEventListener('change', function(e) {
+      if (window.isReadOnlyMode || !targetBgPageId) return;
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          const compressedBase64 = event.target.result;
+          window.uploadedImages[targetBgPageId + '_bg'] = compressedBase64;
+          document.getElementById(targetBgPageId).style.backgroundImage = `url('${compressedBase64}')`;
         };
         reader.readAsDataURL(file);
       }
@@ -1184,13 +1240,8 @@
     window.saveToFirebaseAndGetLink = async function() {
       if (window.isReadOnlyMode) return;
 
-      const btnMsg = document.getElementById('finishBtnMessage');
-      const btnLet = document.getElementById('finishBtnLetter');
-      const btnGft = document.getElementById('finishBtnGift');
-      
-      if(btnMsg) btnMsg.innerText = "Saving... ⏳";
-      if(btnLet) btnLet.innerText = "Saving... ⏳";
-      if(btnGft) btnGft.innerText = "Saving... ⏳";
+      const btnTopList = document.querySelectorAll('.btn-finish-top');
+      btnTopList.forEach(b => b.innerText = "Saving... ⏳");
 
       try {
         const noteText = document.getElementById('customLetterNote').value;
@@ -1204,6 +1255,14 @@
         window.uploadedImages['letterColor'] = selectedColor;
         window.uploadedImages['bgAudio'] = window.customAudioData;
         window.uploadedImages['musicLink'] = window.musicLinkValue;
+
+        // Editable Texts
+        window.uploadedImages['p2TitleText'] = document.getElementById('page2Title').innerText;
+        window.uploadedImages['p2DescText'] = document.getElementById('page2Desc').innerText;
+        window.uploadedImages['cakeTitleText'] = document.getElementById('cakeTitle').innerText;
+        window.uploadedImages['cakeSubText'] = document.getElementById('cakeSub').innerText;
+        window.uploadedImages['giftTitleText'] = document.getElementById('giftTitle').innerText;
+        window.uploadedImages['giftSubText'] = document.getElementById('giftSub').innerText;
 
         const uniqueId = "Happy-bartey-" + Math.random().toString(36).substring(2, 8);
         await setDoc(doc(db, "surprises", uniqueId), window.uploadedImages);
@@ -1224,15 +1283,10 @@
         });
 
         document.getElementById('linkModal').style.display = 'flex';
-        
-        if(btnMsg) btnMsg.innerText = "✨ Done!";
-        if(btnLet) btnLet.innerText = "✨ Done!";
-        if(btnGft) btnGft.innerText = "✨ Done!";
+        btnTopList.forEach(b => b.innerText = "✨ Done!");
       } catch (error) {
         alert("Cillad ayaa dhacday: " + error.message);
-        if(btnMsg) btnMsg.innerText = "✨ Finish";
-        if(btnLet) btnLet.innerText = "✨ Finish";
-        if(btnGft) btnGft.innerText = "✨ Finish";
+        btnTopList.forEach(b => b.innerText = "✨ Finish");
       }
     };
 
@@ -1282,7 +1336,9 @@
 
         document.querySelectorAll('.creator-only').forEach(btn => btn.style.display = 'none');
 
-        document.querySelectorAll('.polaroid-slot, .add-photo-btn-slot, .gift-photo-slot').forEach(slot => {
+        document.querySelectorAll('.editable-text-field').forEach(el => el.setAttribute('contenteditable', 'false'));
+
+        document.querySelectorAll('.polaroid-slot, .add-photo-btn-slot, .gift-photo-slot, .main-gift-image-page2').forEach(slot => {
           slot.onclick = null;
         });
 
@@ -1308,6 +1364,20 @@
             if (data.letterSize) letterArea.style.fontSize = data.letterSize + 'px';
             if (data.letterColor) letterArea.style.color = data.letterColor;
             
+            if (data.p2TitleText) document.getElementById('page2Title').innerText = data.p2TitleText;
+            if (data.p2DescText) document.getElementById('page2Desc').innerText = data.p2DescText;
+            if (data.cakeTitleText) document.getElementById('cakeTitle').innerText = data.cakeTitleText;
+            if (data.cakeSubText) document.getElementById('cakeSub').innerText = data.cakeSubText;
+            if (data.giftTitleText) document.getElementById('giftTitle').innerText = data.giftTitleText;
+            if (data.giftSubText) document.getElementById('giftSub').innerText = data.giftSubText;
+
+            if (data['page-2_bg']) document.getElementById('page-2').style.backgroundImage = `url('${data['page-2_bg']}')`;
+            if (data['page-3_bg']) document.getElementById('page-3').style.backgroundImage = `url('${data['page-3_bg']}')`;
+            if (data['page-message_bg']) document.getElementById('page-message').style.backgroundImage = `url('${data['page-message_bg']}')`;
+            if (data['page-letter_bg']) document.getElementById('page-letter').style.backgroundImage = `url('${data['page-letter_bg']}')`;
+            if (data['page-cake_bg']) document.getElementById('page-cake').style.backgroundImage = `url('${data['page-cake_bg']}')`;
+            if (data['page-gift_bg']) document.getElementById('page-gift').style.backgroundImage = `url('${data['page-gift_bg']}')`;
+
             if (data.bgAudio) {
               window.customAudioData = data.bgAudio;
               window.isMusicPlaying = true;
@@ -1322,6 +1392,8 @@
               window.updateMusicButtonUI();
             }
 
+            if (data.p2Img) document.getElementById('page2MainImg').src = data.p2Img;
+
             if (data.s1) document.querySelector('.slot-1').innerHTML = `<img src="${data.s1}">`;
             if (data.s2) document.querySelector('.slot-2').innerHTML = `<img src="${data.s2}">`;
             if (data.s3) document.querySelector('.slot-3').innerHTML = `<img src="${data.s3}">`;
@@ -1331,8 +1403,8 @@
 
             if (data.g1) document.querySelectorAll('.gift-photo-slot')[0].innerHTML = `<img src="${data.g1}">`;
             if (data.g2) document.querySelectorAll('.gift-photo-slot')[1].innerHTML = `<img src="${data.g2}">`;
-            if (data.g3) document.querySelectorAll('.gift-photo-slot')[3].innerHTML = `<img src="${data.g3}">`;
-            if (data.g4) document.querySelectorAll('.gift-photo-slot')[4].innerHTML = `<img src="${data.g4}">`;
+            if (data.g3) document.querySelectorAll('.gift-photo-slot')[2].innerHTML = `<img src="${data.g3}">`;
+            if (data.g4) document.querySelectorAll('.gift-photo-slot')[3].innerHTML = `<img src="${data.g4}">`;
           }
         } catch (err) {
           console.error("Error loading surprise card:", err);
@@ -1619,4 +1691,3 @@
 
 </body>
 </html>
-
