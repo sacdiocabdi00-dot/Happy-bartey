@@ -337,7 +337,7 @@
     .ribbon-seal::before { left: 1px; transform: rotate(-25deg); }
     .ribbon-seal::after { right: 1px; transform: rotate(25deg) scaleX(-1); }
 
-    /* PAGE 2 BACK TO ORIGINAL IMAGE BACKGROUND */
+    /* PAGE 2 BACKGROUND */
     #page-2 {
       position: relative;
       flex-direction: column;
@@ -711,7 +711,6 @@
     .gift-photo-slot:hover { background: rgba(255, 20, 147, 0.2); transform: scale(1.02); }
     .gift-photo-slot img { width: 100%; height: 100%; object-fit: cover; }
 
-    /* NAME CARD BADGE EFFECT */
     .name-badge-container {
       background: linear-gradient(135deg, rgba(255, 20, 147, 0.4), rgba(255, 105, 180, 0.2));
       border: 2px dashed #ff1493;
@@ -768,7 +767,7 @@
     </div>
   </div>
 
-  <!-- PAGE 2 (BACKGROUND-KII HORE OO SAARAN + EDITABLE TEXT & PHOTO) -->
+  <!-- PAGE 2 -->
   <div id="page-2" class="page">
     <canvas id="fireworksCanvas"></canvas>
     <button class="btn-back" onclick="openPageWithCountdown('page-1', 1)">← Back</button>
@@ -778,7 +777,6 @@
     <div class="card-details-box">
       <h1 id="page2Title" class="editable-text-field" contenteditable="true" style="font-family: 'Great Vibes', cursive; font-size: 42px; color: #ff80bf;">Special Moment ✨</h1>
       
-      <!-- Sawirkii Hore ee Page 2 (Waa la beddeli karaa) -->
       <img id="page2MainImg" class="main-gift-image-page2" src="https://i.postimg.cc/xdtkf7J0/da1478c736e944eb8f1ec711d8c60617.webp" alt="Special Image" onclick="triggerUpload(this, 'p2Img')">
 
       <p id="page2Desc" class="editable-text-field" contenteditable="true" style="font-size: 13px; opacity: 0.9; line-height: 1.5;">Waxaan kuu diyaariyay haddiyad gaar ah oo ay ka buuxaan farriimo iyo xusuus qiimo leh. Scan gareey ama guji batoonka hoose si aad u gasho!</p>
@@ -799,7 +797,7 @@
     </div>
   </div>
 
-  <!-- PAGE MESSAGE (COLLAGE & POLAROID SLOTS) -->
+  <!-- PAGE MESSAGE -->
   <div id="page-message" class="page">
     <button class="btn-back" onclick="openPageWithCountdown('page-3', 1)">← Back</button>
     <button class="btn-bg-upload-top creator-only" onclick="triggerBgUpload('page-message')">🖼️ Upload BG</button>
@@ -823,7 +821,7 @@
     </div>
   </div>
 
-  <!-- PAGE LETTER (CUSTOM LETTER TEXT & CONTROLS) -->
+  <!-- PAGE LETTER -->
   <div id="page-letter" class="page">
     <button class="btn-back" onclick="openPageWithCountdown('page-message', 1)">← Back</button>
     <button class="btn-bg-upload-top creator-only" onclick="triggerBgUpload('page-letter')">🖼️ Upload BG</button>
@@ -846,7 +844,7 @@
     </div>
   </div>
 
-  <!-- PAGE CAKE (3D CANVAS & CELEBRATION) -->
+  <!-- PAGE CAKE -->
   <div id="page-cake" class="page cake-show-page">
     <button class="btn-back" onclick="openPageWithCountdown('page-3', 1)">← Back</button>
     <button class="btn-bg-upload-top creator-only" onclick="triggerBgUpload('page-cake')">🖼️ Upload BG</button>
@@ -869,7 +867,7 @@
     </div>
   </div>
 
-  <!-- PAGE GIFT (GIFT PHOTOS GRID & NAME BADGE) -->
+  <!-- PAGE GIFT -->
   <div id="page-gift" class="page sub-card-page">
     <button class="btn-back" onclick="openPageWithCountdown('page-3', 1)">← Back</button>
     <button class="btn-bg-upload-top creator-only" onclick="triggerBgUpload('page-gift')">🖼️ Upload BG</button>
@@ -879,7 +877,6 @@
       <div class="card-icon">🎁💖</div>
       <h1 id="giftTitle" class="big-title editable-text-field" contenteditable="true" style="font-size: 36px; color:#ff80bf; font-family:'Great Vibes', cursive;">Special Gift Photos!</h1>
       
-      <!-- NAME DISPLAY BADGE WITH EMOJI BURST EFFECT -->
       <div class="name-badge-container bululer-effect" onclick="askRecipientName()">
         <span>For:</span>
         <span id="recipientNameText" style="color:#ffee00;">Magaca Qofka</span>
@@ -888,7 +885,6 @@
 
       <p id="giftSub" class="editable-text-field" contenteditable="true" style="font-size: 12px; opacity: 0.9; margin-top:5px;">Taabo sanduuqa hoose si aad u daalacato sawirrada hidden-ka ah 👇</p>
       
-      <!-- AFARTA MEEL EE SAWIRRA DA AAD SOO DIRTAY -->
       <div class="gift-photo-grid">
         <div class="gift-photo-slot" onclick="openPhotoModal(this, 'Sawirka 1')">
           <img src="https://i.postimg.cc/RVB5Lh6F/IMG-20260804-WA0007.jpg" alt="Gift Photo 1">
@@ -908,7 +904,7 @@
     </div>
   </div>
 
-  <!-- POP-UP MODAL MARKII SAWIRKA LA TAAPTO -->
+  <!-- POP-UP MODAL -->
   <div id="photoPreviewModal" class="photo-preview-modal">
     <div class="link-modal-content bululer-effect" style="max-width: 360px;">
       <h3 id="photoModalTitle" style="color: #ff80bf; font-family: 'Great Vibes', cursive; font-size: 32px;">Special Memory ✨</h3>
@@ -967,7 +963,7 @@
     </div>
   </div>
 
-  <!-- RED & HEART QR CODE MODAL -->
+  <!-- QR CODE MODAL -->
   <div id="linkModal" class="link-modal">
     <div class="link-modal-content">
       <h3 style="font-size: 18px; color: #ff4081;">🎉 Happy Birthday Surprise ❤️</h3>
@@ -1324,7 +1320,6 @@
         window.uploadedImages['musicLink'] = window.musicLinkValue;
         window.uploadedImages['recipientName'] = document.getElementById('recipientNameText').innerText;
 
-        // Editable Texts
         window.uploadedImages['p2TitleText'] = document.getElementById('page2Title').innerText;
         window.uploadedImages['p2DescText'] = document.getElementById('page2Desc').innerText;
         window.uploadedImages['cakeTitleText'] = document.getElementById('cakeTitle').innerText;
@@ -1403,7 +1398,6 @@
         window.isReadOnlyMode = true;
 
         document.querySelectorAll('.creator-only').forEach(btn => btn.style.display = 'none');
-
         document.querySelectorAll('.editable-text-field').forEach(el => el.setAttribute('contenteditable', 'false'));
 
         const letterArea = document.getElementById('customLetterNote');
