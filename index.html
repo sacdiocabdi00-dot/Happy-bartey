@@ -4,10 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday Surprise</title>
+
+  <!-- Open Graph / WhatsApp Social Share Preview Meta Tags -->
+  <meta property="og:title" content="Happy Birthday Surprise 🎁❤️">
+  <meta property="og:description" content="Halkan ka eeg hadiydada gaarka ah ee aan kuugu diyaariyay!">
+  <meta property="og:image" content="https://i.postimg.cc/xdtkf7J0/da1478c736e944eb8f1ec711d8c60617.webp">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Amiri:wght@400;700&family=Dancing+Script:wght@600;700&family=Pacifico&family=Reenie+Beanie&family=Cairo:wght@400;700&family=Readex+Pro:wght@400;600&family=Cinzel:wght@600&family=Permanent+Marker&family=Sacramento&family=Bubblegum+Sans&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
+  <!-- Three.js, GSAP & QRCode Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -49,6 +58,7 @@
       50% { transform: translateY(-12px) scale(1.03); }
     }
 
+    /* BULULER / BURSTING SPARKLE EFFECT */
     @keyframes bululerBurst {
       0% {
         box-shadow: 0 0 0 0 rgba(255, 20, 147, 0.9), 0 0 10px #fff, 0 0 20px #ff1493;
@@ -201,15 +211,25 @@
       overflow-y: auto;
     }
 
-    .qr-box {
+    /* RED HEART QR CODE CONTAINER STYLING */
+    .qr-box-wrapper {
+      position: relative;
       background: #ffffff;
-      padding: 12px;
-      border-radius: 16px;
-      box-shadow: 0 0 20px rgba(255, 20, 147, 0.5);
+      padding: 16px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(220, 20, 60, 0.8);
       display: flex;
       justify-content: center;
       align-items: center;
       margin: 5px 0;
+      border: 3px solid #ff0055;
+    }
+
+    .qr-heart-badge {
+      position: absolute;
+      font-size: 22px;
+      pointer-events: none;
+      animation: bounceAnim 1.5s infinite ease-in-out;
     }
 
     .share-link-input {
@@ -489,7 +509,7 @@
     .edit-active-only { display: none !important; }
     .editing-mode-active .edit-active-only { display: inline-flex !important; align-items: center; gap: 4px; }
 
-    /* CAKE BOGGA */
+    /* CAKE PAGE STYLING */
     .cake-show-page {
       background: radial-gradient(circle at center, #1b002c 0%, #05000c 100%);
       flex-direction: column;
@@ -608,7 +628,7 @@
       100% { text-shadow: 0 0 20px #ff69b4, 0 0 35px #ff1493, 0 0 50px #ffffff; }
     }
 
-    /* CLAIM GIFT PAGE WITH ADD PHOTO SLOTS */
+    /* GIFT PAGE STYLING */
     .sub-card-page { 
       background: radial-gradient(circle, #4a000e 0%, #120004 100%); 
       flex-direction: column; 
@@ -670,6 +690,7 @@
   <input type="file" id="imageUploader" accept="image/*" style="display: none;">
   <input type="file" id="audioFileUploader" accept="audio/*,video/*" style="display: none;">
 
+  <!-- Toggle Music Button -->
   <button id="musicToggleBtn" class="btn-music-toggle" onclick="togglePlayMusic()">
     <span id="musicIcon">🔊</span> <span id="musicText">Music On</span>
   </button>
@@ -678,6 +699,7 @@
     🔥 Created with Love
   </a>
 
+  <!-- PAGE LOADING -->
   <div id="page-loading" class="page active">
     <h1 id="loaderTitle" class="loader-title">Welcome ❤️</h1>
     <div id="countdownNum" class="countdown-number">10</div>
@@ -687,6 +709,7 @@
     <p id="loadingText" class="loading-text">LOADING YOUR SURPRISE...</p>
   </div>
 
+  <!-- PAGE 1 -->
   <div id="page-1" class="page">
     <div class="envelope-card">
       <h1 class="greeting-title">Happy Birthday!</h1>
@@ -699,6 +722,7 @@
     </div>
   </div>
 
+  <!-- PAGE 2 -->
   <div id="page-2" class="page">
     <canvas id="fireworksCanvas"></canvas>
     <button class="btn-back" onclick="openPageWithCountdown('page-1', 1)">← Back</button>
@@ -710,6 +734,7 @@
     </div>
   </div>
 
+  <!-- PAGE 3 -->
   <div id="page-3" class="page">
     <button class="btn-back" onclick="openPageWithCountdown('page-2', 1)">← Back</button>
     <h1 class="options-title">Choose Your Gift 🎁</h1>
@@ -721,6 +746,7 @@
     </div>
   </div>
 
+  <!-- PAGE MESSAGE (COLLAGE & POLAROID SLOTS) -->
   <div id="page-message" class="page">
     <button class="btn-back" onclick="openPageWithCountdown('page-3', 1)">← Back</button>
     <button class="btn-finish-top creator-only" id="finishBtnMessage" onclick="saveToFirebaseAndGetLink()">✨ Finish</button>
@@ -743,6 +769,7 @@
     </div>
   </div>
 
+  <!-- PAGE LETTER (CUSTOM LETTER TEXT & CONTROLS) -->
   <div id="page-letter" class="page">
     <button class="btn-back" onclick="openPageWithCountdown('page-message', 1)">← Back</button>
     <button class="btn-finish-top creator-only" id="finishBtnLetter" onclick="saveToFirebaseAndGetLink()">✨ Finish</button>
@@ -764,6 +791,7 @@
     </div>
   </div>
 
+  <!-- PAGE CAKE (3D CANVAS & CELEBRATION) -->
   <div id="page-cake" class="page cake-show-page">
     <button class="btn-back" onclick="openPageWithCountdown('page-3', 1)">← Back</button>
     
@@ -785,6 +813,7 @@
     </div>
   </div>
 
+  <!-- PAGE GIFT (GIFT PHOTOS GRID) -->
   <div id="page-gift" class="page sub-card-page">
     <button class="btn-back" onclick="openPageWithCountdown('page-3', 1)">← Back</button>
     <button class="btn-finish-top creator-only" id="finishBtnGift" onclick="saveToFirebaseAndGetLink()">✨ Finish</button>
@@ -805,6 +834,7 @@
     </div>
   </div>
 
+  <!-- FONT SELECTOR MODAL -->
   <div id="fontModal" class="custom-font-modal">
     <div class="link-modal-content">
       <h3 style="font-size: 18px;">✨ Dooro Nooca Farta (Font)</h3>
@@ -812,7 +842,7 @@
         <div class="font-item-option selected" onclick="selectFontCustom(this, 'Amiri, serif', 'Amiri')"><span style="font-family: 'Amiri', serif; font-size: 18px;">Amiri</span><span>✓</span></div>
         <div class="font-item-option" onclick="selectFontCustom(this, 'Great Vibes, cursive', 'Great Vibes')"><span style="font-family: 'Great Vibes', cursive; font-size: 22px;">Great Vibes</span></div>
         <div class="font-item-option" onclick="selectFontCustom(this, 'Dancing Script, cursive', 'Dancing Script')"><span style="font-family: 'Dancing Script, cursive', font-size: 20px;">Dancing Script</span></div>
-        <div class="font-item-option" onclick="selectFontCustom(this, 'Pacifico, cursive', 'Pacifico')"><span style="font-family: 'Pacifico', cursive', font-size: 18px;">Pacifico</span></div>
+        <div class="font-item-option" onclick="selectFontCustom(this, 'Pacifico, cursive', 'Pacifico')"><span style="font-family: 'Pacifico', cursive; font-size: 18px;">Pacifico</span></div>
         <div class="font-item-option" onclick="selectFontCustom(this, 'Reenie Beanie, cursive', 'Handwritten')"><span style="font-family: 'Reenie Beanie', cursive; font-size: 22px;">Handwritten</span></div>
         <div class="font-item-option" onclick="selectFontCustom(this, 'Cairo, sans-serif', 'Cairo')"><span style="font-family: 'Cairo', sans-serif; font-size: 16px;">Cairo</span></div>
         <div class="font-item-option" onclick="selectFontCustom(this, 'Readex Pro, sans-serif', 'Readex Pro')"><span style="font-family: 'Readex Pro', sans-serif; font-size: 16px;">Readex Pro</span></div>
@@ -826,6 +856,7 @@
     </div>
   </div>
 
+  <!-- ANIMATION SELECTOR MODAL -->
   <div id="animModal" class="custom-font-modal">
     <div class="link-modal-content">
       <h3 style="font-size: 18px;">🎬 Dooro Animation-ka Qoraalka</h3>
@@ -850,18 +881,23 @@
     </div>
   </div>
 
+  <!-- RED & HEART QR CODE MODAL -->
   <div id="linkModal" class="link-modal">
     <div class="link-modal-content">
-      <h3 style="font-size: 18px;">🎉 Link-gii iyo QR Code-kiiba waa diyaar!</h3>
-      <p style="font-size: 11px; color: #ccc;">Scan dheh ama Ku dir WhatsApp / Copy dheh link-ga:</p>
+      <h3 style="font-size: 18px; color: #ff4081;">🎉 Happy Birthday Surprise ❤️</h3>
+      <p style="font-size: 11px; color: #ccc;">Scan ama Share ku dir QR Code-kan Red Heart-ka ah:</p>
       
-      <div class="qr-box" id="qrcode"></div>
+      <!-- RED HEART QR CONTAINER -->
+      <div class="qr-box-wrapper">
+        <div class="qr-heart-badge">❤️</div>
+        <div id="qrcode"></div>
+      </div>
 
       <input type="text" id="generatedLink" class="share-link-input" readonly>
       
       <div class="modal-buttons-group">
         <button class="btn-modal btn-share-whatsapp" onclick="shareToWhatsApp()">
-          <span>💬</span> Share
+          <span>💬</span> Share WhatsApp
         </button>
         <button class="btn-modal btn-copy-modal" onclick="copyLink()">
           <span>📋</span> Copy Link
@@ -870,6 +906,7 @@
     </div>
   </div>
 
+  <!-- MUSIC INPUT MODAL -->
   <div id="musicModal" class="music-input-modal">
     <div class="link-modal-content">
       <h3 style="font-size: 18px;">🎵 Dooro Muusigga Heesta</h3>
@@ -891,6 +928,7 @@
     </div>
   </div>
 
+  <!-- FIREBASE & MAIN SCRIPT -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -1165,14 +1203,14 @@
         
         document.getElementById('generatedLink').value = shareableURL;
         
-        // DHALLINNA QR CODE-KA TOOSKA AH
+        // RED HEART QR CODE GENERATION
         const qrContainer = document.getElementById('qrcode');
         qrContainer.innerHTML = ""; 
         new QRCode(qrContainer, {
           text: shareableURL,
-          width: 130,
-          height: 130,
-          colorDark : "#000000",
+          width: 135,
+          height: 135,
+          colorDark : "#e60039",
           colorLight : "#ffffff",
           correctLevel : QRCode.CorrectLevel.H
         });
@@ -1199,7 +1237,7 @@
 
     window.shareToWhatsApp = function() {
       const link = document.getElementById("generatedLink").value;
-      const message = encodeURIComponent("Halkan ka eeg hadiydada gaarka ah ee aan kuugu diyaariyay! ❤️🎁:\n" + link);
+      const message = encodeURIComponent("Happy Birthday Surprise 🎁❤️\n\nHalkan ka eeg hadiydada gaarka ah ee aan kuugu diyaariyay! 👇:\n" + link);
       window.open(`https://api.whatsapp.com/send?text=${message}`, '_blank');
     };
 
@@ -1301,10 +1339,11 @@
     });
   </script>
 
+  <!-- ANIMATION & CANVAS SCRIPTS -->
   <script>
     let timerInterval = null;
 
-    /* QARXITAAN UBAXYO IYO BIRQIQ (FULL SCREEN BULULER SPARKLE & FLOWER BURST) */
+    /* FULL SCREEN BULULER SPARKLE & FLOWER BURST */
     window.triggerFullSparkles = function(event) {
       if (event) event.preventDefault();
 
@@ -1408,6 +1447,7 @@
     /* FIREWORKS SYSTEM */
     function initFireworksCanvas() {
       const canvas = document.getElementById('fireworksCanvas');
+      if (!canvas) return;
       const ctx = canvas.getContext('2d');
 
       function resize() {
@@ -1503,7 +1543,7 @@
       animate();
     }
 
-    /* THREE.JS DYNAMIC SPARKLES ANIMATION FOR CAKE BOGGA */
+    /* THREE.JS DYNAMIC SPARKLES ANIMATION FOR CAKE PAGE */
     function initCakeParticleAnimation() {
       const canvas = document.getElementById('cake3DCanvas');
       if (!canvas) return;
@@ -1576,4 +1616,3 @@
 
 </body>
 </html>
-
