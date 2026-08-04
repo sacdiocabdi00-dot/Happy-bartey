@@ -211,7 +211,6 @@
       overflow-y: auto;
     }
 
-    /* RED HEART QR CODE CONTAINER STYLING */
     .qr-box-wrapper {
       position: relative;
       background: #ffffff;
@@ -509,7 +508,6 @@
     .edit-active-only { display: none !important; }
     .editing-mode-active .edit-active-only { display: inline-flex !important; align-items: center; gap: 4px; }
 
-    /* CAKE PAGE STYLING */
     .cake-show-page {
       background: radial-gradient(circle at center, #1b002c 0%, #05000c 100%);
       flex-direction: column;
@@ -628,7 +626,6 @@
       100% { text-shadow: 0 0 20px #ff69b4, 0 0 35px #ff1493, 0 0 50px #ffffff; }
     }
 
-    /* GIFT PAGE STYLING */
     .sub-card-page { 
       background: radial-gradient(circle, #4a000e 0%, #120004 100%); 
       flex-direction: column; 
@@ -887,7 +884,6 @@
       <h3 style="font-size: 18px; color: #ff4081;">🎉 Happy Birthday Surprise ❤️</h3>
       <p style="font-size: 11px; color: #ccc;">Scan ama Share ku dir QR Code-kan Red Heart-ka ah:</p>
       
-      <!-- RED HEART QR CONTAINER -->
       <div class="qr-box-wrapper">
         <div class="qr-heart-badge">❤️</div>
         <div id="qrcode"></div>
@@ -1203,7 +1199,6 @@
         
         document.getElementById('generatedLink').value = shareableURL;
         
-        // RED HEART QR CODE GENERATION
         const qrContainer = document.getElementById('qrcode');
         qrContainer.innerHTML = ""; 
         new QRCode(qrContainer, {
@@ -1314,7 +1309,6 @@
               window.updateMusicButtonUI();
             }
 
-            // Message Page Photos
             if (data.s1) document.querySelector('.slot-1').innerHTML = `<img src="${data.s1}">`;
             if (data.s2) document.querySelector('.slot-2').innerHTML = `<img src="${data.s2}">`;
             if (data.s3) document.querySelector('.slot-3').innerHTML = `<img src="${data.s3}">`;
@@ -1322,11 +1316,10 @@
             if (data.s5) document.querySelector('.slot-5').innerHTML = `<img src="${data.s5}">`;
             if (data.main) document.querySelector('.add-photo-btn-slot').innerHTML = `<img src="${data.main}">`;
 
-            // Gift Page Photos
             if (data.g1) document.querySelectorAll('.gift-photo-slot')[0].innerHTML = `<img src="${data.g1}">`;
             if (data.g2) document.querySelectorAll('.gift-photo-slot')[1].innerHTML = `<img src="${data.g2}">`;
-            if (data.g3) document.querySelectorAll('.gift-photo-slot')[2].innerHTML = `<img src="${data.g3}">`;
-            if (data.g4) document.querySelectorAll('.gift-photo-slot')[3].innerHTML = `<img src="${data.g4}">`;
+            if (data.g3) document.querySelectorAll('.gift-photo-slot')[3].innerHTML = `<img src="${data.g3}">`;
+            if (data.g4) document.querySelectorAll('.gift-photo-slot')[4].innerHTML = `<img src="${data.g4}">`;
           }
         } catch (err) {
           console.error("Error loading surprise card:", err);
@@ -1343,7 +1336,6 @@
   <script>
     let timerInterval = null;
 
-    /* FULL SCREEN BULULER SPARKLE & FLOWER BURST */
     window.triggerFullSparkles = function(event) {
       if (event) event.preventDefault();
 
@@ -1444,7 +1436,6 @@
       }, 1000);
     }
 
-    /* FIREWORKS SYSTEM */
     function initFireworksCanvas() {
       const canvas = document.getElementById('fireworksCanvas');
       if (!canvas) return;
@@ -1543,7 +1534,6 @@
       animate();
     }
 
-    /* THREE.JS DYNAMIC SPARKLES ANIMATION FOR CAKE PAGE */
     function initCakeParticleAnimation() {
       const canvas = document.getElementById('cake3DCanvas');
       if (!canvas) return;
