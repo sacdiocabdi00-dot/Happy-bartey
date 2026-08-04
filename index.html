@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday Surprise</title>
 
-  <!-- Open Graph / WhatsApp Social Share Preview Meta Tags -->
+  <!-- Open Graph / WhatsApp Social Share Preview Meta Tags (QR Code oo kaliya) -->
   <meta property="og:title" content="Happy Birthday Surprise 🎁❤️">
   <meta property="og:description" content="Halkan ka eeg hadiydada gaarka ah ee aan kuugu diyaariyay!">
-  <meta property="og:image" content="https://i.postimg.cc/xdtkf7J0/da1478c736e944eb8f1ec711d8c60617.webp">
+  <meta property="og:image" content="https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=https://sacdiocabdi00-dot.github.io/Happy-bartey/">
   <meta property="og:type" content="website">
 
   <!-- Google Fonts -->
@@ -320,6 +320,7 @@
     .ribbon-seal::before { left: 1px; transform: rotate(-25deg); }
     .ribbon-seal::after { right: 1px; transform: rotate(25deg) scaleX(-1); }
 
+    /* PAGE 2 BACKGROUND UPDATED TO DARK GRADIENT WITH QR CODE DISPLAY */
     #page-2 {
       position: relative;
       flex-direction: column;
@@ -328,19 +329,7 @@
       color: #fff;
       gap: 15px;
       overflow: hidden;
-    }
-
-    #page-2::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('https://i.postimg.cc/xdtkf7J0/da1478c736e944eb8f1ec711d8c60617.webp');
-      background-size: cover;
-      background-position: center;
-      z-index: 1;
+      background: radial-gradient(circle, #3a0015 0%, #050002 100%);
     }
 
     #fireworksCanvas {
@@ -353,12 +342,30 @@
       pointer-events: none;
     }
 
+    /* BORDER/WRAPPER FOR MAIN DISPLAY QR CODE IN PAGE 2 */
+    .qr-main-display {
+      background: #ffffff;
+      padding: 12px;
+      border-radius: 16px;
+      border: 3px solid #ff1493;
+      box-shadow: 0 0 25px rgba(255, 20, 147, 0.8);
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .qr-main-display img {
+      width: 160px;
+      height: 160px;
+      display: block;
+      border-radius: 8px;
+    }
+
     .card-details-box { 
       position: relative;
       z-index: 5;
-      background: rgba(0, 0, 0, 0.75); 
+      background: rgba(0, 0, 0, 0.85); 
       border: 1px solid rgba(255, 20, 147, 0.6); 
-      padding: 35px 20px; 
+      padding: 30px 20px; 
       border-radius: 20px; 
       max-width: 340px; 
       width: 100%; 
@@ -719,14 +726,20 @@
     </div>
   </div>
 
-  <!-- PAGE 2 -->
+  <!-- PAGE 2 (SWIRKII WAA LAGA BIXIYAY, WAXAANA LAGU BEDDELAY QR CODE) -->
   <div id="page-2" class="page">
     <canvas id="fireworksCanvas"></canvas>
     <button class="btn-back" onclick="openPageWithCountdown('page-1', 1)">← Back</button>
     
     <div class="card-details-box">
       <h1 style="font-family: 'Great Vibes', cursive; font-size: 42px; color: #ff80bf;">Special Moment ✨</h1>
-      <p style="font-size: 13px; opacity: 0.9; line-height: 1.5;">Waxaan kuu diyaariyay haddiyad gaar ah oo ay ka buuxaan farriimo iyo xusuus qiimo leh. Hadda guji batoonka hoose si aad u gasho!</p>
+      
+      <!-- QR Code Display -->
+      <div class="qr-main-display">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://sacdiocabdi00-dot.github.io/Happy-bartey/" alt="QR Code Surprise">
+      </div>
+
+      <p style="font-size: 13px; opacity: 0.9; line-height: 1.5;">Waxaan kuu diyaariyay haddiyad gaar ah oo ay ka buuxaan farriimo iyo xusuus qiimo leh. Scan gareey ama guji batoonka hoose si aad u gasho!</p>
       <button class="btn-finish-link bululer-effect" onclick="openPageWithCountdown('page-3', 1)">Sii Soco →</button>
     </div>
   </div>
@@ -1606,3 +1619,4 @@
 
 </body>
 </html>
+
