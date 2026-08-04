@@ -773,7 +773,6 @@
       reader.readAsDataURL(file);
     };
 
-    // Halkan waxaa lagu daray xaqiijinta Link-ga saxda ah iyo digniinta Error-ka
     window.saveMusicLinkFromInput = function() {
       const linkVal = document.getElementById('musicLinkInput').value.trim();
       const isYouTube = linkVal.includes("youtube.com") || linkVal.includes("youtu.be");
@@ -969,11 +968,10 @@
       window.open(`https://api.whatsapp.com/send?text=${message}`, '_blank');
     };
 
-    // Typing Animation function for receiver mode
     function startTypingEffect(text, element) {
       element.value = "";
       let i = 0;
-      const speed = 45; // Xawaaraha qorista (miliseconds)
+      const speed = 45; 
       function typeWriter() {
         if (i < text.length) {
           element.value += text.charAt(i);
@@ -1019,7 +1017,6 @@
             const data = docSnap.data();
 
             if (data.letterNote) {
-              // Halkan waxaa laga hirgeliyay Typing Animation marka qofku link-ga furo
               startTypingEffect(data.letterNote, letterArea);
             }
 
@@ -1067,7 +1064,7 @@
   <script>
     let timerInterval = null;
 
-    function openPageWithCountdown(targetPageId, durationSeconds) {
+    window.openPageWithCountdown = function(targetPageId, durationSeconds) {
       clearInterval(timerInterval);
       
       let timeLeft = durationSeconds;
@@ -1098,10 +1095,9 @@
           document.getElementById('page-loading').classList.remove('active');
           document.getElementById(targetPageId).classList.add('active');
           
-          // Xaqiijinta in muusiggu uusan istaagin marka bogagga la beddelayo
           if (window.isMusicPlaying) {
-            if (window.customAudioData) playAudioData(window.customAudioData);
-            if (window.musicLinkValue) renderMusicPlayer(window.musicLinkValue);
+            if (window.customAudioData && typeof playAudioData === 'function') playAudioData(window.customAudioData);
+            if (window.musicLinkValue && typeof renderMusicPlayer === 'function') renderMusicPlayer(window.musicLinkValue);
           }
         }
       }, 1000);
