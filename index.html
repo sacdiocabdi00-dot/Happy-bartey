@@ -838,7 +838,7 @@
         </div>
       </div>
 
-      <textarea id="customLetterNote" class="custom-letter-text-new" placeholder="Halkan ku qor farriintaada quruxda badan... ❤️" readonly></textarea>
+      <textarea id="customLetterNote" class="custom-letter-text-new" placeholder="Halkan ku qor farriintaada quruxda badan... ❤️"></textarea>
     </div>
   </div>
 
@@ -1074,17 +1074,8 @@
     };
 
     window.toggleTextEdit = function() {
-      const textarea = document.getElementById('customLetterNote');
       const wrapperBox = document.getElementById('letterWrapperBox');
-      
-      if (textarea.hasAttribute('readonly')) {
-        textarea.removeAttribute('readonly');
-        textarea.focus();
-        wrapperBox.classList.add('editing-mode-active');
-      } else {
-        textarea.setAttribute('readonly', true);
-        wrapperBox.classList.remove('editing-mode-active');
-      }
+      wrapperBox.classList.toggle('editing-mode-active');
     };
 
     window.openFontModal = function() { document.getElementById('fontModal').style.display = 'flex'; };
@@ -1364,20 +1355,6 @@
       window.open(`https://api.whatsapp.com/send?text=${message}`, '_blank');
     };
 
-    function startTypingEffect(text, element) {
-      element.value = "";
-      let i = 0;
-      const speed = 45; 
-      function typeWriter() {
-        if (i < text.length) {
-          element.value += text.charAt(i);
-          i++;
-          setTimeout(typeWriter, speed);
-        }
-      }
-      typeWriter();
-    }
-
     window.addEventListener('load', async () => {
       const urlParams = new URLSearchParams(window.location.search);
       const cardId = urlParams.get('id');
@@ -1399,7 +1376,6 @@
         document.querySelectorAll('.editable-text-field').forEach(el => el.setAttribute('contenteditable', 'false'));
 
         const letterArea = document.getElementById('customLetterNote');
-        letterArea.readOnly = true;
 
         try {
           const docRef = doc(db, "surprises", cardId);
@@ -1408,7 +1384,7 @@
           if (docSnap.exists()) {
             const data = docSnap.data();
 
-            if (data.letterNote) startTypingEffect(data.letterNote, letterArea);
+            if (data.letterNote) letterArea.value = data.letterNote;
             if (data.recipientName) document.getElementById('recipientNameText').innerText = data.recipientName;
             
             if (data.letterFont) {
@@ -1749,3 +1725,4 @@
 
 </body>
 </html>
+
