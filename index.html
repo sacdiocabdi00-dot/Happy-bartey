@@ -883,17 +883,18 @@
 
       <p id="giftSub" class="editable-text-field" contenteditable="true" style="font-size: 12px; opacity: 0.9; margin-top:5px;">Taabo sanduuqa hoose si aad u daalacato sawirrada hidden-ka ah 👇</p>
       
+      <!-- Halkan ayaa lagu daray awoodda lagu badali karo afarta sawir (g1, g2, g3, g4) -->
       <div class="gift-photo-grid">
-        <div class="gift-photo-slot" onclick="openPhotoModal(this, 'Sawirka 1')">
+        <div class="gift-photo-slot" onclick="handleGiftSlotClick(this, 'g1', 'Sawirka 1')">
           <img src="https://i.postimg.cc/RVB5Lh6F/IMG-20260804-WA0007.jpg" alt="Gift Photo 1">
         </div>
-        <div class="gift-photo-slot" onclick="openPhotoModal(this, 'Sawirka 2')">
+        <div class="gift-photo-slot" onclick="handleGiftSlotClick(this, 'g2', 'Sawirka 2')">
           <img src="https://i.postimg.cc/RVB5Lh6F/IMG-20260804-WA0007.jpg" alt="Gift Photo 2">
         </div>
-        <div class="gift-photo-slot" onclick="openPhotoModal(this, 'Sawirka 3')">
+        <div class="gift-photo-slot" onclick="handleGiftSlotClick(this, 'g3', 'Sawirka 3')">
           <img src="https://i.postimg.cc/RVB5Lh6F/IMG-20260804-WA0007.jpg" alt="Gift Photo 3">
         </div>
-        <div class="gift-photo-slot" onclick="openPhotoModal(this, 'Sawirka 4')">
+        <div class="gift-photo-slot" onclick="handleGiftSlotClick(this, 'g4', 'Sawirka 4')">
           <img src="https://i.postimg.cc/RVB5Lh6F/IMG-20260804-WA0007.jpg" alt="Gift Photo 4">
         </div>
       </div>
@@ -908,9 +909,12 @@
       <h3 id="photoModalTitle" style="color: #ff80bf; font-family: 'Great Vibes', cursive; font-size: 32px;">Special Memory ✨</h3>
       <img id="photoModalImg" src="" alt="Selected Photo" style="width: 100%; max-height: 260px; object-fit: cover; border-radius: 16px; border: 2px solid #ff1493;">
       <p id="photoModalNote" class="editable-text-field" contenteditable="true" style="font-size: 14px; color: #fff; line-height: 1.4; background: rgba(255,255,255,0.1); width: 100%; padding: 8px; border-radius: 10px;">
-        Qoraal gaar ah oo ku saabsan sawirkan ama farriintaada quruxda badan... ❤️
+        Qoraal gaار ah oo ku saabsan sawirkan ama farriintaada quruxda badan... ❤️
       </p>
-      <button class="btn-modal btn-copy-modal" style="width: 100%;" onclick="closePhotoModal()">Xir / Close 💖</button>
+      <div style="display: flex; gap: 8px; width: 100%; margin-top: 5px;">
+        <button id="modalUploadBtn" class="btn-modal btn-share-whatsapp creator-only" style="flex: 1; display: none;" onclick="triggerUploadFromModal()">📷 Badal Sawirka</button>
+        <button class="btn-modal btn-copy-modal" style="flex: 1;" onclick="closePhotoModal()">Xir / Close 💖</button>
+      </div>
     </div>
   </div>
 
@@ -930,7 +934,7 @@
         <div class="font-item-option" onclick="selectFontCustom(this, 'Permanent Marker, cursive', 'Marker')"><span style="font-family: 'Permanent Marker', cursive; font-size: 16px;">Permanent Marker</span></div>
         <div class="font-item-option" onclick="selectFontCustom(this, 'Sacramento, cursive', 'Sacramento')"><span style="font-family: 'Sacramento', cursive; font-size: 20px;">Sacramento</span></div>
         <div class="font-item-option" onclick="selectFontCustom(this, 'Bubblegum Sans, cursive', 'Bubblegum')"><span style="font-family: 'Bubblegum Sans', cursive; font-size: 18px;">Bubblegum Sans</span></div>
-        <div class="font-item-option" onclick="selectFontCustom(this, 'Playfair Display, serif', 'Playfair')"><span style="font-family: 'Playfair Display', serif; font-size: 16px;">Playfair Display</span></div>
+        <div class="font-item-option" onclick="selectFontCustom(this, 'Playfair Display, serif', 'Playfair')"><span style="font-family: 'Playfair Display, serif', font-size: 16px;">Playfair Display</span></div>
       </div>
       <button class="btn-modal btn-copy-modal" style="width:100%; margin-top:5px;" onclick="closeFontModal()">Xir / Save</button>
     </div>
@@ -1046,11 +1050,37 @@
       }
     };
 
+    // Shaqada maamusha taabashada sanduuqyada gift-ka
+    window.handleGiftSlotClick = function(slotElement, key, label) {
+      activeSlotKey = key;
+      currentElement = slotElement;
+      const img = slotElement.querySelector('img');
+      
+      if (window.isReadOnlyMode) {
+        // Halka akhriska kaliya ah (Qofka loo diray) waa inuu arkaa popup-ka
+        if (img) {
+          document.getElementById('photoModalImg').src = img.src;
+          document.getElementById('photoModalTitle').innerText = label || "Special Memory ✨";
+          document.getElementById('modalUploadBtn').style.display = 'none';
+          document.getElementById('photoPreviewModal').style.display = 'flex';
+          triggerFullSparkles();
+        }
+      } else {
+        // Halka abuuraha ah (Creator) wuxuu si toos ah u bedeli karaa sawirka markuu gujiyo
+        document.getElementById('imageUploader').click();
+      }
+    };
+
+    window.triggerUploadFromModal = function() {
+      document.getElementById('imageUploader').click();
+    };
+
     window.openPhotoModal = function(slotElement, label) {
       const img = slotElement.querySelector('img');
       if (img) {
         document.getElementById('photoModalImg').src = img.src;
         document.getElementById('photoModalTitle').innerText = label || "Special Memory ✨";
+        document.getElementById('modalUploadBtn').style.display = 'none';
         document.getElementById('photoPreviewModal').style.display = 'flex';
         triggerFullSparkles();
       }
@@ -1231,7 +1261,6 @@
     };
 
     document.getElementById('imageUploader').addEventListener('change', function(e) {
-      if (window.isReadOnlyMode) return;
       const file = e.target.files[0];
       if (file) {
         const reader = new FileReader();
@@ -1263,10 +1292,15 @@
             const compressedBase64 = canvas.toDataURL('image/jpeg', 0.75);
             window.uploadedImages[activeSlotKey] = compressedBase64;
             
-            if (currentElement.tagName === 'IMG') {
-              currentElement.src = compressedBase64;
-            } else {
-              currentElement.innerHTML = `<img src="${compressedBase64}" style="width:100%; height:100%; object-fit:cover;">`;
+            if (currentElement) {
+              const imgTag = currentElement.querySelector('img');
+              if (imgTag) {
+                imgTag.src = compressedBase64;
+              } else if (currentElement.tagName === 'IMG') {
+                currentElement.src = compressedBase64;
+              } else {
+                currentElement.innerHTML = `<img src="${compressedBase64}" style="width:100%; height:100%; object-fit:cover;">`;
+              }
             }
           };
           img.src = event.target.result;
@@ -1435,6 +1469,7 @@
             if (data.s5) document.querySelector('.slot-5').innerHTML = `<img src="${data.s5}">`;
             if (data.main) document.querySelector('.add-photo-btn-slot').innerHTML = `<img src="${data.main}">`;
 
+            // Soo dejinta sawirrada afarta ah ee Gift-ka
             if (data.g1) document.querySelectorAll('.gift-photo-slot')[0].querySelector('img').src = data.g1;
             if (data.g2) document.querySelectorAll('.gift-photo-slot')[1].querySelector('img').src = data.g2;
             if (data.g3) document.querySelectorAll('.gift-photo-slot')[2].querySelector('img').src = data.g3;
@@ -1725,4 +1760,3 @@
 
 </body>
 </html>
-
