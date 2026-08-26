@@ -883,7 +883,6 @@
 
       <p id="giftSub" class="editable-text-field" contenteditable="true" style="font-size: 12px; opacity: 0.9; margin-top:5px;">Taabo sanduuqa hoose si aad u daalacato sawirrada hidden-ka ah 👇</p>
       
-      <!-- Halkan ayaa lagu daray awoodda lagu badali karo afarta sawir (g1, g2, g3, g4) -->
       <div class="gift-photo-grid">
         <div class="gift-photo-slot" onclick="handleGiftSlotClick(this, 'g1', 'Sawirka 1')">
           <img src="https://i.postimg.cc/RVB5Lh6F/IMG-20260804-WA0007.jpg" alt="Gift Photo 1">
@@ -909,7 +908,7 @@
       <h3 id="photoModalTitle" style="color: #ff80bf; font-family: 'Great Vibes', cursive; font-size: 32px;">Special Memory ✨</h3>
       <img id="photoModalImg" src="" alt="Selected Photo" style="width: 100%; max-height: 260px; object-fit: cover; border-radius: 16px; border: 2px solid #ff1493;">
       <p id="photoModalNote" class="editable-text-field" contenteditable="true" style="font-size: 14px; color: #fff; line-height: 1.4; background: rgba(255,255,255,0.1); width: 100%; padding: 8px; border-radius: 10px;">
-        Qoraal gaار ah oo ku saabsan sawirkan ama farriintaada quruxda badan... ❤️
+        Qoraal gaar ah oo ku saabsan sawirkan ama farriintaada quruxda badan... ❤️
       </p>
       <div style="display: flex; gap: 8px; width: 100%; margin-top: 5px;">
         <button id="modalUploadBtn" class="btn-modal btn-share-whatsapp creator-only" style="flex: 1; display: none;" onclick="triggerUploadFromModal()">📷 Badal Sawirka</button>
@@ -1050,14 +1049,12 @@
       }
     };
 
-    // Shaqada maamusha taabashada sanduuqyada gift-ka
     window.handleGiftSlotClick = function(slotElement, key, label) {
       activeSlotKey = key;
       currentElement = slotElement;
       const img = slotElement.querySelector('img');
       
       if (window.isReadOnlyMode) {
-        // Halka akhriska kaliya ah (Qofka loo diray) waa inuu arkaa popup-ka
         if (img) {
           document.getElementById('photoModalImg').src = img.src;
           document.getElementById('photoModalTitle').innerText = label || "Special Memory ✨";
@@ -1066,7 +1063,6 @@
           triggerFullSparkles();
         }
       } else {
-        // Halka abuuraha ah (Creator) wuxuu si toos ah u bedeli karaa sawirka markuu gujiyo
         document.getElementById('imageUploader').click();
       }
     };
@@ -1469,7 +1465,6 @@
             if (data.s5) document.querySelector('.slot-5').innerHTML = `<img src="${data.s5}">`;
             if (data.main) document.querySelector('.add-photo-btn-slot').innerHTML = `<img src="${data.main}">`;
 
-            // Soo dejinta sawirrada afarta ah ee Gift-ka
             if (data.g1) document.querySelectorAll('.gift-photo-slot')[0].querySelector('img').src = data.g1;
             if (data.g2) document.querySelectorAll('.gift-photo-slot')[1].querySelector('img').src = data.g2;
             if (data.g3) document.querySelectorAll('.gift-photo-slot')[2].querySelector('img').src = data.g3;
